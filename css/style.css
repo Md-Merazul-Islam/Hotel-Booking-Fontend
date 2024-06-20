@@ -1,4 +1,4 @@
-/********** Template CSS **********/
+/********** -----------------------------------------------Template CSS----------------------------------------------- **********/
 :root {
     --primary: #FEA116;
     --light: #F1F8FF;
@@ -22,7 +22,7 @@
 }
 
 
-/*** Spinner ***/
+/*** -----------------------------------------------Spinner----------------------------------------------- ***/
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -37,7 +37,7 @@
 }
 
 
-/*** Button ***/
+/*** -----------------------------------------------Button----------------------------------------------- ***/
 .btn {
     font-weight: 500;
     text-transform: uppercase;
@@ -76,7 +76,7 @@
 }
 
 
-/*** Navbar ***/
+/*** -----------------------------------------------Navbar----------------------------------------------- ***/
 .navbar-dark .navbar-nav .nav-link {
     margin-right: 30px;
     padding: 25px 0;
@@ -105,7 +105,7 @@
 
 
 
-/*** Carousel Hero Header Start ***/
+/*** -----------------------------------------------Carousel Hero Header Start----------------------------------------------- ***/
 .carousel-header .carousel-control-prev .carousel-control-prev-icon,
 .carousel-header .carousel-control-next .carousel-control-next-icon {
     width: 4rem;
@@ -193,21 +193,6 @@
         padding: 0;
     }
 }
-/*** Carousel Hero Header End ***/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 768px) {
     #header-carousel .carousel-item {
@@ -222,29 +207,11 @@
         object-fit: cover;
     }
 }
-
-.page-header {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.page-header-inner {
-    background: rgba(15, 23, 43, .7);
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-    color: var(--light);
-}
-
-.booking {
-    position: relative;
-    margin-top: -100px !important;
-    z-index: 1;
-}
+/*** -----------------------------------------------Carousel Hero Header End----------------------------------------------- ***/
 
 
-/*** Section Title ***/
+
+/*** -----------------------------------------------Section Title----------------------------------------------- ***/
 .section-title {
     position: relative;
     display: inline-block;
@@ -278,7 +245,10 @@
 }
 
 
-/*** Service ***/
+/*** -----------------------------------------------Section Title end----------------------------------------------- ***/
+
+
+/*** -----------------------------------------------Service start----------------------------------------------- ***/
 .service-item {
     height: 320px;
     padding: 30px;
@@ -316,8 +286,10 @@
 
 
 
+/*** -----------------------------------------------service end----------------------------------------------- ***/
 
-/*** Packages Start ***/
+
+/*** -----------------------------------------------Packages Start----------------------------------------------- ***/
 .packages .packages-item .packages-img {
     position: relative;
     overflow: hidden;
@@ -433,128 +405,11 @@
 .packages .packages-carousel .owl-nav .owl-next:hover i {
     color: var(--bs-white);
 }
-/*** Packages End ***/
-/*** Packages Start ***/
-.packages .packages-item .packages-img {
-    position: relative;
-    overflow: hidden;
-    transition: 0.5s;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    z-index: 1;
-}
-
-.packages .packages-item .packages-img .packages-info {
-    background: rgba(0, 0, 0, .3);
-}
-
-.packages .packages-item .packages-img .packages-info small,
-.packages .packages-item .packages-img .packages-info small i {
-    color: var(--bs-white);
-    transition: 0.5s;
-}
-
-.packages .packages-item .packages-img::after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 0px solid;
-    border-radius: 10px !important;
-    visibility: hidden;
-    transition: 0.7s;
-    z-index: 3;
-}
-
-.packages .packages-item .packages-img:hover.packages-img::after {
-    width: 100%;
-    height: 100%;
-    border: 300px solid;
-    border-color: rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6);
-    visibility: visible;
-}
-
-.packages .packages-item .packages-img small,
-.packages .packages-item .packages-img small i {
-    transition: 0.5s;
-}
-
-.packages .packages-item .packages-img:hover small,
-.packages .packages-item .packages-img:hover small i {
-    color: var(--bs-white) !important;
-
-}
-
-.packages .packages-item .packages-img img {
-    transition: 0.5s;
-}
-
-.packages .packages-item .packages-img:hover img {
-    transform: scale(1.3);
-}
-
-.packages .packages-item .packages-img .packages-price {
-    position: absolute;
-    width: 100px; 
-    top: 0; 
-    left: 50%; 
-    transform: translateX(-50%);
-    display: inline-block;
-    background: var(--bs-primary);
-    color: var(--bs-white);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px; 
-    z-index: 5;
-}
-
-.packages .packages-carousel {
-    position: relative;
-}
-
-.packages .packages-carousel .owl-nav .owl-prev {
-    position: absolute;
-    top: -50px;
-    left: 0;
-    padding: 5px 30px;
-    border: 1px solid var(--bs-primary);
-    border-radius: 30px;
-    transition: 0.5s;
-}
-
-.packages .packages-carousel .owl-nav .owl-next {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    padding: 5px 30px;
-    border: 1px solid var(--bs-primary);
-    border-radius: 30px;
-    transition: 0.5s;
-}
-
-.packages .packages-carousel .owl-nav .owl-prev i,
-.packages .packages-carousel .owl-nav .owl-next i {
-    color: var(--bs-primary);
-    font-size: 17px;
-    transition: 0.5s;
-}
-
-.packages .packages-carousel .owl-nav .owl-prev:hover,
-.packages .packages-carousel .owl-nav .owl-next:hover {
-    background: var(--bs-primary);
-}
-
-.packages .packages-carousel .owl-nav .owl-prev:hover i,
-.packages .packages-carousel .owl-nav .owl-next:hover i {
-    color: var(--bs-white);
-}
-/*** Packages End ***/
+/*** -----------------------------------------------Packages End----------------------------------------------- ***/
 
 
 
-/*** Tour Booking Start ***/
+/*** -----------------------------------------------Tour Booking Start----------------------------------------------- ***/
 .booking {
     background: linear-gradient(rgba(19, 53, 123, .8), rgba(19, 53, 123, .8)), url(/img/tour-booking-bg.jpg);
     background-position: center center;
@@ -593,132 +448,12 @@
     color: var(--bs-primary) !important;
 }
 
-/*** Tour Booking end ***/
-
-
-/*** Packages Start ***/
-.packages .packages-item .packages-img {
-    position: relative;
-    overflow: hidden;
-    transition: 0.5s;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    z-index: 1;
-}
-
-.packages .packages-item .packages-img .packages-info {
-    background: rgba(0, 0, 0, .3);
-}
-
-.packages .packages-item .packages-img .packages-info small,
-.packages .packages-item .packages-img .packages-info small i {
-    color: var(--bs-white);
-    transition: 0.5s;
-}
-
-.packages .packages-item .packages-img::after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 0px solid;
-    border-radius: 10px !important;
-    visibility: hidden;
-    transition: 0.7s;
-    z-index: 3;
-}
-
-.packages .packages-item .packages-img:hover.packages-img::after {
-    width: 100%;
-    height: 100%;
-    border: 300px solid;
-    border-color: rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6);
-    visibility: visible;
-}
-
-.packages .packages-item .packages-img small,
-.packages .packages-item .packages-img small i {
-    transition: 0.5s;
-}
-
-.packages .packages-item .packages-img:hover small,
-.packages .packages-item .packages-img:hover small i {
-    color: var(--bs-white) !important;
-
-}
-
-.packages .packages-item .packages-img img {
-    transition: 0.5s;
-}
-
-.packages .packages-item .packages-img:hover img {
-    transform: scale(1.3);
-}
-
-.packages .packages-item .packages-img .packages-price {
-    position: absolute;
-    width: 100px; 
-    top: 0; 
-    left: 50%; 
-    transform: translateX(-50%);
-    display: inline-block;
-    background: var(--bs-primary);
-    color: var(--bs-white);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px; 
-    z-index: 5;
-}
-
-.packages .packages-carousel {
-    position: relative;
-}
-
-.packages .packages-carousel .owl-nav .owl-prev {
-    position: absolute;
-    top: -50px;
-    left: 0;
-    padding: 5px 30px;
-    border: 1px solid var(--bs-primary);
-    border-radius: 30px;
-    transition: 0.5s;
-}
-
-.packages .packages-carousel .owl-nav .owl-next {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    padding: 5px 30px;
-    border: 1px solid var(--bs-primary);
-    border-radius: 30px;
-    transition: 0.5s;
-}
-
-.packages .packages-carousel .owl-nav .owl-prev i,
-.packages .packages-carousel .owl-nav .owl-next i {
-    color: var(--bs-primary);
-    font-size: 17px;
-    transition: 0.5s;
-}
-
-.packages .packages-carousel .owl-nav .owl-prev:hover,
-.packages .packages-carousel .owl-nav .owl-next:hover {
-    background: var(--bs-primary);
-}
-
-.packages .packages-carousel .owl-nav .owl-prev:hover i,
-.packages .packages-carousel .owl-nav .owl-next:hover i {
-    color: var(--bs-white);
-}
-/*** Packages End ***/
+/*** -----------------------------------------------Tour Booking end----------------------------------------------- ***/
 
 
 
 
-
-/*** Testimonial Start ***/
+/*** -----------------------------------------------Testimonial Start----------------------------------------------- ***/
 .testimonial .testimonial-carousel {
     position: relative;
 }
@@ -806,32 +541,13 @@
     border-style: dotted;
     transition: 0.5s;
 }
-/*** Testimonial End ***/
+/***----------------------------------------------- Testimonial End----------------------------------------------- ***/
 
 
 
 
-/*** Team ***/
-.team-item,
-.team-item .bg-primary,
-.team-item .bg-primary i {
-    transition: .5s;
-}
 
-.team-item:hover {
-    border-color: var(--secondary) !important;
-}
-
-.team-item:hover .bg-primary {
-    background: var(--secondary) !important;
-}
-
-.team-item:hover .bg-primary i {
-    color: var(--secondary) !important;
-}
-
-
-/*** Footer ***/
+/***----------------------------------------------- Footer----------------------------------------------- ***/
 .newsletter {
     position: relative;
     z-index: 1;
@@ -906,3 +622,5 @@
     padding-right: 0;
     border-right: none;
 }
+
+/*** -----------------------------------------------Footer end ----------------------------------------------- ***/
