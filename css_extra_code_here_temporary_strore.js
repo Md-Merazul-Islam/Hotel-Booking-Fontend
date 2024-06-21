@@ -51,7 +51,7 @@ async function registerUser() {
             return;
         }
 
-        //finally Proceed with registration if no duplicates are found
+        // Proceed with registration if no duplicates are found
         const registrationResponse = await fetch('https://blueskybooking.onrender.com/user/register/', {
             method: 'POST',
             headers: {
@@ -100,53 +100,3 @@ function displaySuccess(message) {
 
 
 
-
-
-
-
-
-
-
-// ------------login ------------------
-const handleLogin = ((event) => {
-    event.preventDefault();
-    const username = getValue('username');
-    const password = getValue('password');
-
-    fetch("https://blueskybooking.onrender.com/user/login/", {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    })
-        .then((res) => {
-            if (!res.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return res.json();
-        })
-        .then((data) => {
-            console.log(data);
-            if (data.success) {
-                localStorage.setItem("token", data.token);
-                window.location.href = 'index.html';
-            }
-            else {
-                console.error("Login failed. Token not received.");
-                document.getElementById('error').innerText = data.message || 'Login failed. Please try again.';
-            }
-        })
-        .catch((error) => {
-            console.error("Error during login:", error);
-            document.getElementById('error').innerText = 'Login failed. Please try again.';
-        });
-
-});
-
-const getValue = (id) => {
-    const value = document.getElementById(id).value;
-    return value;
-}
-const loginForm = document.getElementById('login-form');
-if (loginForm) {
-    loginForm.addEventListener('submit', handleLogin);
-}
