@@ -98,10 +98,38 @@
     }
 }
 
+.r-img{
+    width: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    
+}
+.r-img:hover {
+    transform: scale(1.1);
+}
 
 
+.balance {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+    font-weight:bolder;
 
+}
+.dropdown-menu{
+    border-radius: 15px;
+}
+.dropdown-item{
+    border-radius: 20px;
+}
 
+@media (max-width: 768px) {
+    .dropstart .dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+}
 
 
 
