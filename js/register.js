@@ -98,50 +98,6 @@ function displaySuccess(message) {
 
 
 
-
-
-
-// ------------login ------------------
-
-
-
-// Function to handle login
-// const handleLogin = (event) => {
-//     event.preventDefault();
-//     const username = document.getElementById('login-username').value;
-//     const password = document.getElementById('login-password').value;
-
-//     fetch("https://blueskybooking.onrender.com/user/login/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({ username, password })
-//     })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Login failed');
-//             }
-//             return response.json();
-//         })
-//         .then(data => {
-//             if (data.token) {
-//                 localStorage.setItem('token', data.token);
-//                 localStorage.setItem('user_id', data.user_id); // Assuming data contains user_id
-//                 alert('Login successful!');
-//                 window.location.href = 'index.html';
-//             } else {
-//                 alert('Login failed. Please check your username and password.');
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//             alert('An error occurred during login. Please try again.');
-//         });
-// }
-
-
-
 // // Function to handle logout
 // const handleLogout = () => {
 //     const token = localStorage.getItem('token');
