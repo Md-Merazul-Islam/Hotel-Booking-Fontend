@@ -107,7 +107,11 @@
 .r-img:hover {
     transform: scale(1.1);
 }
-
+.small-test{
+    font:smaller;
+    color: rgb(42, 208, 208);
+   
+}
 
 .balance {
     margin-right: 10px;

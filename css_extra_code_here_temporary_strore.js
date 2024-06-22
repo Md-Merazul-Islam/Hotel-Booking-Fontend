@@ -1,102 +1,70 @@
-document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    await registerUser();
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const authButtons = document.getElementById('auth-buttons');
+    const isAuthenticated = Boolean(localStorage.getItem('token'));
+    if (isAuthenticated) {
+        try {
+            const response = await fetch(`https://blueskybooking.onrender.com/user/account/`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Token ${token}`,
+                    'content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Failed to fetch account data. Status ${response.status}`);
+            }
+            const accountData = await response.json();
+            let userBalance = '0.00';
+
+            if (accountData.length > 0) {
+                userBalance = accountData[0].balance;
+            }
+
+            authButtons.innerHTML = `
+            <div class="d-flex justify-content-end align-items-center">
+                <div class="balance pe-3">$0.00</div>
+                <div class="btn-group dropstart">
+                    <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="./img/user.png" class="r-img" alt="My profile">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="balance.html">
+                            <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $0.00
+                        </a></li>
+                        <li><a class="dropdown-item" href="profile.html">
+                            <img src="./img/user.png" class="r-img" alt="Profile"> Profile
+                        </a></li>
+                        <li><a class="dropdown-item" href="deposit.html">
+                            <img src="./img/add-wallet.png" class="r-img" alt="Deposit"> Deposit
+                        </a></li>
+                        <li><a class="dropdown-item" href="#" onclick="handleLogout()">
+                            <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        }
+        catch (error) {
+            console.error('Error fetching account data:', error);
+            authButtons.innerHTML = `
+                <div>
+                    <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
+                    <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
+                </div>
+            `;
+        }
+
+    }
+    else {
+        authButtons.innerHTML = `
+            <div>
+            <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
+            <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
+                </div>
+        `;
+    }
 });
-
-async function registerUser() {
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.style.display = 'none';
-    errorContainer.classList.remove('text-success', 'text-danger');
-
-    // Get form data
-    const formData = {
-        username: document.getElementById('username').value.trim(),
-        first_name: document.getElementById('first_name').value.trim(),
-        last_name: document.getElementById('last_name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        password: document.getElementById('password').value.trim(),
-        confirm_password: document.getElementById('confirm_password').value.trim()
-    };
-
-    // Client-side validation
-    if (!formData.username || !formData.first_name || !formData.last_name || !formData.email || !formData.password || !formData.confirm_password) {
-        displayError('Please fill in all fields.');
-        return;
-    }
-
-    if (formData.password !== formData.confirm_password) {
-        displayError('Passwords do not match.');
-        return;
-    }
-
-    try {
-        // Fetch all users to check for existing username or email
-        const usersResponse = await fetch('https://blueskybooking.onrender.com/user/allUser/');
-        if (!usersResponse.ok) {
-            throw new Error('Failed to fetch existing users');
-        }
-        const usersData = await usersResponse.json();
-
-        // Check if username or email already exists
-        const existingUsername = usersData.some(user => user.username === formData.username);
-        const existingEmail = usersData.some(user => user.email === formData.email);
-
-        if (existingUsername) {
-            displayError('Username already exists.');
-            return;
-        }
-
-        if (existingEmail) {
-            displayError('Email already exists.');
-            return;
-        }
-
-        // Proceed with registration if no duplicates are found
-        const registrationResponse = await fetch('https://blueskybooking.onrender.com/user/register/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-
-        if (!registrationResponse.ok) {
-            const errorData = await registrationResponse.json();
-            throw new Error(errorData.detail || 'An error occurred during registration');
-        }
-
-        const responseData = await registrationResponse.json();
-        displaySuccess('Registration successful! Redirecting to login page...');
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 2000);
-
-    } catch (error) {
-        displayError(error.message);
-    }
-}
-
-function displayError(message) {
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.textContent = message;
-    errorContainer.classList.add('text-danger');
-    errorContainer.style.display = 'block';
-}
-
-function displaySuccess(message) {
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.textContent = message;
-    errorContainer.classList.add('text-success');
-    errorContainer.style.display = 'block';
-}
-
-
-
-
-
-
-
-
-
-
-
