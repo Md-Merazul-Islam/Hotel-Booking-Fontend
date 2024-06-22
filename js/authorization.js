@@ -1,4 +1,4 @@
-document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+document.getElementById('registrationForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     await registerUser();
 });
@@ -101,52 +101,72 @@ function displaySuccess(message) {
 
 
 
-
-
-
-
-
-
 // ------------login ------------------
-const handleLogin = ((event) => {
-    event.preventDefault();
-    const username = getValue('username');
-    const password = getValue('password');
 
-    fetch("https://blueskybooking.onrender.com/user/login/", {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    })
-        .then((res) => {
-            if (!res.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return res.json();
-        })
-        .then((data) => {
-            console.log(data);
-            if (data.success) {
-                localStorage.setItem("token", data.token);
-                window.location.href = 'index.html';
-            }
-            else {
-                console.error("Login failed. Token not received.");
-                document.getElementById('error').innerText = data.message || 'Login failed. Please try again.';
-            }
-        })
-        .catch((error) => {
-            console.error("Error during login:", error);
-            document.getElementById('error').innerText = 'Login failed. Please try again.';
-        });
 
-});
 
-const getValue = (id) => {
-    const value = document.getElementById(id).value;
-    return value;
-}
-const loginForm = document.getElementById('login-form');
-if (loginForm) {
-    loginForm.addEventListener('submit', handleLogin);
-}
+// Function to handle login
+// const handleLogin = (event) => {
+//     event.preventDefault();
+//     const username = document.getElementById('login-username').value;
+//     const password = document.getElementById('login-password').value;
+
+//     fetch("https://blueskybooking.onrender.com/user/login/", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({ username, password })
+//     })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Login failed');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             if (data.token) {
+//                 localStorage.setItem('token', data.token);
+//                 localStorage.setItem('user_id', data.user_id); // Assuming data contains user_id
+//                 alert('Login successful!');
+//                 window.location.href = 'index.html';
+//             } else {
+//                 alert('Login failed. Please check your username and password.');
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//             alert('An error occurred during login. Please try again.');
+//         });
+// }
+
+
+
+// // Function to handle logout
+// const handleLogout = () => {
+//     const token = localStorage.getItem('token');
+
+//     fetch("https://blueskybooking.onrender.com/user/logout/", {
+//         method: "POST",
+//         headers: {
+//             Authorization: `Token ${token}`,
+//             "Content-Type": "application/json",
+//         }
+//     })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Logout failed');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             localStorage.removeItem('token');
+//             localStorage.removeItem('user_id');
+//             alert('You have been logged out successfully.');
+//             window.location.href = 'login.html';
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//             alert('An error occurred during logout. Please try again.');
+//         });
+// }
