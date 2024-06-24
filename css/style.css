@@ -321,7 +321,11 @@
 /*** -----------------------------------------------service end----------------------------------------------- ***/
 
 
-/*** -----------------------------------------------Packages Start----------------------------------------------- ***/
+/*** -----------------------------------------------hotel room  Start----------------------------------------------- ***/
+
+.img-fluids{
+    max-height:227px;
+}
 .packages .packages-item .packages-img {
     position: relative;
     overflow: hidden;
@@ -346,6 +350,7 @@
     content: "";
     width: 0;
     height: 0;
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -359,6 +364,8 @@
 .packages .packages-item .packages-img:hover.packages-img::after {
     width: 100%;
     height: 100%;
+
+
     border: 300px solid;
     border-color: rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6);
     visibility: visible;
@@ -411,6 +418,7 @@
     transition: 0.5s;
 }
 
+
 .packages .packages-carousel .owl-nav .owl-next {
     position: absolute;
     top: -50px;
@@ -437,7 +445,47 @@
 .packages .packages-carousel .owl-nav .owl-next:hover i {
     color: var(--bs-white);
 }
-/*** -----------------------------------------------Packages End----------------------------------------------- ***/
+
+
+.owl-carousel .owl-nav button.owl-next, 
+.owl-carousel .owl-nav button.owl-prev, 
+.owl-carousel button.owl-dot {
+    background: 0 0; 
+    color: inherit; 
+    border: none; 
+    padding: 0 !important; 
+    font: inherit;
+    font-size: 30px; 
+    width: 67px; 
+    margin-bottom: 16px; 
+}
+
+
+.room-item {
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.room-item:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    background-color: #f6fafa;
+}
+
+
+.room-item img {
+    display: block;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+}
+
+.room-item:hover img {
+    transform: scale(1.1);
+}
+
+
+/*** -----------------------------------------------hotel room  End----------------------------------------------- ***/
 
 
 

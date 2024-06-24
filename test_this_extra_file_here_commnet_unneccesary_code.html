@@ -1,391 +1,268 @@
-<div class="row gx-0 bg-white d-none d-lg-flex">
-    <div class="col-lg-7 px-5 text-start">
-        <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-            <i class="fa fa-envelope text-primary me-2"></i>
-            <p class="mb-0">info@example.com</p>
+
+        <!-- Packages Start -->
+        <div class="container-fluid packages py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Hotel And Room</h5>
+                    <h1 class="mb-0">Awesome Packages</h1>
+                </div>
+                
+
+        <!-- search Start -->
+        <div class="container-fluid-search bookings pb-5 wow fadeIn py-5 mb-5" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="bg-white shadow" style="padding: 35px;">
+                    <div class="row g-2">
+                        <!-- Search Input Section -->
+                        <div class="col-md-4">
+                            <!-- Optional: Add a drop-down for search categories or filters -->
+                            <select id="categorySelect"  class="form-select">
+                                <option selected>All District</option>
+                               <!-- dynamically will be  -->
+                            </select>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row g-2">
+                                <div class="col-md-8">
+                                    <input id="searchInput" type="text" class="form-control" placeholder="Search..." aria-label="Search">
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="searchButton" class="btn btn-primary w-100">Search</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="h-100 d-inline-flex align-items-center py-2">
-            <i class="fa fa-phone-alt text-primary me-2"></i>
-            <p class="mb-0">+012 345 6789</p>
+        <!-- search End -->
+
+
+                <div class="packages-carousel owl-carousel pt-5">
+                    <div class="packages-item">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/room-1.jpg" alt="">
+                                <small
+                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">Junior Suite</h5>
+                                    <div class="ps-2">
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3
+                                        Bed</small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
+                                        Bath</small>
+                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos
+                                    lorem sed diam stet diam sed stet lorem.</p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="packages-item">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/room-1.jpg" alt="">
+                                <small
+                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h class="mb-0">Junior Suite</h>
+                                    <div class="ps-2">
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3
+                                        Bed</small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
+                                        Bath</small>
+                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos
+                                    lorem sed diam stet diam sed stet lorem.</p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="packages-item">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/room-1.jpg" alt="">
+                                <small
+                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">Junior Suite</h5>
+                                    <div class="ps-2">
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3
+                                        Bed</small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
+                                        Bath</small>
+                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos
+                                    lorem sed diam stet diam sed stet lorem.</p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="packages-item">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/room-1.jpg" alt="">
+                                <small
+                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">Junior Suite</h5>
+                                    <div class="ps-2">
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3
+                                        Bed</small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
+                                        Bath</small>
+                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos
+                                    lorem sed diam stet diam sed stet lorem.</p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-5 px-5 text-end">
-        <div class="d-inline-flex align-items-center py-2">
-            <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-            <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-            <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-            <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
-            <a class="" href=""><i class="fab fa-youtube"></i></a>
+        <!-- Packages End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+<!-- Packages Start -->
+<div class="container-fluid packages py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Hotel And Room</h5>
+            <h1 class="mb-0">Awesome Packages</h1>
+        </div>
+
+        <!-- Search Section -->
+        <div class="container-fluid-search bookings pb-5 wow fadeIn py-5 mb-5" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="bg-white shadow" style="padding: 35px;">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <select id="categorySelect" class="form-select">
+                                <option value="" selected>All Districts</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row g-2">
+                                <div class="col-md-8">
+                                    <input id="searchInput" type="text" class="form-control" placeholder="Search by hotel name or district..." aria-label="Search">
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="searchButton" class="btn btn-primary w-100">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Search Section -->
+
+        <!-- Carousel Container -->
+        <div class="packages-carousel owl-carousel pt-5" id="resultsContainer">
+            <!-- Dynamically generated hotel cards will be inserted here -->
         </div>
     </div>
 </div>
+<!-- Packages End -->
 
 
 
-
-
-<script>
-    // Function to update the navbar based on the user's authentication status
-    document.addEventListener('DOMContentLoaded', function() {
-        const authButtons = document.getElementById('auth-buttons');
-        const isAuthenticated = Boolean(localStorage.getItem('token'));
-        if (isAuthenticated) {
-            authButtons.innerHTML = `
-                <div class="d-flex justify-content-end align-items-center">
-                    <div class="balance pe-3">$0.00</div>
-                    <div class="btn-group dropstart">
-                        <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="./img/user.png" class="r-img" alt="My profile">
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="balance.html">
-                                <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $0.00
-                            </a></li>
-                            <li><a class="dropdown-item" href="profile.html">
-                                <img src="./img/user.png" class="r-img" alt="Profile"> Profile
-                            </a></li>
-                            <li><a class="dropdown-item" href="deposit.html">
-                                <img src="./img/add-wallet.png" class="r-img" alt="Deposit"> Deposit
-                            </a></li>
-                            <li><a class="dropdown-item" href="#" onclick="handleLogout()">
-                                <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-        } else {
-            authButtons.innerHTML = `
-                <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
-                <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
-            `;
-        }
-    });
-
-    // Function to handle login
-    const handleLogin = (event) => {
-        event.preventDefault();
-        const username = document.getElementById('login-username').value;
-        const password = document.getElementById('login-password').value;
-
-        fetch("https://blueskybooking.onrender.com/user/login/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username, password })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Login failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user_id', data.user_id); // Assuming data contains user_id
-                alert('Login successful!');
-                window.location.href = 'index.html';
-            } else {
-                alert('Login failed. Please check your username and password.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred during login. Please try again.');
-        });
-    }
-
-    // Function to handle logout
-    const handleLogout = () => {
-        const token = localStorage.getItem('token');
-
-        fetch("https://blueskybooking.onrender.com/user/logout/", {
-            method: "POST",
-            headers: {
-                Authorization: `Token ${token}`,
-                "Content-Type": "application/json",
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Logout failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user_id');
-            alert('You have been logged out successfully.');
-            window.location.href = 'login.html';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred during logout. Please try again.');
-        });
-    }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Testimonial Start -->
-        <div class="container-fluid testimonial py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Testimonial</h5>
-                    <h1 class="mb-0">Our Clients Say!!!</h1>
-                </div>
-                <div class="testimonial-carousel owl-carousel">
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                            <p class="text-center mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. Vero reiciendis,
-                            </p>
-                        </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle" alt="Image">
-                        </div>
-                        <div style="margin-top: -35px;">
-                            <h5 class="mb-0">John Abraham</h5>
-                            <p class="mb-0">New York, USA</p>
-                            <div class="d-flex justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                            <p class="text-center mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. Vero reiciendis,
-                            </p>
-                        </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/testimonial-2.jpg" class="img-fluid rounded-circle" alt="Image">
-                        </div>
-                        <div style="margin-top: -35px;">
-                            <h5 class="mb-0">John Abraham</h5>
-                            <p class="mb-0">New York, USA</p>
-                            <div class="d-flex justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                            <p class="text-center mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. Vero reiciendis,
-                            </p>
-                        </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/testimonial-3.jpg" class="img-fluid rounded-circle" alt="Image">
-                        </div>
-                        <div style="margin-top: -35px;">
-                            <h5 class="mb-0">John Abraham</h5>
-                            <p class="mb-0">New York, USA</p>
-                            <div class="d-flex justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                            <p class="text-center mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. Vero reiciendis,
-                            </p>
-                        </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/testimonial-4.jpg" class="img-fluid rounded-circle" alt="Image">
-                        </div>
-                        <div style="margin-top: -35px;">
-                            <h5 class="mb-0">John Abraham</h5>
-                            <p class="mb-0">New York, USA</p>
-                            <div class="d-flex justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <!-- Tour Booking Start -->
-              <div class="container-fluid booking py-5">
-                <div class="container py-5">
-                    <div class="row g-5 align-items-center">
-                        <div class="col-lg-6">
-                            <h5 class="section-booking-title pe-3">Booking</h5>
-                            <h1 class="text-white mb-4">Online Booking</h1>
-                            <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur maxime ullam esse fuga blanditiis accusantium pariatur quis sapiente, veniam doloribus praesentium? Repudiandae iste voluptatem fugiat doloribus quasi quo iure officia.
-                            </p>
-                            <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur maxime ullam esse fuga blanditiis accusantium pariatur quis sapiente, veniam doloribus praesentium? Repudiandae iste voluptatem fugiat doloribus quasi quo iure officia.
-                            </p>
-                            <a href="#" class="btn btn-light text-primary rounded-pill py-3 px-5 mt-2">Read More</a>
-                        </div>
-                        <div class="col-lg-6">
-                            <h1 class="text-white mb-3">Book A Tour Deals</h1>
-                            <p class="text-white mb-4">Get <span class="text-warning">50% Off</span> On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control bg-white border-0" id="name" placeholder="Your Name">
-                                            <label for="name">Your Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control bg-white border-0" id="email" placeholder="Your Email">
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating date" id="date3" data-target-input="nearest">
-                                            <input type="text" class="form-control bg-white border-0" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
-                                            <label for="datetime">Date & Time</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select bg-white border-0" id="select1">
-                                                <option value="1">Destination 1</option>
-                                                <option value="2">Destination 2</option>
-                                                <option value="3">Destination 3</option>
-                                            </select>
-                                            <label for="select1">Destination</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select bg-white border-0" id="SelectPerson">
-                                                <option value="1">Persons 1</option>
-                                                <option value="2">Persons 2</option>
-                                                <option value="3">Persons 3</option>
-                                            </select>
-                                            <label for="SelectPerson">Persons</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select bg-white border-0" id="CategoriesSelect">
-                                                <option value="1">Kids</option>
-                                                <option value="2">1</option>
-                                                <option value="3">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                            <label for="CategoriesSelect">Categories</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control bg-white border-0" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                            <label for="message">Special Request</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary text-white w-100 py-3" type="submit">Book Now</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Tour Booking End -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-        <!-- Carousel Start -->
-        <div class="carousel-header">
-            <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                        <img src="img/carousel-1.jpg" class="img-fluid" alt="Image">
-                        <div class="carousel-caption">
-                            <div class="text-center p-4" style="max-width: 900px;">
-                                <h4 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.1s">Solution For All Type Of Visas</h4>
-                                <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Immigration Process Starts Here!</h1>
-                                <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                </p>
-                                <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5 wow fadeInUp" data-wow-delay="0.7s" href="#">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/carousel-2.jpg" class="img-fluid" alt="Image">
-                        <div class="carousel-caption">
-                            <div class="text-center p-4" style="max-width: 900px;">
-                                <h5 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.1s">Solution For All Type Of Visas</h5>
-                                <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Best Visa Immigrations Services</h1>
-                                <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                </p>
-                                <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5 wow fadeInUp" data-wow-delay="0.7s" href="#">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-secondary wow fadeInLeft" data-wow-delay="0.2s" aria-hidden="false"></span>
-                    <span class="visually-hidden-focusable">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-secondary wow fadeInRight" data-wow-delay="0.2s" aria-hidden="false"></span>
-                    <span class="visually-hidden-focusable">Next</span>
-                </button>
-            </div>
-        </div>
-        <!-- Carousel End -->
