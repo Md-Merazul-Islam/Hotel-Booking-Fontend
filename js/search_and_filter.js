@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="room-item shadow rounded overflow-hidden">
                     <div class="position-relative">
                         <img class="img-fluids " src="${hotel.photo}" alt="${hotel.name}">
-                        <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">${hotel.price_per_night}/Night</small>
+                        <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$${hotel.price_per_night}/Night</small>
                     </div>
                     <div class="p-4 mt-2">
                         <div class="d-flex justify-content-between mb-3">
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <p class="card-text"><small class="text-muted">${hotel.district_name}</small></p>
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-sm btn-primary rounded py-2 px-4 view-detail-button" href="#" data-hotel-id="${hotel.id}">View Detail</a>
-                            <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
+                            <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="hotel_booking.html?hotelId=${hotel.id}" ">Book Now</a>
                         </div>
                     </div>
                 </div>
