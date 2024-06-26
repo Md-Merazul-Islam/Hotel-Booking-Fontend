@@ -66,7 +66,7 @@ async function registerUser() {
         }
 
         const responseData = await registrationResponse.json();
-        displaySuccess('Registration successful! Redirecting to login page...');
+        displaySuccess('Registration successful! Check you mail. Redirecting to login page...');
         setTimeout(() => {
             window.location.href = 'login.html';
         }, 2000);
