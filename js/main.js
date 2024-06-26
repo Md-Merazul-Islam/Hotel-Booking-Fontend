@@ -213,13 +213,11 @@
 
 
 
-
-
-
-
 document.addEventListener('DOMContentLoaded', async function () {
     const authButtons = document.getElementById('auth-buttons');
     const token = localStorage.getItem('token');
+    const userId = parseInt(localStorage.getItem('user_id'));
+    console.log(userId);  
 
     if (token) {
         try {
@@ -239,8 +237,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                 throw new Error('No user account data found');
             }
 
-            const account = userData[0]; // Assuming the first item in array is the user's account
+            // Find the account that matches the userId from local storage
+            const accountIndex = userData.findIndex(account => account.account_no === userId);
 
+            if (accountIndex === -1) {
+                throw new Error('No matching user account found');
+            }
+
+            const account = userData[accountIndex];
             const balance = parseFloat(account.balance.replace(',', ''));
 
             authButtons.innerHTML = `
@@ -254,7 +258,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             </div>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="balance.html">
+                            <li><a class="dropdown-item" href="#">
                                 <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $${balance.toFixed(2)}
                             </a></li>
                             <li><a class="dropdown-item" href="profile.html">
@@ -282,12 +286,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     } else {
         authButtons.innerHTML = `
-        
             <div>
                 <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
                 <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
             </div>
         `;
-        console.error('Error no token found:', error);
+        console.error('No token found');
     }
 });

@@ -29,30 +29,7 @@
 
     <!-- Include your JavaScript code -->
     <script>
-    const token = '1c131b87f58203fa26539378c827fee56d2bfd51';
-fetch('https://blueskybooking.onrender.com/hotel/book-hotel/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
-        user: '13',
-        start_date: '2024-06-24',
-        end_date: '2024-06-27',
-        number_of_rooms: 1
-    })
-}).then(response => {
-    if (!response.ok) {
-        throw new Error('Booking failed: ' + response.status);
-    }
-    return response.json();
-}).then(data => {
-    console.log('Booking successful:', data);
-}).catch(error => {
-    console.error('Booking error:', error);
-});
-
+    
 
     </script>
 </body>
