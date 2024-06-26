@@ -1,7 +1,4 @@
 
-// // ------------------------------------------------------------------------------------
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const categorySelect = document.getElementById('categorySelect');
     const searchInput = document.getElementById('searchInput');
@@ -110,13 +107,24 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Add event listeners to "View Detail" buttons
+        // view details
         const viewDetailButtons = document.querySelectorAll('.view-detail-button');
         viewDetailButtons.forEach(button => {
             button.addEventListener('click', function (event) {
                 event.preventDefault();
                 const hotelId = button.getAttribute('data-hotel-id');
                 fetchHotelDetails(hotelId);
+            });
+        });
+
+        // check logged user
+        const bookNowButtons = document.querySelectorAll('.book-now-button');
+        bookNowButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                if (!isLoggedIn()) {
+                    event.preventDefault();
+                    window.location.href = 'login.html';
+                }
             });
         });
 
@@ -134,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hotelDetailsModal.show();
         }
     }
+
 
 
 
@@ -159,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
- 
+
 
     // Filter hotels based on search criteria
     function filterHotels() {
@@ -177,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
     searchButton.addEventListener('click', filterHotels);
     searchInput.addEventListener('input', filterHotels);
 
-    // Fetch hotels on page load
+  
     fetchHotels();
 
 });
@@ -188,4 +197,8 @@ function truncateText(text, maxLength) {
         return text.slice(0, maxLength) + '...';
     }
     return text;
+}
+
+function isLoggedIn() {
+    return !!localStorage.getItem('userLoggedIn');
 }
