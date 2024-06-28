@@ -1,110 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials</title>
-    <!-- Include Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file -->
-    <!-- Include Font Awesome for star icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Deposit</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Card styling */
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Label and input styling */
+        label {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result div styling */
+        #result {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Heading styling */
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Testimonial Start -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container py-5">
-            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                <h5 class="section-title px-3">Testimonial</h5>
-                <h1 class="mb-0">Our Clients Say!!!</h1>
-            </div>
-            <div class="testimonial-carousel owl-carousel" id="reviews-container">
-                <!-- Review cards will be dynamically added here -->
+    <!-- <div class="card">
+        <h1>Make a Deposit</h1>
+        <form id="deposit-form">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+            <button type="submit">Deposit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+ -->
+
+
+
+
+    <main class="max-w-screen-xl mx-auto px-8 md:px-16 lg:px-24 pt-2 mt-2">
+        <h1 class="font-bold text-4xl text-center mb-8">Deposit</h1>
+        <div class="grid grid-cols-1">
+            <div class="my-auto">
+                <div class="p-8 rounded">
+                    <form method="POST">
+                        <div class="mt-4">
+                            <label for="amount" class="block text-lg font-medium text-gray-700">Amount</label>
+                            <input type="number"
+                                class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                                id="amount" name="amount" required>
+                        </div>
+
+
+                        <div class="space-x-4 mt-8">
+                            <button type="submit" onclick="handleDeposit(event)"
+                                class="bg-[#005F86] text-white hover:text-black hover:bg-white py-2 px-6 rounded text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg w-full">
+                                Deposit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Testimonial End -->
 
-    <!-- Include jQuery and Owl Carousel JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script >
+    </main>
 
-document.addEventListener('DOMContentLoaded', () => {
-    const reviewContainer = document.getElementById('reviews-container');
-    const carouselContainer = document.createElement('div');
-    carouselContainer.className = 'owl-carousel packages-carousel';
-    reviewContainer.innerHTML = ''; // Clear any existing content in the review container
 
-    // Fetch the reviews from the API
-    fetch('https://blueskybooking.onrender.com/hotel/reviews/')
-        .then(res => res.json())
-        .then(reviews => {
-            reviews.forEach(review => {
-                const reviewCard = document.createElement('div');
-                reviewCard.className = 'packages-item';
 
-                reviewCard.innerHTML = `
-                    <div class="testimonial-item shadow text-center rounded pb-4">
-                        <h3>${review.hotel_name}</h3>
-                        <div class="testimonial-comment bg-light rounded p-4">
-                            <p class="text-center mb-5">${review.body}</p>
-                        </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle" alt="Image">
-                        </div>
-                        <div style="margin-top: -35px;">
-                            <h5 class="mb-0">${review.user_name}</h5>
-                            <p class="mb-0">Created on: ${new Date(review.created).toLocaleDateString()}</p>
-                            <div class="d-flex justify-content-center">
-                                ${generateStars(review.rating)}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                carouselContainer.appendChild(reviewCard);
-            });
-            reviewContainer.appendChild(carouselContainer);
 
-            // Initialize Owl Carousel after appending the review cards
-            $('.packages-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching the reviews:', error);
-        });
-});
 
-// Function to generate star ratings
-function generateStars(rating) {
-    const maxStars = 5;
-    let starsHTML = '';
-    for (let i = 0; i < maxStars; i++) {
-        if (i < rating) {
-            starsHTML += '<i class="fas fa-star text-primary"></i>';
-        } else {
-            starsHTML += '<i class="far fa-star text-primary"></i>';
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "login.html";
         }
-    }
-    return starsHTML;
-}
+        const handleDeposit = (event) => {
+            event.preventDefault();
+            const amnt = document.getElementById("amount").value;
+            const amount = parseInt(amnt)
+            const acnt = localStorage.getItem("user_id")
+            const account = parseInt(acnt)
+            console.log(amount, account);
+            if ((typeof amount === 'number') && (typeof account === 'number')) {
+                console.log("Yes it is a number");
+                try {
+                    var res;
+                    fetch('https://blueskybooking.onrender.com/user/deposit/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ amount, account })
+                    })
+                        .then((response) => {
+                            response.json();
+                        })
+                        .then((data) => {
+                            alert(`You Have Successfully Deposited ${amount}$`)
+                            window.location.href = "dashboard.html"
+                        })
 
+                } catch (error) {
 
-    </script> <!-- Your custom JS file -->
+                }
+            } else {
+                console.log("Invalid input");
+            }
+        }
+    </script>
 </body>
+
 </html>
