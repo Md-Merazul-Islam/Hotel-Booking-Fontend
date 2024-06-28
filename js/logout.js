@@ -1,3 +1,6 @@
+
+
+
 function handleLogout() {
     const token = localStorage.getItem('token');
 
@@ -5,47 +8,34 @@ function handleLogout() {
         method: 'POST',
         headers: {
             'Authorization': `Token ${token}`,
-            "content-type": "application/json",
+            'Content-Type': 'application/json',
         }
     })
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            // Clear local storage
-            console.log(data);
-            localStorage.removeItem('token');
-            localStorage.removeItem('user_id');
-            localStorage.removeItem('user_account');
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        // Clear local storage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
 
-            // Optionally display a message or alert
-            alert('You have been logged out successfully.');
-
-            // Redirect to login page or homepage
+        Swal.fire({
+            icon: 'success',
+            title: 'Logout Successful',
+            text: 'You have been logged out successfully.',
+            confirmButtonColor: '#007bff'
+        }).then(() => {
             window.location.href = 'login.html';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred during logout. Please try again.');
         });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Logout Failed',
+            text: 'An error occurred during logout. Please try again.',
+            confirmButtonColor: '#007bff'
+        });
+    });
 }
-
-
-// const handleLogout = () => {
-//     // alert()
-//     const token = localStorage.getItem("token");
-//     fetch("https://blueskybooking.onrender.com/user/logout/", {
-//         method: "GET",
-//         authorization: `Token ${token}`,
-//         headers: { "content-type": "application/json" },
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data)
-//         localStorage.removeItem('token')
-//         localStorage.removeItem('user_id')
-//         localStorage.removeItem('user_account')
-//         alert("Logged Out Successfully")
-//         window.location.href = "login.html";
-//     })
-// }

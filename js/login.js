@@ -16,29 +16,32 @@ const handleLogin = (event) => {
         },
         body: JSON.stringify({ username, password })
     })
-    .then(response => {
-        if (!response.ok) {
-            displayError('Login failed. Please check your username and password.');
-            throw new Error('Login failed.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.token) {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user_id', data.user_id);
-            displaySuccess('Login successful.');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000); // Redirect after 2 seconds
-        } else {
-            displayError('Login failed. Please check your username and password.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        displayError('An error occurred during login. Please try again.');
-    });
+        .then(response => {
+            if (!response.ok) {
+                displayError('Login failed. Please check your username and password.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user_id', data.user_id);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: 'You have successfully logged in!',
+                    confirmButtonColor: '#007bff'
+                }).then(() => {
+                    window.location.href = 'index.html';
+                });
+            } else {
+                displayError('Login failed. Please check your username and password.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            displayError('An error occurred during login. Please try again.');
+        });
 }
 
 function displayError(message) {

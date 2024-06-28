@@ -1,3 +1,5 @@
+
+
 document.getElementById('registrationForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     await registerUser();
@@ -51,7 +53,7 @@ async function registerUser() {
             return;
         }
 
-        //finally Proceed with registration if no duplicates are found
+        // Proceed with registration if no duplicates are found
         const registrationResponse = await fetch('https://blueskybooking.onrender.com/user/register/', {
             method: 'POST',
             headers: {
@@ -66,13 +68,17 @@ async function registerUser() {
         }
 
         const responseData = await registrationResponse.json();
-        displaySuccess('Registration successful! Check you mail. Redirecting to login page...');
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 2000);
+        Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful',
+            text: 'Registration successful! Check your email. Redirecting to login page...',
+            confirmButtonColor: '#007bff'
+        }).then(() => {
+            window.location.href = 'login.html'; 
+        });
 
     } catch (error) {
-        displayError(error.message);
+        
     }
 }
 
@@ -82,47 +88,3 @@ function displayError(message) {
     errorContainer.classList.add('text-danger');
     errorContainer.style.display = 'block';
 }
-
-function displaySuccess(message) {
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.textContent = message;
-    errorContainer.classList.add('text-success');
-    errorContainer.style.display = 'block';
-}
-
-
-
-
-
-
-
-
-
-// // Function to handle logout
-// const handleLogout = () => {
-//     const token = localStorage.getItem('token');
-
-//     fetch("https://blueskybooking.onrender.com/user/logout/", {
-//         method: "POST",
-//         headers: {
-//             Authorization: `Token ${token}`,
-//             "Content-Type": "application/json",
-//         }
-//     })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Logout failed');
-//             }
-//             return response.json();
-//         })
-//         .then(data => {
-//             localStorage.removeItem('token');
-//             localStorage.removeItem('user_id');
-//             alert('You have been logged out successfully.');
-//             window.location.href = 'login.html';
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//             alert('An error occurred during logout. Please try again.');
-//         });
-// }
