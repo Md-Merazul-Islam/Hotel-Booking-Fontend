@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
                             <div>
                                 <div><img src="${account.profile_image || './img/user.png'}" class="r-img" alt="My profile"></div>
-                                <div><small class="small-text">${account.username}</small></div>
+                                <div><small class="pp-username small-text ">${account.username}</small></div>
                             </div>
                         </button>
                         <ul class="dropdown-menu">

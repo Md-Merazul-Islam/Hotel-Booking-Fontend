@@ -138,6 +138,9 @@
         left: auto;
     }
 }
+.pp-username{
+    color: var(--bs-white);
+}
 
 
 
