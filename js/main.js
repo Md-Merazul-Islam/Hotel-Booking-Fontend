@@ -142,82 +142,11 @@
 
 
 
-// document.addEventListener('DOMContentLoaded', async function () {
-//     const authButtons = document.getElementById('auth-buttons');
-//     const isAuthenticated = Boolean(localStorage.getItem('token'));
-//     if (isAuthenticated) {
-//         try {
-//             const res = await fetch('https://blueskybooking.onrender.com/user/account/', {
-//                 headers: {
-//                     Authorization: `Bearer ${localStorage.getItem('token')}`
-//                 }
-//             });
-//             if (!res.ok) {
-//                 throw new Error('Failed to fetch user data ');
-//             }
-//             const userData = await res.json();
-//             const balance = parseFloat(userData[0].balance.replace(',', ''));
-
-//             authButtons.innerHTML = `
-//                             <div class="d-flex justify-content-end align-items-center">
-//                                 <div class="balance">$${balance.toFixed(2)}</div>
-//                                 <div class=" dropstart">
-//                                     <button type="button" class="btn  " data-bs-toggle="dropdown" aria-expanded="false">
-//                                         <div>
-//                                         <div><img src="./img/user.png" class="r-img" alt="My profile"></div>
-//                                         <div><small class="small-test">${userData[0].username}</small></div>
-//                                         </div>
-//                                     </button>
-//                                     <ul class="dropdown-menu">
-//                                         <li><a class="dropdown-item" href="balance.html">
-//                                             <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $${balance.toFixed(2)}
-//                                         </a></li>
-//                                         <li><a class="dropdown-item" href="profile.html">
-//                                             <img src="./img/user.png" class="r-img" alt="Profile"> ${userData[0].username}
-//                                         </a></li>
-//                                         <li><a class="dropdown-item" href="deposit.html">
-//                                             <img src="./img/add-wallet.png" class="r-img" alt="Deposit"> Deposit
-//                                         </a></li>
-//                                         <li><a class="dropdown-item" href="#" onclick="handleLogout()">
-//                                             <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
-//                                         </a></li>
-//                                     </ul>
-//                                 </div>
-//                             </div>
-//                         `;
-//         }
-//         catch (error) {
-//             console.error('Error fetching user data : ', error);
-//             authButtons.innerHTML = `
-//                             <div>
-//                                 <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
-//                                 <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
-//                             </div>
-//                         `;
-//         }
-//     } else {
-//         authButtons.innerHTML = `
-//                 <div>
-//                     <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
-//                     <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
-//                 </div>
-//             `;
-//     }
-// });
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', async function () {
     const authButtons = document.getElementById('auth-buttons');
     const token = localStorage.getItem('token');
     const userId = parseInt(localStorage.getItem('user_id'));
-    console.log(userId);  
+    console.log(userId);
 
     if (token) {
         try {
@@ -294,3 +223,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.error('No token found');
     }
 });
+
+
+const currentYear = new Date().getFullYear();
+document.getElementById('currentYear').textContent = currentYear;
+

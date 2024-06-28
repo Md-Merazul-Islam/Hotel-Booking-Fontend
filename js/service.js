@@ -38,7 +38,7 @@
                 });
                 reviewContainer.appendChild(carouselContainer);
 
-                // Initialize the Owl Carousel after the reviews have been added to the DOM
+                // Initialize the Owl Carousel 
                 $('.testimonial-carousel').owlCarousel({
                     loop: true,
                     margin: 10,
