@@ -1,142 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Hotel</title>
+</head>
 
+<body>
+    <h1>Book a Hotel</h1>
+    <form method="POST" id="bookingForm">
+        <label for="hotel_id">Hotel ID:</label>
+        <input type="number" id="hotel_id" required>
+        <br>
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" required>
+        <br>
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" required>
+        <br>
+        <label for="number_of_rooms">Number of Rooms:</label>
+        <input type="number" id="number_of_rooms" required>
+        <br>
+        <button type="submit" onclick="handleBook(event)">Book Hotel</button>
+    </form>
 
+    <script>
+        const handleBook = (event) => {
+            event.preventDefault();
 
-document.addEventListener('DOMContentLoaded', function () {
-    const categorySelect = document.getElementById('categorySelect');
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    const resultsContainer = document.getElementById('resultsContainer');
-
-    let hotels = [];
-
-    async function fetchHotels() {
-        try {
-            const response = await fetch('https://blueskybooking.onrender.com/hotel/hotels/');
-            if (!response.ok) throw new Error('Failed to fetch hotels data');
-            hotels = await response.json();
-            populateCategories();
-            displayResult(hotels);
-        } catch (error) {
-            resultsContainer.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-        }
-    }
-
-    // Populate district dropdown
-    function populateCategories() {
-        const districts = [...new Set(hotels.map(hotel => hotel.district_name))];
-        districts.forEach(district => {
-            const option = document.createElement('option');
-            option.value = district;
-            option.textContent = district;
-            categorySelect.appendChild(option);
-        });
-    }
-
-    // Display filtered hotels
-    function displayResult(filteredHotels) {
-        resultsContainer.innerHTML = ''; // Clear previous content
-
-        if (filteredHotels.length === 0) {
-            resultsContainer.innerHTML = '<div class="alert alert-warning">No hotels found.</div>';
-            return;
-        }
-
-        filteredHotels.forEach(hotel => {
-            // Create the main hotel card container
-            const hotelCard = document.createElement('div');
-            hotelCard.className = 'packages-item'; // Set the class name
-
-            // Set the inner HTML for the hotel card
-            hotelCard.innerHTML = `
-                <div class="room-item shadow rounded overflow-hidden">
-                    <div class="position-relative">
-                        <img class="img-fluid" src="${hotel.photo}" alt="${hotel.name}">
-                        <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">${hotel.price_per_night}/Night</small>
-                    </div>
-                    <div class="p-4 mt-2">
-                        <div class="d-flex justify-content-between mb-3">
-                            <h5 class="mb-0">${hotel.name}</h5>
-                            <div class="ps-2">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>Available rooms: ${hotel.available_room}</small>
-                            <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>1 Bed</small>
-                            <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>1 Bath</small>
-                            <small><i class="fa fa-wifi text-primary me-2"></i>Wifi Free</small>
-                        </div>
-                        <p>Address: ${hotel.address}</p>
-                        <p class="text-body mb-3">${hotel.description}</p>
-                        <p class="card-text"><small class="text-muted">${hotel.district_name}</small></p>
-                        <div class="d-flex justify-content-between">
-                            <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#">View Detail</a>
-                            <a class="btn btn-sm btn-dark rounded py-2 px-4" href="#">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Append the hotel card to the results container
-            resultsContainer.appendChild(hotelCard);
-        });
-
-        // Initialize Owl Carousel after updating content
-        $('.packages-carousel').owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: true,
-            dots: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
-                992: {
-                    items: 3
-                }
+            const user_id = localStorage.getItem('user_id');
+            if (!user_id) {
+                alert('User ID not found in localStorage. Please log in.');
+                return;
             }
-        });
-    }
 
-    // Filter hotels based on search criteria
-    function filterHotels() {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-        const selectedDistrict = categorySelect.value.trim();
-        const filteredHotels = hotels.filter(hotel => {
-            const matchesName = hotel.name.toLowerCase().includes(searchTerm);
-            const matchesDistrict = selectedDistrict ? hotel.district_name === selectedDistrict : true;
-            return matchesName && matchesDistrict;
-        });
-        displayResult(filteredHotels);
-    }
+            const hotel_id = document.getElementById('hotel_id').value;
+            const start_date = document.getElementById('start_date').value;
+            const end_date = document.getElementById('end_date').value;
+            const number_of_rooms = document.getElementById('number_of_rooms').value;
 
-    // Event listeners
-    searchButton.addEventListener('click', filterHotels);
-    searchInput.addEventListener('input', filterHotels); // For live filtering
+            const formData = {
+                hotel_id: parseInt(hotel_id),
+                start_date: start_date,
+                end_date: end_date,
+                number_of_rooms: parseInt(number_of_rooms),
+                user_id: parseInt(user_id)
+            };
 
-    // Fetch hotels on page load
-    fetchHotels();
-});
+            fetch('https://blueskybooking.onrender.com/hotel/book/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to book hotel. Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Hotel booked successfully!');
+                console.log(data);
+            })
+            .catch(error => {
+                if (error.message.startsWith('Failed to fetch')) {
+                    alert(`Failed to fetch. Network error occurred.`);
+                } else {
+                    alert(`Failed to book hotel. Error: ${error.message}`);
+                }
+                console.error('Error:', error);
+            });
+        };
+    </script>
+</body>
 
-\
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>

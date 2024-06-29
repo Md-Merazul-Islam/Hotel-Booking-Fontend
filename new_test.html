@@ -5,6 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Hotel</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        #bookingForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            #bookingForm {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -22,11 +95,11 @@
         <label for="number_of_rooms">Number of Rooms:</label>
         <input type="number" id="number_of_rooms" required>
         <br>
-        <button type="submit">Book Hotel</button>
+        <button type="submit" onclick="handleBook(event)">Book Hotel</button>
     </form>
 
     <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        const handleBook = (event) => {
             event.preventDefault();
 
             const user_id = localStorage.getItem('user_id');
@@ -47,7 +120,7 @@
                 number_of_rooms: parseInt(number_of_rooms),
                 user_id: parseInt(user_id)
             };
-            console.log(formData)
+
             fetch('https://blueskybooking.onrender.com/hotel/book/', {
                 method: 'POST',
                 headers: {
@@ -67,16 +140,14 @@
                 console.log(data);
             })
             .catch(error => {
-
                 if (error.message.startsWith('Failed to fetch')) {
                     alert(`Failed to fetch. Network error occurred.`);
                 } else {
-
                     alert(`Failed to book hotel. Error: ${error.message}`);
                 }
                 console.error('Error:', error);
             });
-        });
+        };
     </script>
 </body>
 

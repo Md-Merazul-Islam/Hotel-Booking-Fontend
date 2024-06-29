@@ -1,127 +1,59 @@
+const handleBook = (event) => {
+    event.preventDefault();
 
-
-const token = localStorage.getItem('token');
-console.log('Token:', token); 
-
-if (!token) {
-    throw new Error('Token is missing. Please log in again.');
-}
-
-const response = await fetch('https://blueskybooking.onrender.com/hotel/book-hotel/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify(bookingData)
-});
-
-if (!response.ok) {
-    if (response.status === 403) {
-        throw new Error('Authorization failed. Check your token.');
-    } else {
-        throw new Error('Failed to book hotel');
+    const user_id = localStorage.getItem('user_id');
+    if (!user_id) {
+        Swal.fire({
+            icon: 'error',
+            title: 'User not logged in',
+            text: 'User ID not found in localStorage. Please log in.',
+        });
+        return;
     }
-}
 
-const bookingResponse = await response.json();
-displayBookingResult(bookingResponse);
+    const hotel_id = document.getElementById('hotel_id').value;
+    const start_date = document.getElementById('start_date').value;
+    const end_date = document.getElementById('end_date').value;
+    const number_of_rooms = document.getElementById('number_of_rooms').value;
 
+    const formData = {
+        hotel_id: parseInt(hotel_id),
+        start_date: start_date,
+        end_date: end_date,
+        number_of_rooms: parseInt(number_of_rooms),
+        user_id: parseInt(user_id)
+    };
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    const params = new URLSearchParams(window.location.search);
-    const hotelId = params.get('hotelId');
-    const hotelNameElement = document.getElementById('hotelName');
-    const hotelDetailsElement = document.getElementById('hotelDetails');
-    const bookingForm = document.getElementById('bookingForm');
-    const bookingResult = document.getElementById('bookingResult');
-
-    // Fetch hotel details
-    async function fetchHotelDetails() {
-        try {
-            const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}`);
-            if (!response.ok) throw new Error('Failed to fetch hotel details');
-            const hotel = await response.json();
-            displayHotelDetails(hotel);
-        } catch (error) {
-            hotelDetailsElement.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+    fetch('https://blueskybooking.onrender.com/hotel/book/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to book hotel. Status: ${response.status}`);
         }
-    }
-
-    // Display hotel details
-    function displayHotelDetails(hotel) {
-        hotelNameElement.textContent = hotel.name;
-        hotelDetailsElement.innerHTML = `
-            <img class="img-fluid" src="${hotel.photo}" alt="${hotel.name}">
-            <p><strong>Address:</strong> ${hotel.address}</p>
-            <p><strong>Description:</strong> ${hotel.description}</p>
-            <p><strong>Price per night:</strong> $${hotel.price_per_night}</p>
-            <p><strong>Available rooms:</strong> ${hotel.available_room}</p>
-            <p><strong>District:</strong> ${hotel.district_name}</p>
-        `;
-    }
-
-    // Book the hotel
-    async function bookHotel(bookingData) {
-        try {
-            const token = localStorage.getItem('token');
-            console.log('Token:', token); // Debugging line
-            if (!token) throw new Error('Token is missing. Please log in again.');
-
-            const response = await fetch('https://blueskybooking.onrender.com/hotel/book-hotel/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(bookingData)
-            });
-
-            if (!response.ok) {
-                if (response.status === 403) {
-                    throw new Error('Authorization failed. Check your token.');
-                } else {
-                    throw new Error('Failed to book hotel');
-                }
-            }
-
-            const bookingResponse = await response.json();
-            displayBookingResult(bookingResponse);
-        } catch (error) {
-            bookingResult.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-        }
-    }
-
-    // Display booking result
-    function displayBookingResult(data) {
-        bookingResult.innerHTML = `<div class="alert alert-success">
-            Booking successful! Confirmation number: ${data.confirmation_number}
-        </div>`;
-    }
-
-    // Handle form submission
-    bookingForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const startDate = document.getElementById('start_date').value;
-        const endDate = document.getElementById('end_date').value;
-        const numberOfRooms = parseInt(document.getElementById('number_of_rooms').value);
-
-        const userId = localStorage.getItem('user_id');
-        const bookingData = {
-            user: userId,
-            hotel: hotelId,
-            start_date: startDate,
-            end_date: endDate,
-            number_of_rooms: numberOfRooms
-        };
-
-        console.log('Booking data:', bookingData);
-
-        bookHotel(bookingData);
+        return response.json();
+    })
+    .then(data => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Booking Successful',
+            text: 'Hotel booked successfully!',
+        });
+        console.log(data);
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Booking Failed',
+            text: error.message.startsWith('Failed to fetch') 
+                  ? 'Failed to fetch. Network error occurred.' 
+                  : `Failed to book hotel. Error: ${error.message}`,
+        });
+        console.error('Error:', error);
     });
-
-    // Fetch and display hotel details on page load
-    fetchHotelDetails();
-});
+};
