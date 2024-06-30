@@ -1,83 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Hotel</title>
+    <title>Hotel Booking</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-
 <body>
-    <h1>Book a Hotel</h1>
-    <form method="POST" id="bookingForm">
-        <label for="hotel_id">Hotel ID:</label>
-        <input type="number" id="hotel_id" required>
-        <br>
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" required>
-        <br>
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" required>
-        <br>
-        <label for="number_of_rooms">Number of Rooms:</label>
-        <input type="number" id="number_of_rooms" required>
-        <br>
-        <button type="submit">Book Hotel</button>
-    </form>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Hotel Booking</h2>
+        <form method="POST" id="bookingForm">
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <select class="form-select bg-white border-0 text-center"
+                            id="hotel_select" style="padding-top: 12px;" required>
+                            <option value=""> Select a Hotel </option>
+                            <!-- Dynamic hotel options will be added here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input type="number" id="number_of_rooms" class="form-control bg-white border-0"
+                            placeholder="Number Of Rooms " required>
+                        <label for="number_of_rooms">Number of Rooms</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="date" id="start_date"
+                            class="form-control bg-white border-0" placeholder="Check In Date"
+                            required>
+                        <label for="start_date">Check In Date</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="date" id="end_date" class="form-control bg-white border-0"
+                            placeholder="Check Out Date" required>
+                        <label for="end_date">Check Out Date</label>
+                    </div>
+                </div>
+              
+                <div class="col-12">
+                    <button onclick="handleBooking(event)"
+                        class="btn btn-primary text-white w-100 py-3" type="submit">Book Now</button>
+                </div>
+            </div>
+        </form>
+        <div class="mt-4" id="booking-title">Book a Hotel</div>
+    </div>
 
-    <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const user_id = localStorage.getItem('user_id');
-            if (!user_id) {
-                alert('User ID not found in localStorage. Please log in.');
-                return;
-            }
-
-            const hotel_id = document.getElementById('hotel_id').value;
-            const start_date = document.getElementById('start_date').value;
-            const end_date = document.getElementById('end_date').value;
-            const number_of_rooms = document.getElementById('number_of_rooms').value;
-
-            const formData = {
-                hotel_id: parseInt(hotel_id),
-                start_date: start_date,
-                end_date: end_date,
-                number_of_rooms: parseInt(number_of_rooms),
-                user_id: parseInt(user_id)
-            };
-            console.log(formData)
-            fetch('https://blueskybooking.onrender.com/hotel/book/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to book hotel. Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert('Hotel booked successfully!');
-                console.log(data);
-            })
-            .catch(error => {
-
-                if (error.message.startsWith('Failed to fetch')) {
-                    alert(`Failed to fetch. Network error occurred.`);
-                } else {
-
-                    alert(`Failed to book hotel. Error: ${error.message}`);
-                }
-                console.error('Error:', error);
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/index_booking.js"></script>
 </body>
-
 </html>
