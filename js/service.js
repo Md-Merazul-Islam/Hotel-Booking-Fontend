@@ -18,7 +18,7 @@
                     reviewCard.innerHTML = `
                         <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                             <div class="testimonial-comment bg-light rounded p-4">
-                                <h5>${review.hotel}</h5>
+                                <h5>${review.hotel.name}</h5>
                                 <p class="text-center mb-5">${truncatedBody}</p>
                             </div>
                             <div class="testimonial-img p-1">
