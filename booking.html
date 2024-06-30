@@ -92,15 +92,15 @@
 
 
 
-    <div class='pb-5'>
+    <div class='pt-5 pb-5 min-vh-100 justify-content-center'>
 
         <!-- Booking Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <!-- <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">Room Booking</h6>
                     <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Luxury Room</span></h1>
-                </div>
+                </div> -->
                 <div class="row g-5">
                     <div class="col-lg-6">
 
@@ -115,7 +115,7 @@
                                     src="img/about2.jpg">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s"
+                                <img class="img-fluid rounded w-0 wow zoomIn" data-wow-delay="0.5s"
                                     src="img/about3.jpg">
                             </div>
                             <div class="col-6 text-start">
@@ -124,78 +124,49 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6  align-content-center">
+                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <h6 class="section-title text-center text-primary text-uppercase">Room Booking</h6>
+                            <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Luxury Room</span></h1>
+                        </div>
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form>
+                            <form  method="POST" id="bookingForm">
                                 <div class="row g-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                            <label for="name">Your Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email"
-                                                placeholder="Your Email">
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating date" id="date3" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" id="checkin"
-                                                placeholder="Check In" data-target="#date3"
-                                                data-toggle="datetimepicker" />
-                                            <label for="checkin">Check In</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating date" id="date4" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" id="checkout"
-                                                placeholder="Check Out" data-target="#date4"
-                                                data-toggle="datetimepicker" />
-                                            <label for="checkout">Check Out</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="select1">
-                                                <option value="1">Adult 1</option>
-                                                <option value="2">Adult 2</option>
-                                                <option value="3">Adult 3</option>
+                                            <select class="form-select bg-white border-1 text-start"
+                                                id="hotel_select" style="padding-top: 12px;" required>
+                                                <option value=""> Select a Hotel </option>
+                                                <!-- here will dynamic hotel name  -->
                                             </select>
-                                            <label for="select1">Select Adult</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="number" id="number_of_rooms" class="form-control bg-white border-1" placeholder="Number Of Room" required>
+                                            <label for="start_date">Numbers of room</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <select class="form-select" id="select2">
-                                                <option value="1">Child 1</option>
-                                                <option value="2">Child 2</option>
-                                                <option value="3">Child 3</option>
-                                            </select>
-                                            <label for="select2">Select Child</label>
+                                            <input type="date" id="start_date"
+                                                class="form-control bg-white border-0" placeholder="Check In Date"
+                                                required>
+                                            <label for="start_date">Check In Date</label>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-md-6">
                                         <div class="form-floating">
-                                            <select class="form-select" id="select3">
-                                                <option value="1">Room 1</option>
-                                                <option value="2">Room 2</option>
-                                                <option value="3">Room 3</option>
-                                            </select>
-                                            <label for="select3">Select A Room</label>
+                                            <input type="date" id="end_date" class="form-control bg-white border-0"
+                                                placeholder="Check Out Date" required>
+                                            <label for="end_date">Check Out Date</label>
                                         </div>
                                     </div>
+                                  
                                     <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Special Request" id="message"
-                                                style="height: 100px"></textarea>
-                                            <label for="message">Special Request</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                        <button 
+                                            class="btn btn-primary text-white w-100 py-3" type="submit"  onclick="handelOfBook(event)">Book
+                                            Now</button>
                                     </div>
                                 </div>
                             </form>
@@ -208,6 +179,9 @@
 
 
     </div>
+
+    
+
 
 
     <!-- Footer Start -->
@@ -308,6 +282,7 @@
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
+    <script src="js/index_booking.js"></script>
 </body>
 
 </html>
