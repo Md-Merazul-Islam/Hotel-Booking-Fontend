@@ -92,84 +92,87 @@
 
 
 
-    <div class='pt-5 pb-5 min-vh-100 justify-content-center'>
-
         <!-- Booking Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <!-- <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <div class='pt-5 pb-5 min-vh-100 justify-content-center'>
+            <div class="container-xxl py-5">
+                <div class="container">
+                    <!-- <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">Room Booking</h6>
                     <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Luxury Room</span></h1>
                 </div> -->
-                <div class="row g-5">
-                    <div class="col-lg-6">
+                    <div class="row g-5">
+                        <div class="col-lg-6">
 
 
-                        <div class="row g-3">
-                            <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s"
-                                    src="img/about1.jpg" style="margin-top: 25%;">
-                            </div>
-                            <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s"
-                                    src="img/about2.jpg">
-                            </div>
-                            <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-0 wow zoomIn" data-wow-delay="0.5s"
-                                    src="img/about3.jpg">
-                            </div>
-                            <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s"
-                                    src="img/about4.jpg">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6  align-content-center">
-                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h6 class="section-title text-center text-primary text-uppercase">Room Booking</h6>
-                            <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Luxury Room</span></h1>
-                        </div>
-                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form  method="POST" id="bookingForm">
-                                <div class="row g-3">
-                                    <div class="col-md-12">
-                                        <div class="form-floating">
-                                            <select class="form-select bg-white border-1 text-start"
-                                                id="hotel_select" style="padding-top: 12px;" required>
-                                                <option value=""> Select a Hotel </option>
-                                                <!-- here will dynamic hotel name  -->
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-floating">
-                                            <input type="number" id="number_of_rooms" class="form-control bg-white border-1" placeholder="Number Of Room" required>
-                                            <label for="start_date">Numbers of room</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="date" id="start_date"
-                                                class="form-control bg-white border-0" placeholder="Check In Date"
-                                                required>
-                                            <label for="start_date">Check In Date</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="date" id="end_date" class="form-control bg-white border-0"
-                                                placeholder="Check Out Date" required>
-                                            <label for="end_date">Check Out Date</label>
-                                        </div>
-                                    </div>
-                                  
-                                    <div class="col-12">
-                                        <button 
-                                            class="btn btn-primary text-white w-100 py-3" type="submit"  onclick="handelOfBook(event)">Book
-                                            Now</button>
-                                    </div>
+                            <div class="row g-3">
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s"
+                                        src="img/about1.jpg" style="margin-top: 25%;">
                                 </div>
-                            </form>
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s"
+                                        src="img/about2.jpg">
+                                </div>
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid rounded w-0 wow zoomIn" data-wow-delay="0.5s"
+                                        src="img/about3.jpg">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s"
+                                        src="img/about4.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6  align-content-center">
+                            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                                <h6 class="section-title text-center text-primary text-uppercase">Room Booking</h6>
+                                <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Luxury Room</span>
+                                </h1>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay="0.2s">
+                                <form method="POST" id="bookingForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-12">
+                                            <div class="form-floating">
+                                                <select class="form-select bg-white border-1 text-start"
+                                                    id="hotel_select" style="padding-top: 12px;" required>
+                                                    <option value=""> Select a Hotel </option>
+                                                    <!-- here will dynamic hotel name  -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-floating">
+                                                <input type="number" id="number_of_rooms"
+                                                    class="form-control bg-white border-1" placeholder="Number Of Room"
+                                                    required>
+                                                <label for="start_date">Numbers of room</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="date" id="start_date"
+                                                    class="form-control bg-white border-0" placeholder="Check In Date"
+                                                    required>
+                                                <label for="start_date">Check In Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="date" id="end_date" class="form-control bg-white border-0"
+                                                    placeholder="Check Out Date" required>
+                                                <label for="end_date">Check Out Date</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button class="btn btn-primary text-white w-100 py-3" type="submit"
+                                                onclick="handelOfBook(event)">Book
+                                                Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,91 +181,90 @@
         <!-- Booking End -->
 
 
-    </div>
-
-    
+   
 
 
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-        <div class="container pb-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-4">
-                    <div class="bg-primary rounded p-4">
-                        <a href="index.html">
-                            <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
-                        </a>
-                        <p class="text-white mb-0">
-                            Discover the luxury and comfort with Blu Sky Booking. Whether you're traveling for
-                            business or pleasure, we offer the best deals and accommodations tailored to your needs.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District, Bangladesh </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@bluskybooking.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href="https://twitter.com/bluskybooking"
-                            target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="https://facebook.com/bluskybooking"
-                            target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="https://youtube.com/bluskybooking"
-                            target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="https://linkedin.com/company/bluskybooking"
-                            target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-12">
-                    <div class="row gy-5 g-4">
-                        <div class="col-md-6">
-                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-                            <a class="btn btn-link" href="about.html">About Us</a>
-                            <a class="btn btn-link" href="contact.html">Contact Us</a>
-                            <a class="btn btn-link" href="#">Privacy Policy</a>
-                            <a class="btn btn-link" href="#">Terms & Conditions</a>
-                            <a class="btn btn-link" href="contact.html">Support</a>
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container pb-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="bg-primary rounded p-4">
+                            <a href="index.html">
+                                <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
+                            </a>
+                            <p class="text-white mb-0">
+                                Discover the luxury and comfort with Blu Sky Booking. Whether you're traveling for
+                                business or pleasure, we offer the best deals and accommodations tailored to your needs.
+                            </p>
                         </div>
-                        <div class="col-md-6">
-                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-                            <a class="btn btn-link" href="#">Food & Restaurant</a>
-                            <a class="btn btn-link" href="#">Spa & Fitness</a>
-                            <a class="btn btn-link" href="#">Sports & Gaming</a>
-                            <a class="btn btn-link" href="#">Event & Party</a>
-                            <a class="btn btn-link" href="#">GYM & Yoga</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District, Bangladesh </p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@bluskybooking.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href="https://twitter.com/bluskybooking"
+                                target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://facebook.com/bluskybooking"
+                                target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://youtube.com/bluskybooking"
+                                target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social"
+                                href="https://linkedin.com/company/bluskybooking" target="_blank"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <div class="row gy-5 g-4">
+                            <div class="col-md-6">
+                                <h6 class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
+                                <a class="btn btn-link" href="about.html">About Us</a>
+                                <a class="btn btn-link" href="contact.html">Contact Us</a>
+                                <a class="btn btn-link" href="#">Privacy Policy</a>
+                                <a class="btn btn-link" href="#">Terms & Conditions</a>
+                                <a class="btn btn-link" href="contact.html">Support</a>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
+                                <a class="btn btn-link" href="#">Food & Restaurant</a>
+                                <a class="btn btn-link" href="#">Spa & Fitness</a>
+                                <a class="btn btn-link" href="#">Sports & Gaming</a>
+                                <a class="btn btn-link" href="#">Event & Party</a>
+                                <a class="btn btn-link" href="#">GYM & Yoga</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span>
+                            All
+                            Rights Reserved.
+                        </div>
+
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="index.html">Home</a>
+                                <a href="#">Cookies</a>
+                                <a href="contact.html">Help</a>
+                                <a href="#">FAQs</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span> All
-                        Rights Reserved.
-                    </div>
-
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="index.html">Home</a>
-                            <a href="#">Cookies</a>
-                            <a href="contact.html">Help</a>
-                            <a href="#">FAQs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+        <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
