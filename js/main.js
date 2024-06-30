@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const authButtons = document.getElementById('auth-buttons');
     const token = localStorage.getItem('token');
     const userId = parseInt(localStorage.getItem('user_id'));
-    console.log(userId);
+    // console.log(userId);
 
     if (token) {
         try {

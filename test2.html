@@ -1,58 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Hotel</title>
+    <title>Hotel Booking</title>
 </head>
-
 <body>
-    <h1>Book a Hotel</h1>
-    <form method="POST" id="bookingForm">
-        <label for="hotel_id">Hotel ID:</label>
-        <input type="number" id="hotel_id" required>
-        <br>
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" required>
-        <br>
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" required>
-        <br>
-        <label for="number_of_rooms">Number of Rooms:</label>
-        <input type="number" id="number_of_rooms" required>
-        <br>
-        <button type="submit" onclick="handleBook(event)">Book Hotel</button>
-    </form>
+    <div class="pt-5 pb-5" style="min-height: 100vh; padding-bottom: 500px;">
+        <div class="form-container m-auto">
+            <h1>Book a Hotel</h1>
+            <form method="POST" id="bookingForm">
+                <label for="hotel-name">Hotel Name:</label>
+                <input type="text" id="hotel-name" readonly>
+                <br>
+                <label for="hotel_id">Hotel ID:</label>
+                <input type="number" id="hotel_id" required readonly>
+                <br>
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" required>
+                <br>
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" required>
+                <br>
+                <label for="number_of_rooms">Number of Rooms:</label>
+                <input type="number" id="number_of_rooms" required>
+                <br>
+                <button type="submit" onclick="handleBook(event)">Book Hotel</button>
+            </form>
+        </div>
+    </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Extract the hotelId from the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const hotelId = urlParams.get('hotelId');
+
+            if (hotelId) {
+                // Set the hotel_id input field with the extracted hotelId
+                document.getElementById('hotel_id').value = hotelId;
+
+                // Fetch the hotel details using the hotelId
+                fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Populate the hotel-name input with the fetched hotel name
+                        document.getElementById('hotel-name').value = data.name;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching hotel details:', error);
+                        document.getElementById('hotel-name').value = 'Error loading hotel information.';
+                    });
+            } else {
+                // Handle case where hotelId is not present in the URL
+                document.getElementById('hotel-name').value = 'No hotel selected. Please choose a hotel to book.';
+                document.getElementById('hotel_id').value = '';
+            }
+        });
+
         const handleBook = (event) => {
             event.preventDefault();
 
+            // Extract the hotelId from the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const hotelId = urlParams.get('hotelId');
+
             const user_id = localStorage.getItem('user_id');
             if (!user_id) {
-                alert('User ID not found in localStorage. Please log in.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'User not logged in',
+                    text: 'User ID not found in localStorage. Please log in.',
+                });
                 return;
             }
 
-            const hotel_id = document.getElementById('hotel_id').value;
+            // Extract form values
             const start_date = document.getElementById('start_date').value;
             const end_date = document.getElementById('end_date').value;
             const number_of_rooms = document.getElementById('number_of_rooms').value;
 
+            // Construct the formData object
             const formData = {
-                hotel_id: parseInt(hotel_id),
+                hotel_id: parseInt(hotelId), // Use the hotelId from the URL parameters
                 start_date: start_date,
                 end_date: end_date,
                 number_of_rooms: parseInt(number_of_rooms),
                 user_id: parseInt(user_id)
             };
 
+            // Make the fetch request to book the hotel
             fetch('https://blueskybooking.onrender.com/hotel/book/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the Authorization header
                 },
                 body: JSON.stringify(formData)
             })
@@ -63,19 +105,13 @@
                 return response.json();
             })
             .then(data => {
-                alert('Hotel booked successfully!');
-                console.log(data);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Booking Successful',
+                    text: 'Hotel booked successfully!',
+                });
+                // Optionally handle the response data
+                // console.log(data);
             })
             .catch(error => {
-                if (error.message.startsWith('Failed to fetch')) {
-                    alert(`Failed to fetch. Network error occurred.`);
-                } else {
-                    alert(`Failed to book hotel. Error: ${error.message}`);
-                }
-                console.error('Error:', error);
-            });
-        };
-    </script>
-</body>
-
-</html>
+          

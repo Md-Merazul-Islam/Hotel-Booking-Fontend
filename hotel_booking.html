@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +28,7 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-   
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -44,7 +42,6 @@
             text-align: center;
         }
 
-        /* Form Container */
         .form-container {
             background-color: #fff;
             padding: 20px;
@@ -61,8 +58,9 @@
             margin-bottom: 5px;
             text-align: left;
             margin-left: 12px;
-         
+
         }
+
 
         input[type="number"],
         input[type="date"] {
@@ -74,10 +72,19 @@
             box-sizing: border-box;
         }
 
-        button {
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .butoon_for_book {
             width: 100%;
             padding: 10px;
-            background-color:  #FEA116;
+            background-color: #FEA116;
             border: none;
             border-radius: 4px;
             color: white;
@@ -85,8 +92,13 @@
             cursor: pointer;
         }
 
-        button:hover {
-            background-color:  #FEA116;
+        .buttonbutoon_for_book:hover {
+            background-color: #FEA116;
+        }
+
+        #hotel-name {
+            background: #ffce93;
+            border: none;
         }
     </style>
 </head>
@@ -125,13 +137,13 @@
                                 <a href="index.html" class="nav-item nav-link ">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a href="service.html" class="nav-item nav-link">Services</a>
-                                <a href="room.html" class="nav-item nav-link active">Rooms</a>
-                                <a href="booking.html" class="nav-item nav-link">Booking</a>
+                                <a href="room.html" class="nav-item nav-link">Rooms</a>
+                                <a href="booking.html" class="nav-item nav-link active">Booking</a>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
                             </div>
-                            <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4"
+                            <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-3"
                                 id="auth-buttons">
-                                <a class="btn btn-light fw-semibold" href="register.html">Sign in</a>
+                                <a class="btn btn-light fw-semibold " href="register.html">Sign in</a>
                                 <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
                             </div>
                         </div>
@@ -144,13 +156,18 @@
 
 
 
-        <div class="pt-5 pb-5" style="min-height: 100vh; padding-bottom: 500px;">
 
-            <div class="form-container m-auto ">
+
+        <div class="pt-5 pb-5" style="min-height: 100vh; padding-bottom: 500px;">
+            <div class="form-container m-auto">
                 <h1>Book a Hotel</h1>
+
                 <form method="POST" id="bookingForm">
-                    <label for="hotel_id">Hotel ID:</label>
-                    <input type="number" id="hotel_id" required>
+                    <label for="hotel_id">Hotel Name:</label>
+                    <input type="text" id="hotel-name" readonly>
+
+                    <!-- <label for="hotel_id">Hotel ID:</label> -->
+                    <!-- <input type="number" id="hotel_id" required readonly> -->
                     <br>
                     <label for="start_date">Start Date:</label>
                     <input type="date" id="start_date" required>
@@ -161,38 +178,10 @@
                     <label for="number_of_rooms">Number of Rooms:</label>
                     <input type="number" id="number_of_rooms" required>
                     <br>
-                    <button type="submit" onclick="handleBook(event)">Book Hotel</button>
+                    <button type="submit" class="butoon_for_book" onclick="handleBook(event)">Book Hotel</button>
                 </form>
             </div>
         </div>
-
-
-
-
-        <!-- <div style="min-height: 100vh;width: 50%; margin: auto;">
-
-            <div id="responseMessage"></div>
-
-
-            <form method="POST" id="bookingForm">
-                <label for="hotel_id">Hotel ID:</label>
-                <input type="number" id="hotel_id" required>
-                <br>
-                <label for="start_date">Start Date:</label>
-                <input type="date" id="start_date" required>
-                <br>
-                <label for="end_date">End Date:</label>
-                <input type="date" id="end_date" required>
-                <br>
-                <label for="number_of_rooms">Number of Rooms:</label>
-                <input type="number" id="number_of_rooms" required>
-                <br>
-                <button type="submit" onclick="handleBook(event)">Book Hotel</button>
-            </form>
-
-        </div>
-
- -->
 
 
 
@@ -202,7 +191,7 @@
 
 
         <!-- Footer Start -->
-         <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
             <div class="container pb-5">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
@@ -275,7 +264,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
         <!-- Footer End -->
 
 
@@ -283,54 +272,7 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
-<!-- 
-    <script>
-        function bookHotel() {
-            const form = document.getElementById('bookHotelForm');
-            const hotel_id = document.getElementById('hotel_id').value;
-            const start_date = document.getElementById('start_date').value;
-            const end_date = document.getElementById('end_date').value;
-            const number_of_rooms = document.getElementById('number_of_rooms').value;
-            const user_id = localStorage.getItem('user_id');
-
-            const formData = {
-                hotel_id: parseInt(hotel_id),
-                start_date: start_date,
-                end_date: end_date,
-                number_of_rooms: parseInt(number_of_rooms),
-                user_id: parseInt(user_id)
-            };
-            console.log(formData);
-
-            // const token = localStorage.getItem('token');
-
-            fetch('https://blueskybooking.onrender.com/hotel/book/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    document.getElementById('responseMessage').textContent = 'Booking successful!';
-                    console.log(data);
-                })
-                .catch(error => {
-                    document.getElementById('responseMessage').textContent = `Error booking hotel: ${error.message}`;
-                    console.error('Error:', error);
-                });
-        }
-
-
-    </script> -->
-
+  
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -344,7 +286,7 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
- 
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>

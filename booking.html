@@ -26,6 +26,10 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 </head>
 
 <body>
-<div class="container-xxl bg-white p-0">
+    <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner"
             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -72,9 +76,9 @@
                                 <a href="booking.html" class="nav-item nav-link active">Booking</a>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
                             </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4" id="auth-buttons">
-                                <a class="btn btn-light fw-semibold" href="register.html">Sign in</a>
+                            <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-3"
+                                id="auth-buttons">
+                                <a class="btn btn-light fw-semibold " href="register.html">Sign in</a>
                                 <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
                             </div>
                         </div>
@@ -87,8 +91,9 @@
 
 
 
-<div class='pb-5'>
-    
+
+    <div class='pb-5'>
+
         <!-- Booking Start -->
         <div class="container-xxl py-5">
             <div class="container">
@@ -98,7 +103,7 @@
                 </div>
                 <div class="row g-5">
                     <div class="col-lg-6">
-                       
+
 
                         <div class="row g-3">
                             <div class="col-6 text-end">
@@ -131,55 +136,61 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Your Email">
                                             <label for="email">Your Email</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating date" id="date3" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
+                                            <input type="text" class="form-control datetimepicker-input" id="checkin"
+                                                placeholder="Check In" data-target="#date3"
+                                                data-toggle="datetimepicker" />
                                             <label for="checkin">Check In</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating date" id="date4" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                            <input type="text" class="form-control datetimepicker-input" id="checkout"
+                                                placeholder="Check Out" data-target="#date4"
+                                                data-toggle="datetimepicker" />
                                             <label for="checkout">Check Out</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-select" id="select1">
-                                              <option value="1">Adult 1</option>
-                                              <option value="2">Adult 2</option>
-                                              <option value="3">Adult 3</option>
+                                                <option value="1">Adult 1</option>
+                                                <option value="2">Adult 2</option>
+                                                <option value="3">Adult 3</option>
                                             </select>
                                             <label for="select1">Select Adult</label>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-select" id="select2">
-                                              <option value="1">Child 1</option>
-                                              <option value="2">Child 2</option>
-                                              <option value="3">Child 3</option>
+                                                <option value="1">Child 1</option>
+                                                <option value="2">Child 2</option>
+                                                <option value="3">Child 3</option>
                                             </select>
                                             <label for="select2">Select Child</label>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <select class="form-select" id="select3">
-                                              <option value="1">Room 1</option>
-                                              <option value="2">Room 2</option>
-                                              <option value="3">Room 3</option>
+                                                <option value="1">Room 1</option>
+                                                <option value="2">Room 2</option>
+                                                <option value="3">Room 3</option>
                                             </select>
                                             <label for="select3">Select A Room</label>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                            <textarea class="form-control" placeholder="Special Request" id="message"
+                                                style="height: 100px"></textarea>
                                             <label for="message">Special Request</label>
                                         </div>
                                     </div>
@@ -196,11 +207,11 @@
         <!-- Booking End -->
 
 
-</div>
-    
-        
-      <!-- Footer Start -->
-      <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+    </div>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
         <div class="container pb-5">
             <div class="row g-5">
                 <div class="col-md-6 col-lg-4">
@@ -226,9 +237,8 @@
                             target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href="https://youtube.com/bluskybooking"
                             target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social"
-                            href="https://linkedin.com/company/bluskybooking" target="_blank"><i
-                                class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://linkedin.com/company/bluskybooking"
+                            target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12">
@@ -256,11 +266,12 @@
         <div class="container">
             <div class="copyright">
                 <div class="row">
-                 
+
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span> All Rights Reserved.
+                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span> All
+                        Rights Reserved.
                     </div>
-                    
+
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
                             <a href="index.html">Home</a>
@@ -276,8 +287,8 @@
     <!-- Footer End -->
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
@@ -293,7 +304,7 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
