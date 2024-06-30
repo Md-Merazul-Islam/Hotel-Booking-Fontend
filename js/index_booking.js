@@ -1,6 +1,5 @@
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
     fetch('https://blueskybooking.onrender.com/hotel/hotels/')
         .then(response => response.json())
@@ -13,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 option.textContent = hotel.name;
                 hotelSelect.appendChild(option);
             });
-            //  hotel selection
+
+            // Handle hotel selection
             hotelSelect.addEventListener('change', function () {
                 const selectedHotelId = hotelSelect.value;
                 if (selectedHotelId) {
@@ -37,9 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-
-
-
 const handelOfBook = (event) => {
     event.preventDefault();
 
@@ -50,7 +47,7 @@ const handelOfBook = (event) => {
             title: 'User not logged in',
             text: 'User ID not found in localStorage. Please log in.',
         });
-        window.location.href='login.html'
+        window.location.href = 'login.html';
         return;
     }
 
@@ -86,7 +83,9 @@ const handelOfBook = (event) => {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Failed to book hotel. Status: ${response.status}`);
+                return response.json().then(errorData => {
+                    throw new Error(JSON.stringify(errorData));
+                });
             }
             return response.json();
         })
@@ -99,18 +98,26 @@ const handelOfBook = (event) => {
             console.log(data);
         })
         .catch(error => {
+            // Parse the error message
+            let errorMessage = 'Failed to book hotel.';
+            try {
+                const errorData = JSON.parse(error.message);
+                if (errorData.error) {
+
+                    errorMessage = errorData.error;
+                } else {
+
+                    errorMessage = Object.values(errorData).join(' ');
+                }
+            } catch (e) {
+                console.error('Error parsing error message:', e);
+            }
+
             Swal.fire({
                 icon: 'error',
                 title: 'Booking Failed',
-                text: error.message.startsWith('Failed to fetch')
-                    ? 'Failed to fetch. Network error occurred.'
-                    : `Failed to book hotel. Error: ${error.message}`,
+                text: errorMessage,
             });
             console.error('Error:', error);
         });
 };
-
-
-
-
-
