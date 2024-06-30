@@ -1,251 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Reviews</title>
+    <title>Add Hotel Review</title>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f4f4f9;
+            color: #333;
             margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
         }
 
-        .container {
-            width: 80%;
-            max-width: 800px;
+        h1 {
+            color: #4CAF50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form Container */
+        .form-container-review {
             background-color: #fff;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form {
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .bdy,
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: calc(100% - 20px);
             padding: 10px;
-            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
         }
 
-        .form-group textarea {
-            resize: vertical;
-        }
-
-        .form-group button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
             border: none;
             border-radius: 4px;
+            color: white;
+            font-size: 1em;
             cursor: pointer;
         }
 
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-
-        .review {
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .review:last-child {
-            border-bottom: none;
-        }
-
-        .review .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .review .header .user {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .review .header .date {
-            color: #999;
-            font-size: 0.9em;
-        }
-
-        .review .body {
-            margin-top: 10px;
-            font-size: 1em;
-            color: #555;
-        }
-
-        .review .rating {
-            margin-top: 10px;
-            font-size: 1.2em;
-            color: #ffa500; /* Gold color for stars */
-        }
-
-        #message {
-            text-align: center;
-            margin-top: 20px;
-            color: #ff0000;
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h2>Hotel Reviews</h2>
-        
-        <div class="form">
-            <h3>Write a Review</h3>
-            <div class="form-group">
-                <label for="reviewBody">Your Review</label>
-                <textarea id="reviewBody" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="reviewRating">Rating</label>
-                <select id="reviewRating" required>
-                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐">⭐⭐⭐</option>
-                    <option value="⭐⭐">⭐⭐</option>
-                    <option value="⭐">⭐</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button id="submitReviewButton">Submit Review</button>
-            </div>
-        </div>
 
-        <div id="reviews">
-            <!-- Reviews will be inserted here by JavaScript -->
-        </div>
-        
-        <div id="message"></div>
+<body>
+    <div class="form-container-review m-auto">
+        <h1>Add a Review</h1>
+        <form method="POST" id="reviewForm">
+            <label for="body">Review:</label>
+            <!-- <input type="text" id="body" required> -->
+            <textarea id="body" class="bdy" rows="4" required></textarea>
+            <br>
+            <label for="rating">Rating:</label>
+            <select id="rating" required>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐">⭐</option>
+            </select>
+            <br>
+            <label for="hotel_id">Hotel ID:</label>
+            <input type="number" id="hotel_id" required>
+            <br>
+            <button type="submit" onclick="handleReview(event)">Submit Review</button>
+        </form>
     </div>
 
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
-        // Fetch and display existing reviews
-        async function fetchReviews() {
-            try {
-                const response = await fetch('https://blueskybooking.onrender.com/hotel/hotels/8/reviews/');
-                const reviews = await response.json();
-                const reviewsContainer = document.getElementById('reviews');
+        const handleReview = (event) => {
+            event.preventDefault();
 
-                reviews.forEach(review => {
-                    const reviewElement = document.createElement('div');
-                    reviewElement.className = 'review';
-
-                    reviewElement.innerHTML = `
-                        <div class="header">
-                            <span class="user">User ID: ${review.user}</span>
-                            <span class="date">${new Date(review.created).toLocaleDateString()}</span>
-                        </div>
-                        <div class="body">${review.body}</div>
-                        <div class="rating">${review.rating}</div>
-                    `;
-
-                    reviewsContainer.appendChild(reviewElement);
+            const user_id = localStorage.getItem('user_id');
+            if (!user_id) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'User not logged in',
+                    text: 'User ID not found in localStorage. Please log in.',
                 });
-            } catch (error) {
-                console.error('Error fetching reviews:', error);
-                const reviewsContainer = document.getElementById('reviews');
-                reviewsContainer.innerHTML = '<p>Failed to load reviews. Please try again later.</p>';
-            }
-        }
-
-        // Handle review submission
-        async function submitReview(event) {
-            event.preventDefault(); // Prevent form from submitting the traditional way
-
-            const reviewBody = document.getElementById('reviewBody').value;
-            const reviewRating = document.getElementById('reviewRating').value;
-            const messageDiv = document.getElementById('message');
-            
-            if (!reviewBody || !reviewRating) {
-                messageDiv.textContent = "Please provide both a review and a rating.";
                 return;
             }
 
-            const reviewData = {
-                body: reviewBody,
-                rating: reviewRating,
-                user: 13 // Assuming user ID 13 for now
+            const body = document.getElementById('body').value;
+            const rating = document.getElementById('rating').value;
+            const hotel_id = document.getElementById('hotel_id').value;
+
+            const formData = {
+                body: body,
+                rating: rating,
+                hotel: parseInt(hotel_id),
+                user: parseInt(user_id)
             };
+            console.log(formData);
+           
 
-            try {
-                const response = await fetch('https://blueskybooking.onrender.com/hotel/hotels/8/reviews/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Token bf1182f3514d14f0f70c218bdf15028876ff5435' // Include your token here
-                    },
-                    body: JSON.stringify(reviewData)
-                });
-
-                if (response.ok) {
-                    const newReview = await response.json();
-                    messageDiv.style.color = '#00ff00';
-                    messageDiv.textContent = 'Review submitted successfully!';
-                    
-                    // Add the new review to the reviews list
-                    const reviewsContainer = document.getElementById('reviews');
-                    const reviewElement = document.createElement('div');
-                    reviewElement.className = 'review';
-                    reviewElement.innerHTML = `
-                        <div class="header">
-                            <span class="user">User ID: ${newReview.user}</span>
-                            <span class="date">${new Date(newReview.created).toLocaleDateString()}</span>
-                        </div>
-                        <div class="body">${newReview.body}</div>
-                        <div class="rating">${newReview.rating}</div>
-                    `;
-                    reviewsContainer.insertBefore(reviewElement, reviewsContainer.firstChild);
-                    
-                    // Clear the form
-                    document.getElementById('reviewBody').value = '';
-                    document.getElementById('reviewRating').value = '';
-                } else {
-                    const errorData = await response.json();
-                    messageDiv.style.color = '#ff0000';
-                    messageDiv.textContent = `Error: ${errorData.detail || 'Failed to submit review.'}`;
+            fetch('https://blueskybooking.onrender.com/hotel/review_add/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to submit review. Status: ${response.status}`);
                 }
-            } catch (error) {
-                console.error('Error submitting review:', error);
-                messageDiv.style.color = '#ff0000';
-                messageDiv.textContent = 'An error occurred. Please try again later.';
-            }
-        }
-
-        // Fetch reviews on page load
-        fetchReviews();
-
-        // Add event listener to the submit button
-        document.getElementById('submitReviewButton').addEventListener('click', submitReview);
+                return response.json();
+            })
+            .then(data => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Review Submitted',
+                    text: 'Your review was added successfully!',
+                });
+                console.log(data);
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Submission Failed',
+                    text: error.message.startsWith('Failed to fetch') 
+                          ? 'Failed to fetch. Network error occurred.' 
+                          : `Failed to submit review. Error: ${error.message}`,
+                });
+                console.error('Error:', error);
+            });
+        };
     </script>
 </body>
+
 </html>

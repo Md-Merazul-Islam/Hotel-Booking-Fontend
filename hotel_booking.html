@@ -34,73 +34,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        h1 {
-            color: #4CAF50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            text-align: left;
-            margin-left: 12px;
-
-        }
-
-
-        input[type="number"],
-        input[type="date"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="text"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .butoon_for_book {
-            width: 100%;
-            padding: 10px;
-            background-color: #FEA116;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .buttonbutoon_for_book:hover {
-            background-color: #FEA116;
-        }
-
-        #hotel-name {
-            background: #ffce93;
-            border: none;
-        }
-    </style>
+    <link href="css/review.css" rel="stylesheet">
+   
 </head>
 
 <body>
@@ -158,7 +93,7 @@
 
 
 
-        <div class="pt-5 pb-5" style="min-height: 100vh; padding-bottom: 500px;">
+        <div class="pt-5"style="min-height: 100vh; padding-bottom: 100px;">
             <div class="form-container m-auto">
                 <h1>Book a Hotel</h1>
 
@@ -185,6 +120,28 @@
 
 
 
+        <!-- add a comment  -->
+      <div class="" style="padding-bottom: 244px;">
+        <div class="form-container-review m-auto">
+            <h1>Add a Review</h1>
+            <form method="POST" id="reviewForm">
+                <label for="body">Review:</label>
+                <textarea id="body" class="bdy" rows="4" required></textarea>
+                <br>
+                <label for="rating">Rating:</label>
+                <select id="rating" required>
+                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐">⭐⭐⭐</option>
+                    <option value="⭐⭐">⭐⭐</option>
+                    <option value="⭐">⭐</option>
+                </select>
+                <br>
+                <button type="submit" class="butoon_for_review" onclick="handleReview(event)">Submit Review</button>
+            </form>
+        </div>
+      </div>
+        <!-- add a comment  -->
 
 
 
@@ -272,7 +229,7 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
-  
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
