@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <p class="card-text"><small class="text-muted">${hotel.district_name}</small></p>
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-sm btn-primary rounded py-2 px-4 view-detail-button" href="#" data-hotel-id="${hotel.id}">View Detail</a>
-                            <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
+                                <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -75,11 +75,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        document.querySelectorAll('.book-now-button').forEach(button => {
+        // "Book Now" buttons
+        const bookNowButtons = document.querySelectorAll('.book-now-button');
+        bookNowButtons.forEach(button => {
             button.addEventListener('click', function (event) {
                 event.preventDefault();
-                const hotelId = this.getAttribute('data-hotel-id');
-                bookHotel(hotelId);
+                const hotelId = button.getAttribute('data-hotel-id');
+                console.log(`Book Now clicked for hotel ID: ${hotelId}`);
+                handleBooking(hotelId);
             });
         });
     }
@@ -97,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function showHotelDetails(hotelId) {
-        const hotel = hotels.find(h => h.id == hotelId); 
+        const hotel = hotels.find(h => h.id == hotelId);
         if (hotel) {
             hotelDetailsContent.innerHTML = `
                  <div class="row">
@@ -120,10 +123,21 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error(`Hotel not found for ID: ${hotelId}`);
         }
     }
+    
+    function isLoggedIn() {
+        return !!localStorage.getItem('user_id');
+    }
 
-    function bookHotel(hotelId) {
-        // Implement your booking logic here
-        alert(`Book hotel with ID: ${hotelId}`);
+    function handleBooking(hotelId) {
+        if (isLoggedIn()) {
+            const bookingUrl = `hotel_booking.html?hotelId=${hotelId}`;
+            console.log(`Redirecting to: ${bookingUrl}`);
+            window.location.href = bookingUrl;
+        } else {
+            const loginUrl = 'login.html';
+            console.log(`Redirecting to: ${loginUrl}`);
+            window.location.href = loginUrl;
+        }
     }
 
     fetchHotels();
