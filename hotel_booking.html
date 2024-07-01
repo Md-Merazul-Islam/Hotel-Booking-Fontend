@@ -35,7 +35,8 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/review.css" rel="stylesheet">
-   
+    <link href="css/no_re.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -92,17 +93,13 @@
 
 
 
-
-        <div class="pt-5"style="min-height: 100vh; padding-bottom: 100px;">
+        <!-- Book Form  -->
+        <div class="pt-5" style="min-height: 100vh; padding-bottom: 100px;">
             <div class="form-container m-auto">
                 <h1>Book a Hotel</h1>
-
                 <form method="POST" id="bookingForm">
                     <label for="hotel_id">Hotel Name:</label>
                     <input type="text" id="hotel-name" readonly>
-
-                    <!-- <label for="hotel_id">Hotel ID:</label> -->
-                    <!-- <input type="number" id="hotel_id" required readonly> -->
                     <br>
                     <label for="start_date">Start Date:</label>
                     <input type="date" id="start_date" required>
@@ -117,30 +114,60 @@
                 </form>
             </div>
         </div>
+        <!-- Book Form  -->
+
+
+
+        <hr>
+        <!-- Review Section Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Reviews</h5>
+                    <h1 class="mb-0">Our Clients Say!!!</h1>
+                </div>
+                <!-- Carousel Container -->
+                <div class="testimonial-carousel owl-carousel pt-5" id="reviews-container">
+                    <!-- Dynamically generated review cards will be inserted here -->
+                     
+                </div>
+            </div>
+        </div>
+        <!-- Review Section End -->
+
+
+
+        <hr>
+
+
+
+
+
+
 
 
 
         <!-- add a comment  -->
-      <div class="" style="padding-bottom: 244px;">
-        <div class="form-container-review m-auto">
-            <h1>Add a Review</h1>
-            <form method="POST" id="reviewForm">
-                <label for="body">Review:</label>
-                <textarea id="body" class="bdy" rows="4" required></textarea>
-                <br>
-                <label for="rating">Rating:</label>
-                <select id="rating" required>
-                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐">⭐⭐⭐</option>
-                    <option value="⭐⭐">⭐⭐</option>
-                    <option value="⭐">⭐</option>
-                </select>
-                <br>
-                <button type="submit" class="butoon_for_review" onclick="handleReview(event)">Submit Review</button>
-            </form>
+        <div class="" style="padding-bottom: 244px;">
+            <div class="form-container-review m-auto">
+                <h1>Add a Review</h1>
+                <form method="POST" id="reviewForm">
+                    <label for="body">Review:</label>
+                    <textarea id="body" class="bdy" rows="4" required></textarea>
+                    <br>
+                    <label for="rating">Rating:</label>
+                    <select id="rating" required>
+                        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                        <option value="⭐⭐⭐">⭐⭐⭐</option>
+                        <option value="⭐⭐">⭐⭐</option>
+                        <option value="⭐">⭐</option>
+                    </select>
+                    <br>
+                    <button type="submit" class="butoon_for_review" onclick="handleReview(event)">Submit Review</button>
+                </form>
+            </div>
         </div>
-      </div>
         <!-- add a comment  -->
 
 
@@ -246,12 +273,10 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/logout.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/service.js"></script>
-    <script src="js/room.js"></script>
+
     <script src="js/book_hotel.js"></script>
+    <script src="js/this_hotel_review.js"></script>
+
 
 
 </body>
