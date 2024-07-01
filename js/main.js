@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <li><a class="dropdown-item" href="#">
                                 <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $${balance.toFixed(2)}
                             </a></li>
-                            <li><a class="dropdown-item" href="profile.html">
+                            <li><a class="dropdown-item" href="#">
                                 <img src="./img/user.png" class="r-img" alt="Profile"> ${account.username}
                             </a></li>
                             <li><a class="dropdown-item" href="deposit.html">
