@@ -23,7 +23,7 @@ fetch('https://blueskybooking.onrender.com/user/account/', {
         console.log('Username:', matchingAccount.username);
    
         USER_ID=  matchingAccount.id;
-        alert(USER_ID)
+        // alert(USER_ID)
     } else {
         console.log('No matching account found for user_id:', userId);
     }
@@ -60,10 +60,7 @@ const handleDeposit = (event) => {
             // 'Authorization': `Bearer ${token}`
             'Authorization': `Token ${token}`
         },
-        // body: JSON.stringify({
-        //     amount: amount,
-        //     account: userId
-        // })
+
         body: JSON.stringify(depositData)
     })
         .then(res => {
