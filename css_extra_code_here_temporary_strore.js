@@ -1,81 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Hotel</title>
-</head>
-
-<body>
-    <h1>Book a Hotel</h1>
-    <form method="POST" id="bookingForm">
-        <label for="hotel_id">Hotel ID:</label>
-        <input type="number" id="hotel_id" required>
-        <br>
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" required>
-        <br>
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" required>
-        <br>
-        <label for="number_of_rooms">Number of Rooms:</label>
-        <input type="number" id="number_of_rooms" required>
-        <br>
-        <button type="submit" onclick="handleBook(event)">Book Hotel</button>
-    </form>
-
-    <script>
-        const handleBook = (event) => {
-            event.preventDefault();
-
-            const user_id = localStorage.getItem('user_id');
-            if (!user_id) {
-                alert('User ID not found in localStorage. Please log in.');
-                return;
-            }
-
-            const hotel_id = document.getElementById('hotel_id').value;
-            const start_date = document.getElementById('start_date').value;
-            const end_date = document.getElementById('end_date').value;
-            const number_of_rooms = document.getElementById('number_of_rooms').value;
-
-            const formData = {
-                hotel_id: parseInt(hotel_id),
-                start_date: start_date,
-                end_date: end_date,
-                number_of_rooms: parseInt(number_of_rooms),
-                user_id: parseInt(user_id)
-            };
-
-            fetch('https://blueskybooking.onrender.com/hotel/book/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to book hotel. Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert('Hotel booked successfully!');
-                console.log(data);
-            })
-            .catch(error => {
-                if (error.message.startsWith('Failed to fetch')) {
-                    alert(`Failed to fetch. Network error occurred.`);
-                } else {
-                    alert(`Failed to book hotel. Error: ${error.message}`);
-                }
-                console.error('Error:', error);
-            });
-        };
-    </script>
-</body>
-
-</html>
+    // <div class="room-item shadow rounded overflow-hidden">
+                //     <div class="position-relative">
+                //         <img class="card-img-top" src="${hotel.photo}" alt="${hotel.name}">
+                //         <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$${hotel.price_per_night}/Night</small>
+                //     </div>
+                //     <div class="p-4 mt-2">
+                //         <div class="d-flex justify-content-between mb-3">
+                //             <h5 class="mb-0">${hotel.name}</h5>
+                //             <div class="ps-2">
+                //                 <small class="fa fa-star text-primary"></small>
+                //                 <small class="fa fa-star text-primary"></small>
+                //                 <small class="fa fa-star text-primary"></small>
+                //                 <small class="fa fa-star text-primary"></small>
+                //                 <small class="fa fa-star text-primary"></small>
+                //             </div>
+                //         </div>
+                //         <div class="d-flex mb-3">
+                //             <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>Available rooms: ${hotel.available_room}</small>
+                //             <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>1 Bed</small>
+                //             <small><i class="fa fa-wifi text-primary me-2"></i>Wifi Free</small>
+                //         </div>
+                //         <small>${truncatedAddress}</small>
+                //         <p class="text-body mb-3">${truncatedDescription}</p>
+                //         <p class="card-text"><small class="text-muted">${hotel.district_name}</small></p>
+                //         <div class="d-flex justify-content-between">
+                //             <a class="btn btn-sm btn-primary rounded py-2 px-4 view-detail-button" href="#" data-hotel-id="${hotel.id}">View Detail</a>
+                //             <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
+                //         </div>
+                //     </div>
+                // </div>

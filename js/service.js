@@ -31,7 +31,7 @@
                                     <span class="rating">${generateRatingStars(review.rating)}</span>
                                 </div>
                             </div>
-                            <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                            <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-1 mb-n1" style=" font-size: 39px; padding-right: 6px;" ></i>
                         </div>
                     `;
                     carouselContainer.appendChild(reviewCard);
