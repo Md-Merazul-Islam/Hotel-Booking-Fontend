@@ -3,10 +3,40 @@ if (!token) {
     window.localStorage.href = "login.html";
 }
 
+const userId = localStorage.getItem('user_id');
+let USER_ID ;
+
+fetch('https://blueskybooking.onrender.com/user/account/', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        
+    }
+})
+.then(response => response.json())
+.then(data => {
+    const matchingAccount = data.find(account => account.account_no == userId);
+
+    if (matchingAccount) {
+        console.log('Matching account details:');
+        console.log('ID:', matchingAccount.id);
+        console.log('Username:', matchingAccount.username);
+   
+        USER_ID=  matchingAccount.id;
+        alert(USER_ID)
+    } else {
+        console.log('No matching account found for user_id:', userId);
+    }
+})
+.catch(error => {
+    console.error('Error fetching user accounts:', error);
+});
+
+
 const handleDeposit = (event) => {
     event.preventDefault();
     const amount = parseInt(document.getElementById('amount').value);
-    const userId = parseInt(localStorage.getItem('user_id')) - 1;
+    const userId = parseInt(USER_ID);
     if (isNaN(amount) || isNaN(userId)) {
         Swal.fire({
             icon: 'error',
@@ -16,16 +46,25 @@ const handleDeposit = (event) => {
         });
         return;
     }
+    const depositData = {
+        account: userId,
+        amount: amount
+    };
+    console.log(userId);
+    console.log(localStorage.getItem('user_id'));
+
     fetch('https://blueskybooking.onrender.com/user/deposit/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
+            'Authorization': `Token ${token}`
         },
-        body: JSON.stringify({
-            amount: amount,
-            account: userId
-        })
+        // body: JSON.stringify({
+        //     amount: amount,
+        //     account: userId
+        // })
+        body: JSON.stringify(depositData)
     })
         .then(res => {
             if (!res.ok) {
@@ -55,3 +94,13 @@ const handleDeposit = (event) => {
             });
         });
 }
+
+
+
+
+
+
+
+
+
+
