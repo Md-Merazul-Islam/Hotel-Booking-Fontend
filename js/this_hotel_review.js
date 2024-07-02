@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createReviewCard = (review) => {
         const tr_body = truncateText(review.body, 110);
         const reviewCard = createHTMLElement(`
-            <div class="testimonial-item shadow text-center rounded pb-4">
+            <div class="testimonial-item shadow text-center rounded pb-4 mb-2 mt-2 ">
                 <div class="testimonial-comment bg-light rounded p-4">
                     <h3>${review.hotel.name}</h3>
                     <p class="text-center mb-5">${tr_body}</p>
