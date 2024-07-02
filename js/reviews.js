@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 reviewCard.innerHTML = `
                     <div class="testimonial-item shadow text-center rounded pb-4 mb-2 mt-2">
                     <div class="testimonial-comment bg-light rounded p-4">
-                        <div class="review-container-for-name-and-button">
-                        <h6>${review.hotel.name}</h6>
-                        </div>          
+                        <h6>${review.hotel.name}</h6>    
                         <p class="text-center mb-5">${tr_body}</p>
                         </div>
                         <div class="testimonial-img p-1">
