@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="img/user.png" class="img-fluid rounded-circle" alt="Image">
                 </div>
                 <div style="margin-top: -35px;">
-                    <h5 class="mb-0">${review.user}</h5>
+                  <h5 class="mb-0">${review.user ? review.user : "Anonymous User"}</h5>
                     <p class="mb-0">Created on: ${new Date(review.created).toLocaleDateString()}</p>
                     <div class="d-flex justify-content-center">
                         ${review.rating}
