@@ -252,6 +252,38 @@
 
 /*** -----------------------------------------------Carousel Hero Header End----------------------------------------------- ***/
 
+/* -------------------------------------------------for review edit and delete ----------------------------- */
+
+.review-container-for-name-and-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.review-actions-for-button {
+    display: flex;
+    align-items: center;
+}
+.edit-btn-rv, .delete-btn-rv {
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    background: #F1F8FF;
+}
+.edit-btn-rv::before {
+    content: '✎';
+}
+.delete-btn-rv::before {
+    content: '🗑️';
+}
+
+@media (max-width: 576px) { 
+    .edit-btn-rv::before, .delete-btn-rv::before {
+        font-size: 8px; 
+    }
+}
+/* -------------------------------------------------for review edit and delete ----------------------------- */
 
 
 /*** -----------------------------------------------Section Title----------------------------------------------- ***/

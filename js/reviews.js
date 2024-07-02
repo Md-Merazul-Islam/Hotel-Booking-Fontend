@@ -19,8 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 reviewCard.innerHTML = `
                     <div class="testimonial-item shadow text-center rounded pb-4 mb-2 mt-2">
                     <div class="testimonial-comment bg-light rounded p-4">
-                        <h3>${review.hotel.name}</h3>
-                            <p class="text-center mb-5">${tr_body}</p>
+
+                        <div class="review-container-for-name-and-button">
+                            <div>
+                                <h6>${review.hotel.name}</h6>
+                            </div>
+                            <div class="review-actions-for-button">
+                                <button class="edit-btn-rv" onclick="editReview(${review.id})"></button>
+                                <button class="delete-btn-rv" onclick="removeReview(${review.id})"></button>
+                            </div>
+                        </div>          
+                                
+                        <p class="text-center mb-5">${tr_body}</p>
                         </div>
                         <div class="testimonial-img p-1">
                             <img src="img/user.png" class="img-fluid rounded-circle" alt="Image">
