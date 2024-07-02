@@ -1,28 +1,42 @@
-const userId = localStorage.getItem('user_id');
-let USER_ID ;
+let UserName = '';
+document.addEventListener('DOMContentLoaded', async function () {
+    const authButtons = document.getElementById('auth-buttons');
+    const token = localStorage.getItem('token');
+    const userId = parseInt(localStorage.getItem('user_id'));
+    // console.log(userId);
+    if (token) {
+        try {
+            const response = await fetch('https://blueskybooking.onrender.com/user/account/', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch user account data');
+            }
+            const userData = await response.json();
 
-fetch('https://blueskybooking.onrender.com/user/account/', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        
-    }
-})
-.then(response => response.json())
-.then(data => {
-    const matchingAccount = data.find(account => account.account_no == userId);
+            if (userData.length === 0) {
+                throw new Error('No user account data found');
+            }
 
-    if (matchingAccount) {
-        console.log('Matching account details:');
-        console.log('ID:', matchingAccount.id);
-        console.log('Username:', matchingAccount.username);
-   
-        USER_ID=  matchingAccount.id;
-        alert(USER_ID)
+            // Find the account that matches the userId from local storage
+            const accountIndex = userData.findIndex(account => account.account_no === userId);
+
+            if (accountIndex === -1) {
+                throw new Error('No matching user account found');
+            }
+
+            const account = userData[accountIndex];
+            UserName= account.username;
+            console.log(UserName);
+
+        } catch (error) {
+            console.error('Error fetching user account data:', error);
+
+        }
     } else {
-        console.log('No matching account found for user_id:', userId);
+        console.error('No token found');
     }
-})
-.catch(error => {
-    console.error('Error fetching user accounts:', error);
 });
+
