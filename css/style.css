@@ -198,7 +198,7 @@
 
 .carousel-header .carousel-inner .carousel-item {
     position: relative;
-    min-height: 80vh;
+    min-height: 90vh;
 }
 
 .carousel-header .carousel-inner .carousel-item img {
@@ -260,6 +260,20 @@
     }
 }
 
+
+
+
+
+/* Apply Cinzel to headings in the carousel */
+.carousel-caption h1, .carousel-caption h4, .carousel-caption h5 {
+    font-family: 'Cinzel', serif;
+  }
+  
+  /* Apply Source Sans Pro to paragraphs and links in the carousel */
+  .carousel-caption p, .carousel-caption a {
+    font-family: 'Raleway', sans-serif;
+  }
+  
 /*** -----------------------------------------------Carousel Hero Header End----------------------------------------------- ***/
 
 
