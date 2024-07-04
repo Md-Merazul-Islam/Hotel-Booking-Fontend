@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderNoReviewsMessage = () => {
         const noReviewsMessage = createHTMLElement(`
-            <div class="no-reviews-message text-center">
+            <div class="no-reviews-message text-center m-auto">
                 <p class="py-5">No reviews for this hotel yet. Be the first to review!</p>
             </div>
         `);
