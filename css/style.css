@@ -265,11 +265,14 @@
 
 @media (max-width: 333px) {
     .HOTEL-SEARCH-AND-SHOW{
-        margin-top: 230px
+        margin-top: 230px;
+        padding-top:63px;
     }
 }
 
-
+.owl-stage{
+    padding-bottom: 50px;
+}
 
 
 /* Apply Cinzel to headings in the carousel */
