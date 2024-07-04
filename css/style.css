@@ -258,8 +258,16 @@
         height: 100%;
         object-fit: cover;
     }
+    .HOTEL-SEARCH-AND-SHOW{
+        margin-top: 131px
+    }
 }
 
+@media (max-width: 333px) {
+    .HOTEL-SEARCH-AND-SHOW{
+        margin-top: 230px
+    }
+}
 
 
 
@@ -275,6 +283,10 @@
   }
   
 /*** -----------------------------------------------Carousel Hero Header End----------------------------------------------- ***/
+
+.HOTEL-SEARCH-AND-SHOW{
+    
+}
 
 
 /*** -----------------------------------------------Section Title----------------------------------------------- ***/
