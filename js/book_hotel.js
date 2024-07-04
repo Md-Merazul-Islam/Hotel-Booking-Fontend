@@ -133,38 +133,38 @@ const handleReview = (event) => {
     };
     console.log(formData);
 
-    fetch('https://blueskybooking.onrender.com/hotel/review_add/',{
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json'
+    fetch('https://blueskybooking.onrender.com/hotel/review_add/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        body:JSON.stringify(formData)
+        body: JSON.stringify(formData)
     })
-    .then(res =>{
-        if(!res.ok){
-            throw new error(`Failed to submit review.${res.status}`);
-        }
-        return res.json();
-    })
-    .then(data=>{
-        Swal.fire({
-            icon: 'success',
-            title: 'Review Submitted',
-            text: 'Your review was added successfully!',
+        .then(res => {
+            if (!res.ok) {
+                throw new error(`Failed to submit review.${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Review Submitted',
+                text: 'Your review was added successfully!',
+            });
+            console.log(data);
+            console.log("Successfully create a review.");
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Submission Failed',
+                text: error.message.startsWith('Failed to fetch')
+                    ? 'Failed to fetch. Network error occurred.'
+                    : `Failed to submit review. Error: ${error.message}`,
+            });
+            console.error('Error:', error);
         });
-        console.log(data);
-        console.log("Successfully create a review.");
-    })
-    .catch(error => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Submission Failed',
-            text: error.message.startsWith('Failed to fetch') 
-                  ? 'Failed to fetch. Network error occurred.' 
-                  : `Failed to submit review. Error: ${error.message}`,
-        });
-        console.error('Error:', error);
-    });
 
 
 };
