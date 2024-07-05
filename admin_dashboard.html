@@ -24,6 +24,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="path/to/bootstrap.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
@@ -46,19 +47,18 @@
     <!-- Spinner End -->
 
 
-
-    <!-- Navbar Start -->
+    <!-- Header Start -->
     <div class="container-fluid bg-dark px-0">
         <div class="row gx-0">
             <div class="col-lg-2 bg-dark d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-4">
-                    <h1 class="m-0 text-primary text-uppercase">BSB</h1>
+                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2">
+                    <img src="./img/blu.png" alt="BSB" class="" style="width: 50%;">
                 </a>
             </div>
             <div class="col-lg-10">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                     <a href="index.html" class="navbar-brand d-block d-lg-none">
-                        <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
+                        <img src="./img/blu.png" alt="BSB" class="" style="width: 70px;">
                     </a>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                         data-bs-target="#navbarCollapse">
@@ -66,70 +66,93 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link ">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="service.html" class="nav-item nav-link">Services</a>
-                            <a href="room.html" class="nav-item nav-link">Rooms</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <!-- district add  -->
+                            <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    District
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="districtDropdown">
+                                    <a class="dropdown-item" href="#">District Add</a>
+                                    <a class="dropdown-item" href="#">Show District</a>
+                                </div>
+                            </div>
+                            
+
+                            <!-- hotel add  -->
+                            <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Hotel 
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">hotel Add </a>
+                                    <a class="dropdown-item" href="#">Show hotel </a>
+                                    <a class="dropdown-item" href="#">Delete Hotel </a>
+                                    <a class="dropdown-item" href="#">Edit hotel </a>
+                                </div>
+                            </div>
+
+                           
+
+                              <!-- user list -->
+                              <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   User Details
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="#">Show User List </a>
+                                  <a class="dropdown-item" href="#">User Delete </a>
+                                </div>
+                              </div>
+
+                              <!-- Review  list -->
+                              <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Booking Details
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="#">Show Booked   </a>
+
+                                </div>
+                              </div>
+
+
+                              <!-- Review  list -->
+                              <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Review Details
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="#">Show Review  </a>
+                                  <a class="dropdown-item" href="#">Delete Review  </a>
+                                </div>
+                              </div>
 
                         </div>
-                        <div id="auth-buttons" class="d-flex flex-row align-items-center gap-3 pe-4">
-                            <!-- Authentication buttons will be dynamically inserted here -->
+                        <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4"
+                            id="auth-buttons">
+                            <a class="btn btn-light fw-semibold" href="register.html">Sign in</a>
+                            <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
     </div>
-    <!-- Navbar End -->
+    <!-- Header End -->
 
 
-    <!-- Login Form -->
-    <section class="vh-100 align-content-center align-items-center">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <!-- Image Div -->
-                <div class="col-md-6 d-none d-md-block">
-                    <img src="./img/login.png" class="img-fluid float-end" alt="Sample image">
-                </div>
-                <!-- Form Div -->
-                <div class="col-md-6 col-sm-12">
-                    <div class="col-md-8 col-sm-full">
-                        <form id="login-form" onsubmit="handleLogin(event)">
-                            <div class="d-flex flex-row align-items-center justify-content-center mb-4">
-                                <h3 class="">Login to Your Account</h3>
-                            </div>
-                            <div class="divider d-flex align-items-center my-4"></div>
-                            <div id="error-container" class="error-message pb-2"></div>
-                            <div class="form-outline mb-4">
-                                <input type="text" id="login-username" name="username"
-                                    class="form-control form-control-lg" placeholder="Enter your username" required />
-                            </div>
-                            <div class="form-outline mb-3">
-                                <input type="password" id="login-password" name="password"
-                                    class="form-control form-control-lg" placeholder="Enter password" required />
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                    <label class="form-check-label" for="form2Example3">
-                                        Remember me
-                                    </label>
-                                </div>
-                                <a href="#!" class="text-body">Forgot password?</a>
-                            </div>
-                            <div class="text-center text-lg-start mt-4 pt-2">
-                                <button type="submit" class="btn btn-primary btn-lg"
-                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.html"
-                                        class="link-danger">Register</a></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+    <div class="min-vh-100">
+
+    </div>
+
+
+
 
 
 
@@ -191,8 +214,8 @@
                 <div class="row">
 
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span> All
-                        Rights Reserved.
+                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span>
+                        All Rights Reserved.
                     </div>
 
                     <div class="col-md-6 text-center text-md-end">
@@ -225,21 +248,12 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
-
+    <script src="path/to/bootstrap.bundle.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/login.js"></script>
-
-
-
-
-
 </body>
 
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Slug Generation</title>
+    <script>
+        // Function to generate a slug from the district name
+        function generateSlug(text) {
+            return text
+                .toLowerCase()            // Convert to lowercase
+                .replace(/[^a-z0-9 -]/g, '') // Remove special characters
+                .replace(/\s+/g, '-')      // Replace spaces with dashes
+                .replace(/-+/g, '-');      // Replace multiple dashes with a single dash
+        }
+
+        // Event listener for the district name input field
+        document.addEventListener('DOMContentLoaded', function() {
+            const districtNameInput = document.getElementById('district_name');
+            const slugInput = document.getElementById('slug');
+
+            districtNameInput.addEventListener('input', function() {
+                const slug = generateSlug(districtNameInput.value);
+                slugInput.value = slug; // Set the generated slug to the slug input field
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <label for="district_name">District Name:</label>
+        <input type="text" id="district_name" name="district_name" placeholder="Enter district name">
+
+        <label for="slug">Slug:</label>
+        <input type="text" id="slug" name="slug" placeholder="Generated slug" readonly>
+    </form>
+</body>
+</html>
