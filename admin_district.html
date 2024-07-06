@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin dashboard </title>
+    <title>District add and show </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -33,13 +33,85 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            justify-content: center;
+            margin: auto;
+
+        }
+
+        .form-container input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+
+
+        }
+
+        .form-container button {
+            width: 90%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            color: green;
+        }
+
+        .feedback.error {
+            color: red;
+        }
+
+
+
+        /* for show table  */
+        .table-container {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: rgb(0, 0, 0);
+        }
+    </style>
 </head>
 
 <body>
     <!-- <div class="container-xxl bg-white p-0"> -->
     <!-- Spinner Start -->
     <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        class="show bg-white position-fixed translate-middle w-90 vh-90 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -51,7 +123,7 @@
     <div class="container-fluid bg-dark px-0">
         <div class="row gx-0">
             <div class="col-lg-2 bg-dark d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2">
+                <a href="index.html" class="navbar-brand w-90 h-90 m-0 p-0 d-flex align-items-center ps-2">
                     <img src="./img/blu.png" alt="BSB" class="" style="width: 50%;">
                 </a>
             </div>
@@ -68,7 +140,8 @@
                         <div class="navbar-nav mr-auto py-0">
                             <!-- district add  -->
                             <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     District
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="districtDropdown">
@@ -76,7 +149,7 @@
                                     <a class="dropdown-item" href="admin_district.html">Show District</a>
                                 </div>
                             </div>
-                            
+
 
                             <!-- hotel add  -->
                             <div class="dropdown">
@@ -91,44 +164,47 @@
                                 </div>
                             </div>
 
-                           
 
-                              <!-- user list -->
-                              <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   User Details
+
+                            <!-- user list -->
+                            <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    User Details
                                 </a>
-                              
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Show User List </a>
-                                  <a class="dropdown-item" href="#">User Delete </a>
-                                </div>
-                              </div>
 
-                              <!-- Review  list -->
-                              <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Booking Details
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Show User List </a>
+                                    <a class="dropdown-item" href="#">User Delete </a>
+                                </div>
+                            </div>
+
+                            <!-- Review  list -->
+                            <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Booking Details
                                 </a>
-                              
+
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Show Booked   </a>
+                                    <a class="dropdown-item" href="#">Show Booked </a>
 
                                 </div>
-                              </div>
+                            </div>
 
 
-                              <!-- Review  list -->
-                              <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Review Details
+                            <!-- Review  list -->
+                            <div class="dropdown">
+                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Review Details
                                 </a>
-                              
+
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Show Review  </a>
-                                  <a class="dropdown-item" href="#">Delete Review  </a>
+                                    <a class="dropdown-item" href="#">Show Review </a>
+                                    <a class="dropdown-item" href="#">Delete Review </a>
                                 </div>
-                              </div>
+                            </div>
 
                         </div>
                         <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4"
@@ -147,6 +223,57 @@
 
 
     <div class="min-vh-100">
+        <!-- Modal for Add New District -->
+        <div class="modal fade" id="addDistrictModal" tabindex="-1" aria-labelledby="addDistrictModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addDistrictModalLabel">Add New District</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="districtForm">
+                            <label for="districtName">District Name:</label>
+                            <input type="text" id="districtName" name="districtName" required><br>
+                            <div id="feedback" class="feedback"></div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="submitDistrict">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- show district overview -->
+        <div style="padding-bottom: 300px;">
+            <div class="table-container m-auto pt-5">
+                <h2>Hotel List</h2>
+                <table class="table table-striped" id="hotelTable">
+                    <thead>
+                        <tr>
+                            <th>Hotel Name</th>
+                            <th>Slug</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be inserted here dynamically -->
+                    </tbody>
+
+                </table>
+                <button class="btn btn-primary" id="addDistrictButton" data-bs-toggle="modal"
+                    data-bs-target="#addDistrictModal">Add New District</button>
+
+            </div>
+
+        </div>
+
+
 
     </div>
 
@@ -253,6 +380,7 @@
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
+    <script src="js/admin_add_district.js"></script>
 </body>
 
 </html>
