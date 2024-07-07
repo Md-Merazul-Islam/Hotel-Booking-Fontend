@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .bg-gradient-primary {
+            background: #007BFF;
+        }
+
+        .bg-gradient-success {
+            background: #FFC108;
+        }
+
+        .bg-gradient-warning {
+            background: #28A745;
+        }
+
+        .bg-gradient-danger {
+
+            background: #DC3545;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-vh-100" style="padding-bottom: 200px;">
+        <!-- Page Content -->
+        <div class="container-lg-full mx-4 mt-4">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-2">
+                    <div class="list-group">
+                        <a href="admin_dashboard.html" class="list-group-item list-group-item-action active">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a href="admin_user_management.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-users"></i> Users
+                        </a>
+                        <a href="admin_district.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-map-marker-alt"></i> District
+                        </a>
+                        <a href="admin_hotel_add.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-hotel"></i> Hotels
+                        </a>
+                        <a href="admin_Review_Details.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-comments"></i> Reviews
+                        </a>
+                        <a href="admin_booked_list.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-calendar-check"></i> Bookings
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-md-10">
+                    <!-- Dashboard Content -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard Overview
+                        </div>
+ 
+                        <!-- Statistics Cards -->
+                        <div class="row text-center mt-4 m-1">
+                            <div class="col-md-3">
+                                <div class="card text-white bg-gradient-primary mb-3">
+                                    <div class="card-header">Total Hotels</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">150</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card text-white bg-gradient-success mb-3">
+                                    <div class="card-header">Total Clients</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">3000</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card text-white bg-gradient-warning mb-3">
+                                    <div class="card-header">Total Booked Hotels</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">120</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card text-white bg-gradient-danger mb-3">
+                                    <div class="card-header">Available Sets</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">30</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart Section -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-line"></i> Website Growth Statistics
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <canvas id="doughnutChart" width="400" height="150"></canvas>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <canvas id="upDownLineChart" width="400" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Section -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-users"></i> Users Management
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Users</h5>
+                            <p class="card-text">View and manage user accounts.</p>
+                            <a href="admin_user_management.html" class="btn btn-primary">Go to Users</a>
+                        </div>
+                    </div>
+
+                    <!-- District Section -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-map-marker-alt"></i> District Management
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Hotels District</h5>
+                            <p class="card-text">View and manage District listings.</p>
+                            <a href="admin_district.html" class="btn btn-primary">Go to District </a>
+                        </div>
+                    </div>
+
+                    <!-- Hotels Section -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-hotel"></i> Hotels Management
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Hotels</h5>
+                            <p class="card-text">View and manage hotel listings.</p>
+                            <a href="admin_hotel_add.html" class="btn btn-primary">Go to Hotels</a>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-comments"></i> Reviews Management
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Reviews</h5>
+                            <p class="card-text">View and manage user reviews.</p>
+                            <a href="admin_Review_Details.html" class="btn btn-primary">Go to Reviews</a>
+                        </div>
+                    </div>
+
+                    <!-- Bookings Section -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-calendar-check"></i> Bookings Management
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Bookings</h5>
+                            <p class="card-text">View and manage hotel bookings.</p>
+                            <a href="admin_booked_list.html" class="btn btn-primary">Go to Bookings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        const doughnutChart = new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Users', 'Hotels', 'Bookings', 'Reviews'],
+                datasets: [{
+                    label: 'Website Data',
+                    data: [300, 50, 100, 150],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Up-Down Line Chart
+        const upDownLineCtx = document.getElementById('upDownLineChart').getContext('2d');
+        const upDownLineChart = new Chart(upDownLineCtx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Data',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>District add and show </title>
+    <title>District Management </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -21,12 +21,16 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="path/to/bootstrap.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,75 +38,9 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
-        .form-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
+         td,th{
+            vertical-align: middle;
             text-align: center;
-            justify-content: center;
-            margin: auto;
-
-        }
-
-        .form-container input[type="text"] {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            box-sizing: border-box;
-
-
-        }
-
-        .form-container button {
-            width: 90%;
-            padding: 10px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .feedback {
-            margin-top: 10px;
-            color: green;
-        }
-
-        .feedback.error {
-            color: red;
-        }
-
-
-
-        /* for show table  */
-        .table-container {
-            width: 80%;
-            max-width: 800px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #007bff;
-            color: rgb(0, 0, 0);
         }
     </style>
 </head>
@@ -111,7 +49,7 @@
     <!-- <div class="container-xxl bg-white p-0"> -->
     <!-- Spinner Start -->
     <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-90 vh-90 top-50 start-50 d-flex align-items-center justify-content-center">
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -123,7 +61,7 @@
     <div class="container-fluid bg-dark px-0">
         <div class="row gx-0">
             <div class="col-lg-2 bg-dark d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-90 h-90 m-0 p-0 d-flex align-items-center ps-2">
+                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2">
                     <img src="./img/blu.png" alt="BSB" class="" style="width: 50%;">
                 </a>
             </div>
@@ -139,72 +77,16 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <!-- district add  -->
+
                             <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
+                                <a class="btn text-white " href="admin_dashboard.html" role="button" id="districtDropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    District
+                                    DashBoard
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="districtDropdown">
-                                    <a class="dropdown-item" href="admin_district.html">District Add</a>
-                                    <a class="dropdown-item" href="admin_district.html">Show District</a>
-                                </div>
+                               
                             </div>
 
-
-                            <!-- hotel add  -->
-                            <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Hotel 
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="admin_hotel_add.html">Hotel Add </a>
-                                    <a class="dropdown-item" href="admin_hotel_add.html">Show hotel </a>
-
-                                </div>
-                            </div>
-
-
-
-                            <!-- user list -->
-                            <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    User Details
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Show User List </a>
-                                    <a class="dropdown-item" href="#">User Delete </a>
-                                </div>
-                            </div>
-
-                            <!-- Review  list -->
-                            <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Booking Details
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Show Booked </a>
-
-                                </div>
-                            </div>
-
-
-                            <!-- Review  list -->
-                            <div class="dropdown">
-                                <a class="btn text-white dropdown-toggle" href="#" role="button" id="districtDropdown"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Review Details
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Show Review </a>
-                                    <a class="dropdown-item" href="#">Delete Review </a>
-                                </div>
-                            </div>
+                       
 
                         </div>
                         <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4"
@@ -223,6 +105,7 @@
 
 
     <div class="min-vh-100">
+
         <!-- Modal for Add New District -->
         <div class="modal fade" id="addDistrictModal" tabindex="-1" aria-labelledby="addDistrictModalLabel"
             aria-hidden="true">
@@ -246,34 +129,52 @@
                 </div>
             </div>
         </div>
+            <!-- Page Content -->
+            <div class="container-lg-full mx-4 mt-4">
+                <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-2">
+                    <div class="list-group">
+                        <a href="admin_dashboard.html" class="list-group-item list-group-item-action ">Dashboard</a>
+                        <a href="admin_user_management.html" class="list-group-item list-group-item-action">Users</a>
+                        <a href="admin_district.html" class="list-group-item list-group-item-action active">District</a>
+                        <a href="admin_hotel_add.html" class="list-group-item list-group-item-action">Hotels</a>
+                        <a href="admin_Review_Details.html" class="list-group-item list-group-item-action">Reviews</a>
+                        <a href="admin_booked_list.html" class="list-group-item list-group-item-action">Bookings</a>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-md-10">
+
+                    <!-- show district overview -->
+                    <div style="padding-bottom: 300px;">
+                        <div class="table-container m-auto pt-5">
+                            <h2>District List</h2>
+                            <h4  class="text-end"><a href="" class="btn btn-primary" id="addDistrictButton" data-bs-toggle="modal"
+                                data-bs-target="#addDistrictModal"> + Add New </a></h4>
+                            <table class="table table-bordered table-striped" id="hotelTable">
+                                <thead>
+                                    <tr>
+                                        <th>District Name</th>
+                                        <th>Slug</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table rows will be inserted here dynamically -->
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
 
 
 
-
-        <!-- show district overview -->
-        <div style="padding-bottom: 300px;">
-            <div class="table-container m-auto pt-5">
-                <h2>Hotel List</h2>
-                <table class="table table-striped" id="hotelTable">
-                    <thead>
-                        <tr>
-                            <th>Hotel Name</th>
-                            <th>Slug</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Table rows will be inserted here dynamically -->
-                    </tbody>
-
-                </table>
-                <button class="btn btn-primary" id="addDistrictButton" data-bs-toggle="modal"
-                    data-bs-target="#addDistrictModal">Add New District</button>
-
+                </div>
             </div>
-
         </div>
-
-
+    </div>
 
     </div>
 
@@ -375,6 +276,8 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="path/to/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.all.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>

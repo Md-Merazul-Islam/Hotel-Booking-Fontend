@@ -1,127 +1,170 @@
-let UserName = '';
-document.addEventListener('DOMContentLoaded', async function () {
-    const authButtons = document.getElementById('auth-buttons');
-    const token = localStorage.getItem('token');
-    const userId = parseInt(localStorage.getItem('user_id'));
-    // console.log(userId);
-    if (token) {
-        try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/account/', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            if (!response.ok) {
-                throw new Error('Failed to fetch user account data');
-            }
-            const userData = await response.json();
+<!DOCTYPE html>
+<html lang="en">
 
-            if (userData.length === 0) {
-                throw new Error('No user account data found');
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>Add Hotel</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-            // Find the account that matches the userId from local storage
-            const accountIndex = userData.findIndex(account => account.account_no === userId);
+<body>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHotelModal">
+        Add Hotel
+    </button>
 
-            if (accountIndex === -1) {
-                throw new Error('No matching user account found');
-            }
-
-            const account = userData[accountIndex];
-            UserName = account.username;
-            console.log(UserName);
-
-        } catch (error) {
-            console.error('Error fetching user account data:', error);
-
-        }
-    } else {
-        console.error('No token found');
-    }
-});
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const reviewContainer = document.getElementById('reviews-container');
-    const carouselContainer = document.createElement('div');
-    carouselContainer.className = 'owl-carousel testimonial-carousel';
-    reviewContainer.innerHTML = '';
-
-    // Fetch the reviews from the API
-    fetch('https://blueskybooking.onrender.com/hotel/reviews/')
-        .then(res => res.json())
-        .then(reviews => {
-            reviews.forEach(review => {
-                const reviewCard = document.createElement('div');
-                reviewCard.className = '';
-                const tr_body = truncateText(review.body, 110);
-
-
-                reviewCard.innerHTML = `
-                    <div class="testimonial-item shadow text-center rounded pb-4 mb-2 mt-2">
-                    <div class="testimonial-comment bg-light rounded p-4">
-
-                        <div class="review-container-for-name-and-button">
-                            <div>
-                                <h6>${review.hotel.name}</h6>
-                            </div>
-                            ${UserName === review.user ? `
-                                <div class="review-actions-for-button">
-                                    <button class="edit-btn-rv" onclick="editReview(${review.id})"></button>
-                                    <button class="delete-btn-rv" onclick="deleteReview(${review.id})"></button>
-                                </div>
-                                
-                                `: ''}
-                        </div>          
-                                
-                        <p class="text-center mb-5">${tr_body}</p>
+    <!-- The Modal -->
+    <div class="modal fade" id="addHotelModal" tabindex="-1" role="dialog" aria-labelledby="addHotelModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addHotelModalLabel">Add Hotel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="hotelForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="hotelName">Hotel Name</label>
+                            <input type="text" class="form-control" id="hotelName" placeholder="Enter hotel name"
+                                required>
                         </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/user.png" class="img-fluid rounded-circle" alt="Image">
+                        <div class="form-group">
+                            <label for="hotelAddress">Hotel Address</label>
+                            <input type="text" class="form-control" id="hotelAddress" placeholder="Enter hotel address"
+                                required>
                         </div>
-                        <div style="margin-top: -35px;">
-                           <h5 class="mb-0">${review.user ? review.user : "Anonymous User"}</h5>
-                            <p class="mb-0">Created on: ${new Date(review.created).toLocaleDateString()}</p>
-                            <div class="d-flex justify-content-center">
-                                ${review.rating}
-                            </div>
+                        <div class="form-group">
+                            <label for="hotelDistrict">Hotel District</label>
+                            <select class="form-control" id="hotelDistrict" required></select>
                         </div>
-                    </div>
-                `;
-                carouselContainer.appendChild(reviewCard);
-            });
-            reviewContainer.appendChild(carouselContainer);
+                        <div class="form-group">
+                            <label for="hotelPhoto">Hotel Photo</label>
+                            <input type="file" class="form-control" id="hotelPhoto" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hotelDescription">Hotel Description</label>
+                            <textarea class="form-control" id="hotelDescription" rows="3"
+                                placeholder="Enter hotel description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="hotelPricePerNight">Price Per Night</label>
+                            <input type="number" class="form-control" id="hotelPricePerNight"
+                                placeholder="Enter price per night" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hotelAvailableRoom">Available Room</label>
+                            <input type="number" class="form-control" id="hotelAvailableRoom"
+                                placeholder="Enter available rooms" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitHotel">Add Hotel</button>
+                    </form>
+                    <div id="hotelFeedback" class="mt-3"></div>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-            $('.testimonial-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching the reviews:', error);
+    <!-- Script for handling form submission and fetching districts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchDistricts();
+
+            document.getElementById('hotelForm').addEventListener('submit', handleHotelFormSubmit);
         });
-});
 
+        async function handleHotelFormSubmit(event) {
+            event.preventDefault();
 
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Authentication token is missing');
+                return;
+            }
 
-function truncateText(text, maxLength) {
-    if (text.length > maxLength) {
-        return text.slice(0, maxLength) + '...';
-    }
-    return text;
-}
+            const form = document.getElementById('hotelForm');
+            const formData = new FormData();
 
+            // Collect all form data including file input
+            formData.append('name', document.getElementById('hotelName').value);
+            formData.append('address', document.getElementById('hotelAddress').value);
+            formData.append('district', document.getElementById('hotelDistrict').value);
+            formData.append('photo', document.getElementById('hotelPhoto').files[0]); // File input
+            formData.append('description', document.getElementById('hotelDescription').value);
+            formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
+            formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+
+            // Log formData entries to check what's being sent
+            for (const pair of formData.entries()) {
+                console.log(`${pair[0]}: ${pair[1]}`);
+            }
+
+            const feedback = document.getElementById('hotelFeedback');
+            const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Token ${token}`,
+                        // Note: 'Content-Type' header is omitted to let the browser set it to 'multipart/form-data' with the correct boundary.
+                    },
+                    body: formData // Send FormData object with the request
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    feedback.textContent = `Successfully added hotel: ${result.name}`;
+                    feedback.className = 'feedback text-success';
+                    form.reset(); // Clear the form fields
+                } else {
+                    const responseData = await response.json();
+                    console.log(responseData); // Log the server's response for debugging
+                    feedback.textContent = `Failed to add hotel: ${JSON.stringify(responseData)}`;
+                    feedback.className = 'feedback text-danger';
+                }
+            } catch (error) {
+                feedback.textContent = `Error: ${error.message}`;
+                feedback.className = 'feedback text-danger';
+            }
+
+            // Hide the modal after a short delay
+            setTimeout(() => {
+                $('#addHotelModal').modal('hide');
+            }, 2000);
+        }
+
+        async function fetchDistricts() {
+            try {
+                const response = await fetch('https://blueskybooking.onrender.com/hotel/districts/');
+                const districts = await response.json();
+
+                const districtSelect = document.getElementById('hotelDistrict');
+                districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.id; // Use district ID for the option value
+                    option.textContent = district.district_name;
+                    districtSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error fetching districts:', error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
