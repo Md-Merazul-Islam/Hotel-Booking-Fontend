@@ -3,167 +3,181 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Hotel</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+        }
+
+        button, input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHotelModal">
-        Add Hotel
-    </button>
+    <div class="container">
+        <div id="user-details">
+            <h2>User Profile</h2>
+            <img id="profile_image" src="" alt="Profile Image" width="100" height="100">
+            <p><strong>Username:</strong> <span id="username"></span></p>
+            <p><strong>First Name:</strong> <span id="first_name"></span></p>
+            <p><strong>Last Name:</strong> <span id="last_name"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Account No:</strong> <span id="account_no"></span></p>
+            <p><strong>Balance:</strong> <span id="balance"></span></p>
+            <button id="edit-profile-btn">Edit Profile</button>
+        </div>
 
-    <!-- The Modal -->
-    <div class="modal fade" id="addHotelModal" tabindex="-1" role="dialog" aria-labelledby="addHotelModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addHotelModalLabel">Add Hotel</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form id="hotelForm" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="hotelName">Hotel Name</label>
-                            <input type="text" class="form-control" id="hotelName" placeholder="Enter hotel name"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hotelAddress">Hotel Address</label>
-                            <input type="text" class="form-control" id="hotelAddress" placeholder="Enter hotel address"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hotelDistrict">Hotel District</label>
-                            <select class="form-control" id="hotelDistrict" required></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="hotelPhoto">Hotel Photo</label>
-                            <input type="file" class="form-control" id="hotelPhoto" accept="image/*" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hotelDescription">Hotel Description</label>
-                            <textarea class="form-control" id="hotelDescription" rows="3"
-                                placeholder="Enter hotel description" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="hotelPricePerNight">Price Per Night</label>
-                            <input type="number" class="form-control" id="hotelPricePerNight"
-                                placeholder="Enter price per night" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hotelAvailableRoom">Available Room</label>
-                            <input type="number" class="form-control" id="hotelAvailableRoom"
-                                placeholder="Enter available rooms" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submitHotel">Add Hotel</button>
-                    </form>
-                    <div id="hotelFeedback" class="mt-3"></div>
-                </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+        <div id="edit-profile" class="hidden">
+            <h2>Edit Profile</h2>
+            <form id="edit-profile-form">
+                <label for="edit-username">Username:</label>
+                <input type="text" id="edit-username" name="username">
+                <label for="edit-first_name">First Name:</label>
+                <input type="text" id="edit-first_name" name="first_name">
+                <label for="edit-last_name">Last Name:</label>
+                <input type="text" id="edit-last_name" name="last_name">
+                <label for="edit-email">Email:</label>
+                <input type="email" id="edit-email" name="email">
+                <label for="edit-profile_image">Profile Image:</label>
+                <input type="file" id="edit-profile_image" name="profile_image">
+                <input type="submit" value="Update Profile">
+            </form>
         </div>
     </div>
 
-    <!-- Include Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Script for handling form submission and fetching districts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchDistricts();
+        $(document).ready(function () {
+            const token = localStorage.getItem('token'); // Retrieve the token from local storage
 
-            document.getElementById('hotelForm').addEventListener('submit', handleHotelFormSubmit);
-        });
-
-        async function handleHotelFormSubmit(event) {
-            event.preventDefault();
-
-            const token = localStorage.getItem('token');
             if (!token) {
-                alert('Authentication token is missing');
+                alert('No authentication token found. Please log in.');
                 return;
             }
 
-            const form = document.getElementById('hotelForm');
-            const formData = new FormData();
+            // Fetch current user details
+            $.ajax({
+                url: 'https://blueskybooking.onrender.com/user/update/',
+                type: 'GET',
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
+                success: function (data) {
+                    $('#username').text(data.username);
+                    $('#first_name').text(data.first_name);
+                    $('#last_name').text(data.last_name);
+                    $('#email').text(data.email);
+                    $('#account_no').text(data.account_no);
+                    $('#balance').text(data.balance);
+                    $('#profile_image').attr('src', data.profile_image || 'path/to/default/image.jpg');
+                },
+                error: function (error) {
+                    console.error('Error fetching user details:', error);
+                }
+            });
 
-            // Collect all form data including file input
-            formData.append('name', document.getElementById('hotelName').value);
-            formData.append('address', document.getElementById('hotelAddress').value);
-            formData.append('district', document.getElementById('hotelDistrict').value);
-            formData.append('photo', document.getElementById('hotelPhoto').files[0]); // File input
-            formData.append('description', document.getElementById('hotelDescription').value);
-            formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
-            formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+            // Show edit form on button click
+            $('#edit-profile-btn').click(function () {
+                $('#user-details').addClass('hidden');
+                $('#edit-profile').removeClass('hidden');
+                $('#edit-username').val($('#username').text());
+                $('#edit-first_name').val($('#first_name').text());
+                $('#edit-last_name').val($('#last_name').text());
+                $('#edit-email').val($('#email').text());
+            });
 
-            // Log formData entries to check what's being sent
-            for (const pair of formData.entries()) {
-                console.log(`${pair[0]}: ${pair[1]}`);
-            }
+            // Handle form submission
+            $('#edit-profile-form').submit(function (e) {
+                e.preventDefault();
 
-            const feedback = document.getElementById('hotelFeedback');
-            const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'https://blueskybooking.onrender.com/user/update/',
+                    type: 'PATCH',
                     headers: {
                         'Authorization': `Token ${token}`,
-                        // Note: 'Content-Type' header is omitted to let the browser set it to 'multipart/form-data' with the correct boundary.
                     },
-                    body: formData // Send FormData object with the request
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        alert('Profile updated successfully!');
+                        location.reload();
+                    },
+                    error: function (error) {
+                        console.error('Error updating profile:', error);
+                        alert('Failed to update profile');
+                    }
                 });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    feedback.textContent = `Successfully added hotel: ${result.name}`;
-                    feedback.className = 'feedback text-success';
-                    form.reset(); // Clear the form fields
-                } else {
-                    const responseData = await response.json();
-                    console.log(responseData); // Log the server's response for debugging
-                    feedback.textContent = `Failed to add hotel: ${JSON.stringify(responseData)}`;
-                    feedback.className = 'feedback text-danger';
-                }
-            } catch (error) {
-                feedback.textContent = `Error: ${error.message}`;
-                feedback.className = 'feedback text-danger';
-            }
-
-            // Hide the modal after a short delay
-            setTimeout(() => {
-                $('#addHotelModal').modal('hide');
-            }, 2000);
-        }
-
-        async function fetchDistricts() {
-            try {
-                const response = await fetch('https://blueskybooking.onrender.com/hotel/districts/');
-                const districts = await response.json();
-
-                const districtSelect = document.getElementById('hotelDistrict');
-                districts.forEach(district => {
-                    const option = document.createElement('option');
-                    option.value = district.id; // Use district ID for the option value
-                    option.textContent = district.district_name;
-                    districtSelect.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Error fetching districts:', error);
-            }
-        }
-
+            });
+        });
     </script>
 </body>
 

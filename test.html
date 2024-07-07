@@ -4,180 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Optional: Add some basic styles for layout */
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+        .hidden {
+            display: none;
         }
-        .user-details {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
+        .profile-section {
+            padding: 30px;
         }
-        .user-details h2 {
-            margin-bottom: 5px;
-        }
-        .user-details p {
-            margin: 5px 0;
-        }
-        .profile-img {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 50%;
-            margin-top: 10px;
+        .profile-info {
+            max-width: 600px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="userDetails">
-            <!-- User details will be displayed here -->
-        </div>
-
-        <div id="updateForm" style="display: none;">
-            <!-- Update form will be displayed here -->
-            <h2>Update Profile</h2>
-            <form id="updateProfileForm">
-                <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" class="form-control" id="firstName">
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" class="form-control" id="lastName">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="profileImage">Profile Image:</label>
-                    <input type="file" class="form-control-file" id="profileImage">
-                </div>
-                <button type="submit" class="btn btn-primary">Update</button>
-            </form>
+    <div class="container profile-section">
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <img id="profile_image" class="rounded-circle" style="max-width: 150px; max-height: 150px;" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile photo">
+                <p id="username" class="mt-2"></p>
+            </div>
+            <div class="col-lg-8 profile-info">
+                <h3>Profile Info</h3>
+                <hr>
+                <p><small>First name: </small><strong id="first_name"></strong></p>
+                <hr>
+                <p><small>Last name: </small><strong id="last_name"></strong></p>
+                <hr>
+                <p><small>Email: </small><strong id="email"></strong></p>
+                <hr>
+                <p><small>Account no: </small><strong id="account_no"></strong></p>
+                <hr>
+                <p><small>Balance: </small><strong id="balance"></strong></p>
+                <hr>
+                <button id="editProfileBtn" class="btn btn-primary mt-3">Edit Profile</button>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const storedToken = localStorage.getItem('token');
-
-            if (storedToken) {
-                // Fetch user details using the stored token
-                fetch('https://blueskybooking.onrender.com/user/update/', {
-                    headers: {
-                        'Authorization': `Token ${storedToken}`
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Authentication failed');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Update the DOM with user details
-                    const userDetailsDiv = document.getElementById('userDetails');
-                    userDetailsDiv.innerHTML = `
-                        <div class="user-details">
-                            <h2>User Details</h2>
-                            <p><strong>ID:</strong> ${data.id}</p>
-                            <p><strong>Username:</strong> ${data.username}</p>
-                            <p><strong>First Name:</strong> ${data.first_name}</p>
-                            <p><strong>Last Name:</strong> ${data.last_name}</p>
-                            <p><strong>Email:</strong> ${data.email}</p>
-                            <p><strong>Account Number:</strong> ${data.account_no}</p>
-                            <p><strong>Balance:</strong> ${data.balance}</p>
-                            <p><strong>Is Staff:</strong> ${data.is_staff ? 'Yes' : 'No'}</p>
-                            ${data.profile_image ? `<img src="${data.profile_image}" alt="Profile Image" class="profile-img">` : ''}
-                            <button id="editProfileBtn" class="btn btn-primary mt-3">Edit Profile</button>
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-profile-form">
+                        <div class="form-group">
+                            <label for="edit-username">Username</label>
+                            <input type="text" id="edit-username" class="form-control">
                         </div>
-                    `;
+                        <div class="form-group">
+                            <label for="edit-first_name">First Name</label>
+                            <input type="text" id="edit-first_name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-last_name">Last Name</label>
+                            <input type="text" id="edit-last_name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">Email</label>
+                            <input type="email" id="edit-email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-account_no">Account No</label>
+                            <input type="text" id="edit-account_no" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-balance">Balance</label>
+                            <input type="text" id="edit-balance" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-profile_image">Profile Image</label>
+                            <input type="file" id="edit-profile_image" class="form-control-file">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    const editProfileBtn = document.getElementById('editProfileBtn');
-                    editProfileBtn.addEventListener('click', function() {
-                        showUpdateForm(data);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching user details:', error.message);
-                    const userDetailsDiv = document.getElementById('userDetails');
-                    userDetailsDiv.innerHTML = `<p>Error fetching user details. Please try again later.</p>`;
-                });
-            } else {
-                console.error('No token found in localStorage');
-                // Handle case where token is not found (e.g., redirect to login page)
-                const userDetailsDiv = document.getElementById('userDetails');
-                userDetailsDiv.innerHTML = `<p>No token found. Please log in.</p>`;
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- SweetAlert2 for better alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token'); // Retrieve the token from local storage
+
+            if (!token) {
+                alert('No authentication token found. Please log in.');
+                return;
             }
 
-            // Function to display update form
-            function showUpdateForm(userData) {
-                const updateFormDiv = document.getElementById('updateForm');
-                updateFormDiv.style.display = 'block';
-
-                // Populate form fields with current user data
-                document.getElementById('firstName').value = userData.first_name;
-                document.getElementById('lastName').value = userData.last_name;
-                document.getElementById('email').value = userData.email;
-
-                // Submit form handler
-                const updateProfileForm = document.getElementById('updateProfileForm');
-                updateProfileForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    updateProfile(userData.id);
-                });
-            }
-
-            // Function to update user profile
-            function updateProfile(userId) {
-                const formData = new FormData();
-                formData.append('first_name', document.getElementById('firstName').value);
-                formData.append('last_name', document.getElementById('lastName').value);
-                formData.append('email', document.getElementById('email').value);
-                const profileImageInput = document.getElementById('profileImage');
-                if (profileImageInput.files.length > 0) {
-                    formData.append('profile_image', profileImageInput.files[0]);
+            // Fetch current user details
+            fetch('https://blueskybooking.onrender.com/user/update/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Token ${token}`
                 }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Populate the profile section with user data
+                document.getElementById('username').textContent = data.username;
+                document.getElementById('first_name').textContent = data.first_name;
+                document.getElementById('last_name').textContent = data.last_name;
+                document.getElementById('email').textContent = data.email;
+                document.getElementById('account_no').textContent = data.account_no;
+                document.getElementById('balance').textContent = data.balance;
+                document.getElementById('profile_image').src = data.profile_image || 'https://bootdey.com/img/Content/avatar/avatar1.png';
 
-                fetch(`https://blueskybooking.onrender.com/user/update/${userId}/`, {
+                // Pre-fill the edit form with user data for modal
+                document.getElementById('edit-username').value = data.username;
+                document.getElementById('edit-first_name').value = data.first_name;
+                document.getElementById('edit-last_name').value = data.last_name;
+                document.getElementById('edit-email').value = data.email;
+                document.getElementById('edit-account_no').value = data.account_no;
+                document.getElementById('edit-balance').value = data.balance;
+            })
+            .catch(error => {
+                console.error('Error fetching user details:', error);
+            });
+
+            // Show the modal on Edit Profile button click
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                $('#editProfileModal').modal('show'); // Using jQuery to show the modal
+            });
+
+            // Handle form submission for profile update
+            document.getElementById('edit-profile-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+
+                fetch('https://blueskybooking.onrender.com/user/update/', {
                     method: 'PATCH',
                     headers: {
-                        'Authorization': `Token ${storedToken}`
+                        'Authorization': `Token ${token}`
                     },
                     body: formData
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`Failed to update profile: ${response.status}`);
+                        throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
                 .then(data => {
+                    $('#editProfileModal').modal('hide'); // Hide the modal on successful update
                     Swal.fire({
                         icon: 'success',
-                        title: 'Profile Updated',
-                        text: 'Your profile has been updated successfully!',
+                        title: 'Profile Updated Successfully',
                     }).then(() => {
-                        window.location.reload();
+                        window.location.reload(); // Reload the page to update profile data
                     });
-                    console.log('Profile updated successfully:', data);
                 })
                 .catch(error => {
+                    console.error('Error updating profile:', error);
                     Swal.fire({
                         icon: 'error',
-                        title: 'Update Failed',
-                        text: error.message.startsWith('Failed to fetch')
-                            ? 'Failed to fetch. Network error occurred.'
-                            : `Failed to update profile. Error: ${error.message}`,
+                        title: 'Profile Update Failed',
+                        text: error.message,
+                        confirmButtonColor: '#007bff'
                     });
-                    console.error('Error updating profile:', error);
                 });
-            }
+            });
         });
     </script>
 </body>
