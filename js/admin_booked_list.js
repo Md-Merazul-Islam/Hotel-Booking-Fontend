@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch('https://blueskybooking.onrender.com/hotel/bookings/');
             const data = await response.json();
+            data.sort((a, b) => new Date(b.booked_at) - new Date(a.booked_at));
             data.forEach(booking => {
             const row = document.createElement('tr');
 

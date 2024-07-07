@@ -37,7 +37,27 @@ const handleBook = (event) => {
     const start_date = document.getElementById('start_date').value;
     const end_date = document.getElementById('end_date').value;
     const number_of_rooms = document.getElementById('number_of_rooms').value;
+    // Get current date
+    const currentDate = new Date().toISOString().split('T')[0];
 
+    // Validate dates
+    if (start_date < currentDate) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Start Date',
+            text: 'The start date cannot be earlier than today.',
+        });
+        return;
+    }
+
+    if (start_date > end_date) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid End Date',
+            text: 'The end date cannot be earlier than the start date.',
+        });
+        return;
+    }
     const formData = {
         hotel_id: parseInt(HotelId),
         start_date: start_date,
@@ -151,6 +171,9 @@ const handleReview = (event) => {
                 icon: 'success',
                 title: 'Review Submitted',
                 text: 'Your review was added successfully!',
+            }).then(() => {
+ 
+                window.location.reload();
             });
             console.log(data);
             console.log("Successfully create a review.");
@@ -161,7 +184,7 @@ const handleReview = (event) => {
                 title: 'Submission Failed',
                 text: error.message.startsWith('Failed to fetch')
                     ? 'Failed to fetch. Network error occurred.'
-                    : `Failed to submit review. Error: ${error.message}`,
+                    : `Failed to submit review. `,
             });
             console.error('Error:', error);
         });

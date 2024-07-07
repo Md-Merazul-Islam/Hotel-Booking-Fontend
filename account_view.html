@@ -3,34 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User account details</title>
+    <title>User Account Details</title>
     <style>
-        /* Optional: Add some basic styles for layout */
+        /* Basic reset and layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .user-details {
+            max-width: 600px;
+            background-color: #fff;
             border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .user-details h2 {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
         }
         .user-details p {
-            margin: 5px 0;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #666;
         }
         .profile-img {
-            max-width: 200px;
-            max-height: 200px;
+            max-width: 100%;
             border-radius: 50%;
             margin-top: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .default-profile-img {
+            max-width: 100%;
+            border-radius: 50%;
+            margin-top: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            background-color: #ccc; /* Placeholder background color */
+            color: #666; /* Placeholder text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-    <div id="userDetails">
+    <div class="user-details" id="userDetails">
         <!-- User details will be displayed here -->
     </div>
 
@@ -56,18 +87,19 @@
                     // Update the DOM with user details
                     const userDetailsDiv = document.getElementById('userDetails');
                     userDetailsDiv.innerHTML = `
-                        <div class="user-details">
-                            <h2>User Details</h2>
-                            <p><strong>ID:</strong> ${data.id}</p>
-                            <p><strong>Username:</strong> ${data.username}</p>
-                            <p><strong>First Name:</strong> ${data.first_name}</p>
-                            <p><strong>Last Name:</strong> ${data.last_name}</p>
-                            <p><strong>Email:</strong> ${data.email}</p>
-                            <p><strong>Account Number:</strong> ${data.account_no}</p>
-                            <p><strong>Balance:</strong> ${data.balance}</p>
-                            <p><strong>Is Staff:</strong> ${data.is_staff ? 'Yes' : 'No'}</p>
-                            ${data.profile_image ? `<img src="${data.profile_image}" alt="Profile Image" class="profile-img">` : ''}
-                        </div>
+                        <h2>User Details</h2>
+                        <p><strong>ID:</strong> ${data.id}</p>
+                        <p><strong>Username:</strong> ${data.username}</p>
+                        <p><strong>First Name:</strong> ${data.first_name}</p>
+                        <p><strong>Last Name:</strong> ${data.last_name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Account Number:</strong> ${data.account_no}</p>
+                        <p><strong>Balance:</strong> ${data.balance}</p>
+                        <p><strong>Is Staff:</strong> ${data.is_staff ? 'Yes' : 'No'}</p>
+                        ${data.profile_image
+                            ? `<img src="${data.profile_image}" alt="Profile Image" class="profile-img">`
+                            : `<div class="default-profile-img">No Image</div>`
+                        }
                     `;
                 })
                 .catch(error => {
