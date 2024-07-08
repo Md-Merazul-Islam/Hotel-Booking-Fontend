@@ -155,7 +155,28 @@
     color: var(--bs-white);
 }
 
+.img-containersstrap {
+    position: relative;
+    /* Ensures relative positioning for the child */
+    height: 100%;
+    /* Takes full height of the parent */
+    width: 100%;
+    /* Takes full width of the parent */
+    display: flex;
+    justify-content: flex-end;
+    /* Aligns the image to the right */
+    align-items: flex-end;
+    /* Aligns the image to the bottom */
+    padding: 10px;
+    /* Optional: adds some padding to ensure the image is not flush with the container edge */
+}
 
+.img-containersstrap img {
+    max-width: 100%;
+    /* Ensures the image doesn't overflow */
+    height: auto;
+    /* Maintains aspect ratio */
+}
 
 /*** -----------------------------------------------Carousel Hero Header Start----------------------------------------------- ***/
 .carousel-header .carousel-control-prev .carousel-control-prev-icon,

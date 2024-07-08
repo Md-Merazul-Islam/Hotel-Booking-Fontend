@@ -32,6 +32,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+      
+    </style>
 </head>
 
 <body>
@@ -84,23 +87,29 @@
     <!-- Navbar End -->
 
 
-    <!-- Login Form -->
+
+
+
+    <!-- login form  -->
+
+
     <section class="vh-100 align-content-center align-items-center">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <!-- Image Div -->
-                <div class="col-md-6 d-none d-md-block">
-                    <img src="./img/login.png" class="img-fluid float-end" alt="Sample image">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <!-- Placeholder image for illustration -->
+                    <div class="img-containersstrap">
+                        <img src="./img/login.png" class="img-fluid" alt="Sample image">
+                    </div>
+                    <!-- <img src="./img/login.png" class="img-fluid" alt="Sample image"> -->
                 </div>
-                <!-- Form Div -->
-                <div class="col-md-6 col-sm-12">
-                    <div class="col-md-8 col-sm-full">
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <div class="container">
+                        <h2 class="text-center pb-5">Login to Your Account</h2>
+                        <div id="error-container" class="error-message"></div>
+
                         <form id="login-form" onsubmit="handleLogin(event)">
-                            <div class="d-flex flex-row align-items-center justify-content-center mb-4">
-                                <h3 class="">Login to Your Account</h3>
-                            </div>
                             <div class="divider d-flex align-items-center my-4"></div>
-                            <div id="error-container" class="error-message pb-2"></div>
                             <div class="form-outline mb-4">
                                 <input type="text" id="login-username" name="username"
                                     class="form-control form-control-lg" placeholder="Enter your username" required />
@@ -130,6 +139,8 @@
             </div>
         </div>
     </section>
+
+
 
 
 
