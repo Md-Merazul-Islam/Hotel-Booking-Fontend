@@ -91,7 +91,7 @@ const fetchUserDetails = async () => {
 const deleteUser = async (userId) => {
     const token = localStorage.getItem('token');
     try {
-        const res = await fetch(`https://blueskybooking.onrender.com/user/account/${userId}/`, {
+        const res = await fetch(`https://blueskybooking.onrender.com/user/is_users_staff/${userId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Token ${token}`,
