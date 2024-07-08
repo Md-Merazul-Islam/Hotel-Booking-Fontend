@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 throw new Error('No user account data found');
             }
 
- 
+
             const account = userData.find(account => account.account_no === userId);
 
             if (!account) {
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     console.log(isStaff)
 
                     // Determine which buttons to display based on isAdmin or isStaff
-                    if ( isStaff) {
+                    if (isStaff) {
                         authButtons.innerHTML = `
                             <div class="d-flex justify-content-end align-items-center">
                                 <div class="dropstart">
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">
-                                            Admin Panel --- 
+                                            Admin Panel 
                                         </a></li>
                                         <li><a class="dropdown-item" href="my_account.html">
                                             <img src="./img/user.png" class="r-img" alt="Profile"> My Profile
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         `;
 
 
-                      
+
                     } else {
                         authButtons.innerHTML = `
                         <div class="d-flex justify-content-end align-items-center">
