@@ -31,6 +31,7 @@
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,6 +42,24 @@
          td,th{
             vertical-align: middle;
             text-align: center;
+        }
+        .feedback {
+            margin-top: 10px;
+        }
+        .text-success {
+            color: green;
+        }
+        .text-danger {
+            color: red;
+        }
+        .delete-icon {
+            color: rgb(85, 77, 77);
+            cursor: pointer;
+
+            padding: 5px;
+        }
+        .delete-icon:hover {
+            color: #e14c02;
         }
     </style>
 </head>
@@ -160,6 +179,7 @@
                                     <tr>
                                         <th>District Name</th>
                                         <th>Slug</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

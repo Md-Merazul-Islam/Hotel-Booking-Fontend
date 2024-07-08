@@ -1,5 +1,5 @@
 
-// User is staff, proceed with loading the admin page
+
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('user_id'); 
@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!user || !user.is_staff) {
                 window.location.href = "index.html"; 
             } else {
-
                 console.log('Welcome to the admin page');
             }
         } catch (error) {
@@ -36,16 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
     checkIsStaff();
 });
 
-
-
-
-
-// show districtName
 document.addEventListener('DOMContentLoaded', async function() {
     const token = localStorage.getItem('token'); 
 
     if (!token) {
-        window.location.href="login.html";
+        window.location.href = "login.html";
         return;
     }
     const apiUrl = 'https://blueskybooking.onrender.com/hotel/districts/';
@@ -64,18 +58,28 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (response.ok) {
             const data = await response.json();
 
-           
             data.forEach(hotel => {
                 const row = document.createElement('tr');
                 const nameCell = document.createElement('td');
                 const slugCell = document.createElement('td');
+                const deleteCell = document.createElement('td');
+                const deleteIcon = document.createElement('i');
 
                 nameCell.textContent = hotel.district_name; 
                 slugCell.textContent = hotel.slug;
+                deleteIcon.className = 'fas fa-trash-alt delete-icon';
+                deleteIcon.dataset.id = hotel.id;
 
+                deleteCell.appendChild(deleteIcon);
                 row.appendChild(nameCell);
                 row.appendChild(slugCell);
+                row.appendChild(deleteCell);
                 tableBody.appendChild(row);
+
+                deleteIcon.addEventListener('click', async function() {
+                    const districtId = this.dataset.id;
+                    await deleteDistrict(districtId);
+                });
             });
         } else {
             console.error('Failed to fetch data from the API');
@@ -85,9 +89,46 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
+// Delete district function
+async function deleteDistrict(districtId) {
+    const token = localStorage.getItem('token');
+    const url = `https://blueskybooking.onrender.com/hotel/districts/${districtId}/`;
 
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
 
-// add new district by modal 
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'District has been deleted.',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                location.reload();
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to delete district.',
+            });
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `Error: ${error.message}`,
+        });
+    }
+}
+
+// Add new district by modal 
 document.getElementById("submitDistrict").addEventListener("click", async function(event) {
     event.preventDefault();
 
@@ -112,24 +153,40 @@ document.getElementById("submitDistrict").addEventListener("click", async functi
 
         if (response.ok) {
             const result = await response.json();
-            feedback.textContent = `Successfully added district: ${result.district_name}`;
-            feedback.className = 'feedback text-success';
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: `Successfully added district: ${result.district_name}`,
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                location.reload();
+            });
         } else {
             const responseData = await response.json();
             if (response.status === 409) {
-                feedback.textContent = `Error: District '${districtName}' already exists.`;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: `District '${districtName}' already exists.`,
+                });
             } else {
-                feedback.textContent = 'Failed to add district check already existed!';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to add district. Please check if it already exists!',
+                });
             }
-            feedback.className = 'feedback text-danger';
         }
     } catch (error) {
-        feedback.textContent = `Error: ${error.message}`;
-        feedback.className = 'feedback text-danger';
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `Error: ${error.message}`,
+        });
     }
 
-
     setTimeout(function() {
-        addDistrictModal.hide();
+        $('#addDistrictModal').modal('hide');
     }, 2000); 
 });
