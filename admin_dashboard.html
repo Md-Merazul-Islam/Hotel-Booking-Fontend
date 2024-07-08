@@ -32,40 +32,14 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        #doughnutChart {
-            max-height: 417px;
+    <link href="css/syle_admin.css" rel="stylesheet">
 
-        }
-
-        #upDownLineChart {
-            height: 448px;
-
-        }
-
-        .bg-gradient-primary {
-            background: #007BFF;
-        }
-
-        .bg-gradient-success {
-            background: #5e1287;
-        }
-
-        .bg-gradient-warning {
-            background: #28A745;
-        }
-
-        .bg-gradient-danger {
-
-            background: #DC3545;
-        }
-    </style>
 </head>
 
 <body>
@@ -99,22 +73,12 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <!-- district add  -->
-
-                            <div class="dropdown">
-                                <a class="btn text-white " href="admin_dashboard.html" role="button"
-                                    id="districtDropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    DashBoard
-                                </a>
-
-                            </div>
-
+                            <a href="admin_dashboard.html" class="nav-item nav-link "> DashBoard</a>
                         </div>
                         <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4"
                             id="auth-buttons">
-                            <a class="btn btn-light fw-semibold" href="register.html">Sign in</a>
-                            <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
+                            <!-- <a class="btn btn-light fw-semibold" href="register.html">Sign in</a>
+                            <a class="btn btn-primary fw-semibold" href="login.html">Login</a> -->
                         </div>
                     </div>
                 </nav>
@@ -133,7 +97,7 @@
                 <div class="col-md-2">
                     <div class="list-group">
                         <a href="admin_dashboard.html" class="list-group-item list-group-item-action active">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                           <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
                         <a href="admin_user_management.html" class="list-group-item list-group-item-action">
                             <i class="fas fa-users"></i> Users
@@ -166,7 +130,7 @@
                                 <div class="card text-white bg-gradient-primary mb-3">
                                     <div class="card-header">Total Hotels</div>
                                     <div class="card-body">
-                                        <h5 class="card-title text-white">150</h5>
+                                        <h5 class="card-title text-white py-4 " id="total-hotels">000</h5>
                                     </div>
                                 </div>
                             </div>
@@ -174,15 +138,15 @@
                                 <div class="card text-white bg-gradient-success mb-3">
                                     <div class="card-header">Total Clients</div>
                                     <div class="card-body">
-                                        <h5 class="card-title text-white">3000</h5>
+                                        <h5 class="card-title text-white py-4 " id="total-clients">000</h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="card text-white bg-gradient-warning mb-3">
-                                    <div class="card-header">Total Booked Hotels</div>
+                                    <div class="card-header">Total Room Booked</div>
                                     <div class="card-body">
-                                        <h5 class="card-title text-white">120</h5>
+                                        <h5 class="card-title text-white py-4 " id="total-booked-room">000</h5>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +154,7 @@
                                 <div class="card text-white bg-gradient-danger mb-3">
                                     <div class="card-header">Available Sets</div>
                                     <div class="card-body">
-                                        <h5 class="card-title text-white">30</h5>
+                                        <h5 class="card-title text-white py-4 " id="total-available-rooms">000</h5>
                                     </div>
                                 </div>
                             </div>
@@ -385,6 +349,7 @@
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
     <script src="js/graph.js"></script>
+    <script src="js/admin_hotel_details.js"></script>
 
 </body>
 

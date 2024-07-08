@@ -37,7 +37,7 @@ const handleLogin = (event) => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful',
-                    text: 'Welcome Admin!',
+                    text: 'Welcome To Your Admin Account!',
                     confirmButtonColor: '#007bff'
                 }).then((result) => {
                     if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
@@ -48,7 +48,7 @@ const handleLogin = (event) => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful',
-                    text: 'Welcome to your user account!',
+                    text: 'Welcome To Your User account!',
                     confirmButtonColor: '#007bff'
                 }).then((result) => {
                     if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {

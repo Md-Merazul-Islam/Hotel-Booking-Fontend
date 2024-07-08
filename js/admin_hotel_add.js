@@ -1,3 +1,41 @@
+// User is staff, proceed with loading the admin page
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('user_id'); 
+
+    if (!token || !userId) {
+        window.location.href = "index.html"; 
+        return;
+    }
+
+    async function checkIsStaff() {
+        try {
+            const response = await fetch('https://blueskybooking.onrender.com/user/is_users_staff/', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const users = await response.json();
+
+            const user = users.find(user => user.id === parseInt(userId));
+
+            if (!user || !user.is_staff) {
+                window.location.href = "index.html"; 
+            } else {
+
+                console.log('Welcome to the admin page');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            window.location.href = "index.html"; 
+        }
+    }
+
+    checkIsStaff();
+});
+
+
 
 
 document.addEventListener('DOMContentLoaded', async function () {

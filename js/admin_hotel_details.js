@@ -37,7 +37,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+document.addEventListener('DOMContentLoaded',()=>{
+    const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
+    fetch(url)
+    .then(res =>res.json())
+    .then(data=>{
+     display(data);
+    })
+    .catch(error=console.error('Error fetching data : ',error));
+    function display(hotels){
+     const TotalHotel = hotels.length;
+     const TotalAvailableRoom  = hotels.reduce((sum,hotel)=>sum+hotel.available_room, 0) ;
+     document.getElementById('total-hotels').textContent= TotalHotel;
+     document.getElementById('total-available-rooms').textContent = TotalAvailableRoom;
+    }
+ })
+ document.addEventListener('DOMContentLoaded',()=>{
+    const url = 'https://blueskybooking.onrender.com/user/allUser/';
+    fetch(url)
+    .then(res =>res.json())
+    .then(data=>{
+     display(data);
+    })
+    .catch(error=console.error('Error fetching data : ',error));
+    function display(clients){
+     const TotalClient = clients.length +1000;
+    ;
+     document.getElementById('total-clients').textContent= TotalClient;
+    
+    }
+ })
 
+ 
+
+
+//  for total booked list 
 // display booked info 
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token'); 
@@ -53,24 +87,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const response = await fetch('https://blueskybooking.onrender.com/hotel/bookings/');
             const data = await response.json();
             data.sort((a, b) => new Date(b.booked_at) - new Date(a.booked_at));
+            let totalBookedRooms = 0;
             data.forEach(booking => {
             const row = document.createElement('tr');
-
-                row.innerHTML = `
-            <td>${booking.id}</td>
-            <td>${booking.hotel.name}</td>
-            <td>${booking.hotel.address}</td>
-            <td>${booking.hotel.district_name}</td>
-            <td><img src="${booking.hotel.photo}" alt="Hotel Photo" width="100"></td>
-            <td>${booking.hotel.price_per_night}</td>
-            <td>${booking.hotel.available_room}</td>
-            <td>${booking.start_date}</td>
-            <td>${booking.end_date}</td>
-            <td>${booking.number_of_rooms}</td>
-            <td>${new Date(booking.booked_at).toLocaleString()}</td>
-            <td>${booking.user}</td>
-        `;
-                tableBody.appendChild(row);
+            totalBookedRooms += booking.number_of_rooms;
+            document.getElementById('total-booked-room').textContent=  totalBookedRooms;
             });
 
         } catch (error) {
