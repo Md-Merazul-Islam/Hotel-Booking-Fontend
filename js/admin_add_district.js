@@ -1,6 +1,12 @@
 
 // show districtName
 document.addEventListener('DOMContentLoaded', async function() {
+    const token = localStorage.getItem('token'); 
+
+    if (!token) {
+        window.location.href="login.html";
+        return;
+    }
     const apiUrl = 'https://blueskybooking.onrender.com/hotel/districts/';
     const tableBody = document.querySelector('#hotelTable tbody');
 

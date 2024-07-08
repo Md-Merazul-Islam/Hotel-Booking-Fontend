@@ -36,12 +36,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-         td, th {
-            vertical-align: middle;
-            text-align: center;
-        }
-    </style>
+    <link href="css/modal_hotel.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -150,11 +147,11 @@
                     <!-- show district overview -->
                     <div style="padding-bottom: 300px;">
                         <div class="table-container  m-auto pt-5">
-
-                            <h2>Hotel List</h2>
-                            <h4 class="text-end"><a href="" class="btn btn-primary" type="button" data-toggle="modal"
-                                    data-target="#addHotelModal"> + Add New</a></h4>
-                            <table class="table table-bordered table-striped"  id="hotelTable">
+                            <h1>Hotel Management</h1>
+                            <div class="d-flex justify-content-end py-2">
+                                <button onclick="showAddHotelModal()" class="btn btn-primary  hover-success">+Add Hotel</button>
+                            </div>
+                            <table class="table table-bordered table-striped" id="hotelTable">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -163,88 +160,58 @@
                                         <th>District</th>
                                         <th>Photo</th>
                                         <th>Description</th>
-                                        <th>Price per Night</th>
+                                        <th>Price Per Night</th>
                                         <th>Available Rooms</th>
-                                        <th>Customize</th>
-
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Table rows will be inserted here dynamically -->
+                                    <!-- ------dynamic content-------- -->
                                 </tbody>
                             </table>
 
+
                         </div>
                     </div>
                 </div>
 
 
+                <!-- Add/Edit Hotel Modal-->
 
-                <!-- Modal for Add New Hotel -->
-                <!-- The Modal -->
-                <div class="modal fade" id="addHotelModal" tabindex="-1" role="dialog"
-                    aria-labelledby="addHotelModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addHotelModalLabel">Add Hotel</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <!-- Modal Body -->
-                            <div class="modal-body">
-                               
-                                <form id="hotelForm" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label for="hotelName">Hotel Name</label>
-                                        <input type="text" class="form-control" id="hotelName"
-                                            placeholder="Enter hotel name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hotelAddress">Hotel Address</label>
-                                        <input type="text" class="form-control" id="hotelAddress"
-                                            placeholder="Enter hotel address" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hotelDistrict">Hotel District</label>
-                                        <select class="form-control" id="hotelDistrict" required></select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hotelPhoto">Hotel Photo</label>
-                                        <input type="file" class="form-control" id="hotelPhoto" accept="image/*"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hotelDescription">Hotel Description</label>
-                                        <textarea class="form-control" id="hotelDescription" rows="3"
-                                            placeholder="Enter hotel description" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hotelPricePerNight">Price Per Night</label>
-                                        <input type="number" class="form-control" id="hotelPricePerNight"
-                                            placeholder="Enter price per night" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hotelAvailableRoom">Available Room</label>
-                                        <input type="number" class="form-control" id="hotelAvailableRoom"
-                                            placeholder="Enter available rooms" required>
-                                    </div>
-                                    <div id="hotelFeedback" class="my-3 "></div>
-                                   <div> <button type="submit" class="btn btn-primary" id="submitHotel">Add Hotel</button>
-                                   </div>                           
-                                </form>
-                               
-                            </div>
-                            <!-- Modal Footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+                <div id="hotelModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <form id="hotelForm">
+                            <h2 id="modalTitle">Add Hotel</h2>
+                            <label for="hotelName">Name:</label>
+                            <input type="text" id="hotelName" name="hotelName" required>
+                            <label for="hotelAddress">Address:</label>
+                            <input type="text" id="hotelAddress" name="hotelAddress" required>
+                            <label for="hotelDistrict">District:</label>
+                            <select id="hotelDistrict" name="hotelDistrict" required></select>
+                            <label for="hotelPhoto">Photo:</label>
+                            <input type="file" id="hotelPhoto" name="hotelPhoto" accept="image/*" required>
+                            <label for="hotelDescription">Description:</label>
+                            <textarea id="hotelDescription" name="hotelDescription" required></textarea>
+                            <label for="hotelPricePerNight">Price Per Night:</label>
+                            <input type="number" id="hotelPricePerNight" name="hotelPricePerNight" required>
+                            <label for="hotelAvailableRoom">Available Rooms:</label>
+                            <input type="number" id="hotelAvailableRoom" name="hotelAvailableRoom" required>
+                            <p class="text-danger">Note : If you want to edit hotel details, Must need upload a hotel photo!!!</p>
+                            <button type="submit" id="submitBtn">Add Hotel</button>
+                        </form>
+                        <div id="hotelFeedback"></div>
                     </div>
                 </div>
+
             </div>
+
+
+
+
+
+
+
         </div>
     </div>
 
@@ -356,6 +323,7 @@
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
     <script src="js/admin_hotel_add.js"></script>
+
 </body>
 
 </html>

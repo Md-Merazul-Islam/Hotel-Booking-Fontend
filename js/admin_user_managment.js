@@ -1,4 +1,10 @@
 const fetchUserDetails = async () => {
+    const token = localStorage.getItem('token'); 
+
+    if (!token) {
+        window.location.href="login.html";
+        return;
+    }
     try {
         const resAccount = await fetch('https://blueskybooking.onrender.com/user/account/');
         const userAccounts = await resAccount.json();

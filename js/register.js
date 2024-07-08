@@ -1,4 +1,4 @@
-
+// register 
 
 document.getElementById('registrationForm').addEventListener('submit', async function (event) {
     event.preventDefault();

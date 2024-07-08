@@ -1,8 +1,10 @@
+
+// show my profile 
 document.addEventListener('DOMContentLoaded', function () {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+    const token = localStorage.getItem('token'); 
 
     if (!token) {
-        alert('No authentication token found. Please log in.');
+        window.location.href="login.html";
         return;
     }
 
@@ -21,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('email').textContent = data.email;
         document.getElementById('account_no').textContent = data.account_no;
         document.getElementById('balance').textContent = data.balance;
-        document.getElementById('profile_image').src = data.profile_image || 'path/to/default/image.jpg';
+        document.getElementById('profile_image').src = data.profile_image || './img/user_pp.jpg';
     })
     .catch(error => {
         console.error('Error fetching user details:', error);

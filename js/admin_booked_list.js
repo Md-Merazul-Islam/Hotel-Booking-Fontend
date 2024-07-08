@@ -1,4 +1,11 @@
+// display booked info 
 document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token'); 
+
+    if (!token) {
+        window.location.href="login.html";
+        return;
+    }
     const tableBody = document.getElementById('bookings-table-body');
 
     async function fetchBookings() {

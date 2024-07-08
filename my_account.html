@@ -96,8 +96,9 @@
     <div class="min-vh-100" style="padding-bottom: 300px;">
         <div class="row d-flex flex-wrap m-5">
             <div class="col-lg-2 d-flex flex-column align-items-end">
-                <img id="profile_image" style="max-width: 200px; max-height: 200px;" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="profile photo">
-                <p id="username" class="text-center"></p>
+                <img id="profile_image" style="max-width: 200px; max-height: 200px;"
+                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="profile photo">
+              <span id="username" class="text-center"></span>
             </div>
             <div class="col-lg-10">
                 <h3 class="pb-5">Profile Info</h3>
@@ -113,33 +114,13 @@
                 <hr>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <button id="editProfileBtn" class="btn btn-primary mt-3">Edit Profile</button>
-        </div>
-    </div>  <div class="profile-container">
-        <div class="row d-flex flex-wrap m-5">
-            <div class="col-lg-2 d-flex flex-column align-items-end">
-                <img id="profile_image" class="profile-image rounded-circle"  src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="profile photo">
-                <p id="username" class="text-center"></p>
-            </div>
-            <div class="col-lg-10 profile-info">
-                <h3 class="pb-5">Profile Info</h3>
-                <small>First name: <strong id="first_name"></strong></small>
-                <hr>
-                <small>Last Name: <strong id="last_name"></strong></small>
-                <hr>
-                <small>Email: <strong id="email"></strong></small>
-                <hr>
-                <small>Account no: <strong id="account_no"></strong></small>
-                <hr>
-                <small>Balance: <strong id="balance"></strong></small>
-                <hr>
-            </div>
-        </div>
+
         <div class="d-flex justify-content-center">
             <button id="editProfileBtn" class="btn btn-primary mt-3">Edit Profile</button>
         </div>
     </div>
+
+   
 
     <!-- Bootstrap modal for editing profile -->
     <div id="editProfileModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel"

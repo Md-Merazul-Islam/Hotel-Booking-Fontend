@@ -1,6 +1,14 @@
+// display review
 document.addEventListener('DOMContentLoaded', fetchReviews);
 
 async function fetchReviews() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+ 
     try {
         const response = await fetch('https://blueskybooking.onrender.com/hotel/reviews/');
         const reviews = await response.json();
@@ -28,10 +36,7 @@ async function fetchReviews() {
 
 
 
-
-
-
-
+// review delete
 async function deleteReview(reviewId, button) {
     const token = localStorage.getItem('token');
     try {

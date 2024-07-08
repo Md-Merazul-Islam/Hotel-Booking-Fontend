@@ -1,183 +1,261 @@
-let UserName = '';
-let UserId = null;
 
-async function fetchUserData() {
-    const token = localStorage.getItem('token');
-    const storedUserId = parseInt(localStorage.getItem('user_id'));
-    if (token && storedUserId) {
-        try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/account/', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            if (!response.ok) {
-                throw new Error('Failed to fetch user account data');
-            }
-            const userData = await response.json();
-
-            // Find the account that matches the userId from local storage
-            const account = userData.find(account => account.account_no === storedUserId);
-
-            if (!account) {
-                throw new Error('No matching user account found');
-            }
-
-            UserName = account.username;
-            UserId = account.account_no;
-
-        } catch (error) {
-            console.error('Error fetching user account data:', error);
-        }
-    } else {
-        console.error('No token or user_id found');
-    }
-}
 
 document.addEventListener('DOMContentLoaded', async function () {
-    await fetchUserData(); // Fetch user data before proceeding
+    const token = localStorage.getItem('token');
 
-    const reviewContainer = document.getElementById('reviews-container');
-    const carouselContainer = document.createElement('div');
-    carouselContainer.className = 'owl-carousel testimonial-carousel';
-    reviewContainer.innerHTML = '';
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+    const apiUrl = 'https://blueskybooking.onrender.com/hotel/hotels/';
 
-    // Fetch and display reviews
-    fetch('https://blueskybooking.onrender.com/hotel/reviews/')
-        .then(res => res.json())
-        .then(reviews => {
-            reviews.forEach(review => {
-                const reviewCard = document.createElement('div');
-                reviewCard.className = '';
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-                const truncatedBody = truncateText(review.body, 110);
+        const hotels = await response.json();
+        hotels.sort((a, b) => a.id - b.id);
+        const tableBody = document.querySelector('#hotelTable tbody');
 
-                reviewCard.innerHTML = `
-                    <div class="testimonial-item shadow text-center rounded pb-4 mb-2 mt-2">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                            <div class="review-container-for-name-and-button">
-                                <div>
-                                    <h6>${review.hotel.name}</h6>
-                                </div>
-                                ${UserId === review.user ? `
-                                    <div class="review-actions-for-button">
-                                        <button class="edit-btn-rv" onclick="editReview(${review.id})"></button>
-                                        <button class="delete-btn-rv" onclick="deleteReview(${review.id})"></button>
-                                    </div>` : ''}
-                            </div>
-                            <p class="text-center mb-5">${truncatedBody}</p>
-                        </div>
-                        <div class="testimonial-img p-1">
-                            <img src="img/user.png" class="img-fluid rounded-circle" alt="Image">
-                        </div>
-                        <div style="margin-top: -35px;">
-                            <h5 class="mb-0">${review.user ? review.user : "Anonymous User"}</h5>
-                            <p class="mb-0">Created on: ${new Date(review.created).toLocaleDateString()}</p>
-                            <div class="d-flex justify-content-center">
-                                ${review.rating}
-                            </div>
-                        </div>
+        hotels.forEach(hotel => {
+            const row = document.createElement('tr');
+            const truncatedDescription = truncateText(hotel.description, 50);
+            const address = truncateText(hotel.address, 30);
+            row.innerHTML = `
+                <td>${hotel.id}</td>
+                <td>${hotel.name}</td>
+                <td>${address}</td>
+                <td>${hotel.district_name}</td>
+                <td><img src="${hotel.photo}" alt="Hotel Photo" style="max-width: 100px; max-height: 100px;"></td>
+                <td>${truncatedDescription}</td>
+                <td>${hotel.price_per_night}</td>
+                <td>${hotel.available_room}</td>
+                <td>
+                    <div class="d-flex gap-1">
+                        <div><button class="btn btn-success" onclick="editHotel(${hotel.id})"><i class="fas fa-edit"></i></button></div>
+                        <div><button class="btn btn-danger" onclick="deleteHotel(${hotel.id}, this)"><i class="fas fa-trash-alt"></i></button></div>
                     </div>
-                `;
-                carouselContainer.appendChild(reviewCard);
-            });
-            reviewContainer.appendChild(carouselContainer);
-
-            // Initialize OwlCarousel after appending reviews
-            $('.testimonial-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching the reviews:', error);
+                </td>
+            `;
+            tableBody.appendChild(row);
         });
+
+    } catch (error) {
+        console.error('Error fetching hotels:', error);
+    }
 });
 
 function truncateText(text, maxLength) {
     if (text.length > maxLength) {
-        return text.slice(0, maxLength) + '...';
+        return text.substring(0, maxLength) + "...";
+    } else {
+        return text;
     }
-    return text;
 }
 
-function editReview(reviewId) {
-    fetch(`https://blueskybooking.onrender.com/hotel/review_add/${reviewId}/`)
-        .then(res => res.json())
-        .then(review => {
-            document.getElementById('reviewBody').value = review.body;
-            document.getElementById('reviewRating').value = review.rating;
-            document.getElementById('reviewId').value = review.id;
-
-            $('#editReviewModal').modal('show');
-        })
-        .catch(error => {
-            console.error('Error fetching the review:', error);
-        });
+function showAddHotelModal() {
+    document.getElementById('hotelForm').reset();
+    document.getElementById('modalTitle').innerText = 'Add Hotel';
+    document.getElementById('submitBtn').innerText = 'Add Hotel';
+    document.getElementById('hotelPhoto').required = true;
+    document.getElementById('hotelModal').style.display = 'block';
 }
 
-// Update review
-document.getElementById('editReviewForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const reviewId = document.getElementById('reviewId').value;
-    const updatedBody = document.getElementById('reviewBody').value;
-    const updatedRating = document.getElementById('reviewRating').value;
+function closeModal() {
+    document.getElementById('hotelModal').style.display = 'none';
+}
 
-    fetch(`https://blueskybooking.onrender.com/hotel/review_add/${reviewId}/`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-            body: updatedBody,
-            rating: updatedRating
-        })
-    })
-        .then(res => res.json())
-        .then(data => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Review updated',
-                text: 'You have successfully updated your review!',
-                confirmButtonColor: '#007bff'
-            });
-            console.log('Review updated:', data);
-            $('#editReviewModal').modal('hide');
-            location.reload(); // Reload the page to see the updated review
-        })
-        .catch(error => {
-            console.error('Error updating review:', error);
-        });
+// Add new hotel
+document.addEventListener('DOMContentLoaded', () => {
+    fetchDistricts();
+    document.getElementById('hotelForm').addEventListener('submit', handleHotelFormSubmit);
 });
 
-// Delete review
-function deleteReview(reviewId) {
-    if (confirm('Are you sure you want to delete this review?')) {
-        fetch(`https://blueskybooking.onrender.com/hotel/review_add/${reviewId}/`, {
+async function handleHotelFormSubmit(event) {
+    event.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Authentication token is missing');
+        return;
+    }
+
+    const form = document.getElementById('hotelForm');
+    const formData = new FormData();
+
+    formData.append('name', document.getElementById('hotelName').value);
+    formData.append('address', document.getElementById('hotelAddress').value);
+    formData.append('district', document.getElementById('hotelDistrict').value);
+    formData.append('photo', document.getElementById('hotelPhoto').files[0]);
+    formData.append('description', document.getElementById('hotelDescription').value);
+    formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
+    formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+
+    const feedback = document.getElementById('hotelFeedback');
+    const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Token ${token}`,
+            },
+            body: formData
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            feedback.textContent = `Successfully added hotel: ${result.name}`;
+            feedback.className = 'feedback text-success pb-3';
+            form.reset();
+            location.reload(); // Reload the page to see the new hotel
+        } else {
+            const responseData = await response.json();
+            feedback.textContent = `Failed to add hotel: ${JSON.stringify(responseData)}`;
+            feedback.className = 'feedback text-danger pb-3';
+        }
+    } catch (error) {
+        feedback.textContent = `Error: ${error.message}`;
+        feedback.className = 'feedback text-danger pb-3';
+    }
+}
+
+async function fetchDistricts() {
+    try {
+        const response = await fetch('https://blueskybooking.onrender.com/hotel/districts/');
+        const districts = await response.json();
+
+        const districtSelect = document.getElementById('hotelDistrict');
+        districts.forEach(district => {
+            const option = document.createElement('option');
+            option.value = district.id;
+            option.textContent = district.district_name;
+            districtSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error fetching districts:', error);
+    }
+}
+
+async function deleteHotel(hotelId, button) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Token ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete hotel');
+        }
+
+        const row = button.closest('tr');
+        row.parentNode.removeChild(row);
+        Swal.fire({
+            icon: 'success',
+            title: 'Hotel deleted successfully',
+        });
+        console.log('Hotel deleted successfully');
+    } catch (error) {
+        console.error('Error deleting hotel:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Failed to delete hotel',
+            text: error.message,
+        });
+    }
+}
+
+async function editHotel(hotelId) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch hotel details');
+        }
+
+        const hotel = await response.json();
+        document.getElementById('hotelName').value = hotel.name;
+        document.getElementById('hotelAddress').value = hotel.address;
+        document.getElementById('hotelDistrict').value = hotel.district;
+        document.getElementById('hotelDescription').value = hotel.description;
+        document.getElementById('hotelPricePerNight').value = hotel.price_per_night;
+        document.getElementById('hotelAvailableRoom').value = hotel.available_room;
+
+        document.getElementById('modalTitle').innerText = 'Edit Hotel';
+        document.getElementById('submitBtn').innerText = 'Update Hotel';
+        document.getElementById('hotelPhoto').required = false;
+        document.getElementById('hotelModal').style.display = 'block';
+
+        document.getElementById('hotelForm').removeEventListener('submit', handleHotelFormSubmit);
+        document.getElementById('hotelForm').addEventListener('submit', async function updateHotelFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('hotelForm');
+            const formData = new FormData();
+            formData.append('name', document.getElementById('hotelName').value);
+            formData.append('address', document.getElementById('hotelAddress').value);
+            formData.append('district', document.getElementById('hotelDistrict').value);
+            if (document.getElementById('hotelPhoto').files[0]) {
+                formData.append('photo', document.getElementById('hotelPhoto').files[0]);
             }
-        })
-            .then(() => {
-                console.log('Review deleted');
-                document.querySelector(`button[onclick="deleteReview(${reviewId})"]`).closest('.testimonial-item').remove();
-            })
-            .catch(error => {
-                console.error('Error deleting review', error);
-            });
+            formData.append('description', document.getElementById('hotelDescription').value);
+            formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
+            formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+
+            try {
+                const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Token ${token}`,
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Successfully updated hotel: ${result.name}`,
+                    });
+                    form.reset();
+                    document.getElementById('hotelModal').style.display = 'none';
+                    location.reload(); // Reload the page to see the updated hotel
+                } else {
+                    const responseData = await response.json();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to update hotel',
+                        text: JSON.stringify(responseData),
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error updating hotel',
+                    text: error.message,
+                });
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching hotel details:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Failed to fetch hotel details',
+            text: error.message,
+        });
     }
 }
