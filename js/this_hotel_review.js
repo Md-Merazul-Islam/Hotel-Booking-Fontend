@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderErrorMessage = () => {
         const errorMessage = createHTMLElement(`
             <div class="error-message text-center">
-                <p class="py-5">Unable to load reviews at the moment. Please try again later.</p>
+                <p class="py-5 ">Unable to load reviews at the moment. Please try again later.</p>
             </div>
         `);
         reviewContainer.appendChild(errorMessage);

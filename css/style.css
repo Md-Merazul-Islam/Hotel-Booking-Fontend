@@ -1,7 +1,25 @@
+.custom-button {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    background-color:#44949B; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
 
+.custom-button:hover {
+    background-color: #FF725E;
+    transform: scale(1.05); 
+}
+.custom-button-REGISTER {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    background-color:#ffa704; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
 
-
-
+.custom-button-REGISTER:hover {
+    background-color: #FF725E;
+    transform: scale(1.05); 
+}
 
 /********** -----------------------------------------------Template CSS----------------------------------------------- **********/
 :root {

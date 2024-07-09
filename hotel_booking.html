@@ -41,212 +41,230 @@
 
 <body>
     <!-- <div class="container-xxl bg-white p-0"> -->
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
-        <!-- Spinner End -->
+    </div>
+    <!-- Spinner End -->
 
 
-        <!-- Header Start -->
-        <div class="container-fluid bg-dark px-0">
-            <div class="row gx-0">
-                               <div class="col-lg-2 bg-dark d-none d-lg-block">
-                    <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2">
-                        <img src="./img/blu.png" alt="BSB" class="" style="width: 42%;">
+    <!-- Header Start -->
+    <div class="container-fluid bg-dark px-0">
+        <div class="row gx-0">
+            <div class="col-lg-2 bg-dark d-none d-lg-block">
+                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2">
+                    <img src="./img/blu.png" alt="BSB" class="" style="width: 42%;">
+                </a>
+            </div>
+            <div class="col-lg-10">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+                    <a href="index.html" class="navbar-brand d-block d-lg-none">
+                        <img src="./img/blu.png" alt="BSB" class="" style="width: 70px;">
                     </a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="index.html" class="nav-item nav-link ">Home</a>
+                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="service.html" class="nav-item nav-link">Services</a>
+                            <a href="room.html" class="nav-item nav-link">Rooms</a>
+                            <a href="booking.html" class="nav-item nav-link active">Booking</a>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-3"
+                            id="auth-buttons">
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+
+
+
+        <div class="container pt-5  ">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6 col-lg-5 mb-5">
+                    <!-- Placeholder image for illustration -->
+                    <div class="img-containers ">
+                        <img src="./img/hotel_book_3-removebg-preview.png" class="img-fluid "  alt="Sample image">
+                    </div>
                 </div>
-                <div class="col-lg-10">
-                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-                        <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <img src="./img/blu.png" alt="BSB" class="" style="width: 70px;">
+                <div class="col-md-6 col-lg-5">
+                    <!-- Book Form  -->
+                    <div class=""  >
+                        <div class="form-container m-auto">
+                            <h1 class="py-3 " >Book a Hotel</h1>
+                            <form method="POST" id="bookingForm">
+                                <label for="hotel_id">Hotel Name:</label>
+                                <input type="text" id="hotel-name" readonly>
+                                <br>
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" id="start_date" required>
+                                <br>
+                                <label for="end_date">End Date:</label>
+                                <input type="date" id="end_date" required>
+                                <br>
+                                <label for="number_of_rooms">Number of Rooms:</label>
+                                <input type="number" id="number_of_rooms" required>
+                                <br>
+                                <div class="pt-5 pb-3">
+                                    <button type="submit" class="butoon_for_book" onclick="handleBook(event)">Book
+                                        Hotel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Book Form  -->
+
+                </div>
+            </div>
+        </div>
+   
+
+
+
+
+
+    <hr>
+    <!-- Review Section Start -->
+    <div class="container-fluid testimonial py-5 ">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">This Hotel Reviews</h5>
+                <h1 class="mb-0">Our Clients Say!!!</h1>
+            </div>
+            <!-- Carousel Container -->
+            <div class="testimonial-carousel owl-carousel pt-1 d-flex flex-wrap " id="reviews-container">
+                <!-- Dynamically generated review cards will be inserted here -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Review Section End -->
+
+
+
+    <hr>
+
+
+
+    <!-- add a comment  -->
+    <div class="pt-5" style="padding-bottom: 244px;">
+        <div class="form-container-review m-auto">
+            <h1>Add a Review</h1>
+            <form method="POST" id="reviewForm">
+                <label for="body">Review:</label>
+                <textarea id="body" class="bdy" rows="4" required></textarea>
+                <br>
+                <label for="rating">Rating:</label>
+                <select id="rating" required>
+                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐">⭐⭐⭐</option>
+                    <option value="⭐⭐">⭐⭐</option>
+                    <option value="⭐">⭐</option>
+                </select>
+                <br>
+                <button type="submit" class="butoon_for_review" onclick="handleReview(event)">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    <!-- add a comment  -->
+
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <div class="container pb-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="bg-primary rounded p-4">
+                        <a href="index.html">
+                            <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
                         </a>
-                        <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
-                            data-bs-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="index.html" class="nav-item nav-link ">Home</a>
-                                <a href="about.html" class="nav-item nav-link">About</a>
-                                <a href="service.html" class="nav-item nav-link">Services</a>
-                                <a href="room.html" class="nav-item nav-link">Rooms</a>
-                                <a href="booking.html" class="nav-item nav-link active">Booking</a>
-                                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                            </div>
-                            <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-3"
-                                id="auth-buttons">
-
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-
-
-
-
-
-        <!-- Book Form  -->
-        <div class="pt-5" style="min-height: 100vh; padding-bottom: 100px;">
-            <div class="form-container m-auto">
-                <h1>Book a Hotel</h1>
-                <form method="POST" id="bookingForm">
-                    <label for="hotel_id">Hotel Name:</label>
-                    <input type="text" id="hotel-name" readonly>
-                    <br>
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" required>
-                    <br>
-                    <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" required>
-                    <br>
-                    <label for="number_of_rooms">Number of Rooms:</label>
-                    <input type="number" id="number_of_rooms" required>
-                    <br>
-                    <button type="submit" class="butoon_for_book" onclick="handleBook(event)">Book Hotel</button>
-                </form>
-            </div>
-        </div>
-        <!-- Book Form  -->
-
-
-
-        <hr>
-        <!-- Review Section Start -->
-        <div class="container-fluid testimonial py-5 ">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">This Hotel Reviews</h5>
-                    <h1 class="mb-0">Our Clients Say!!!</h1>
-                </div>
-                <!-- Carousel Container -->
-                <div class="testimonial-carousel owl-carousel pt-1 d-flex flex-wrap " id="reviews-container">
-                    <!-- Dynamically generated review cards will be inserted here -->
-                     
-                </div>
-            </div>
-        </div>
-        <!-- Review Section End -->
-
-
-
-        <hr>
-
-
-
-        <!-- add a comment  -->
-        <div class="pt-5" style="padding-bottom: 244px;">
-            <div class="form-container-review m-auto">
-                <h1>Add a Review</h1>
-                <form method="POST" id="reviewForm">
-                    <label for="body">Review:</label>
-                    <textarea id="body" class="bdy" rows="4" required></textarea>
-                    <br>
-                    <label for="rating">Rating:</label>
-                    <select id="rating" required>
-                        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-                        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-                        <option value="⭐⭐⭐">⭐⭐⭐</option>
-                        <option value="⭐⭐">⭐⭐</option>
-                        <option value="⭐">⭐</option>
-                    </select>
-                    <br>
-                    <button type="submit" class="butoon_for_review" onclick="handleReview(event)">Submit Review</button>
-                </form>
-            </div>
-        </div>
-        <!-- add a comment  -->
-
-
-
-
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container pb-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="bg-primary rounded p-4">
-                            <a href="index.html">
-                                <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
-                            </a>
-                            <p class="text-white mb-0">
-                                Discover the luxury and comfort with Blu Sky Booking. Whether you're traveling for
-                                business or pleasure, we offer the best deals and accommodations tailored to your needs.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District, Bangladesh </p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@bluskybooking.io.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href="https://twitter.com/bluskybooking"
-                                target="_blank"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://facebook.com/bluskybooking"
-                                target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://youtube.com/bluskybooking"
-                                target="_blank"><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social"
-                                href="https://linkedin.com/company/bluskybooking" target="_blank"><i
-                                    class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-12">
-                        <div class="row gy-5 g-4">
-                            <div class="col-md-6">
-                                <h6 class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-                                <a class="btn btn-link" href="about.html">About Us</a>
-                                <a class="btn btn-link" href="contact.html">Contact Us</a>
-                                <a class="btn btn-link" href="#">Privacy Policy</a>
-                                <a class="btn btn-link" href="#">Terms & Conditions</a>
-                                <a class="btn btn-link" href="contact.html">Support</a>
-                            </div>
-                            <div class="col-md-6">
-                                <h6 class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-                                <a class="btn btn-link" href="#">Food & Restaurant</a>
-                                <a class="btn btn-link" href="#">Spa & Fitness</a>
-                                <a class="btn btn-link" href="#">Sports & Gaming</a>
-                                <a class="btn btn-link" href="#">Event & Party</a>
-                                <a class="btn btn-link" href="#">GYM & Yoga</a>
-                            </div>
-                        </div>
+                        <p class="text-white mb-0">
+                            Discover the luxury and comfort with Blu Sky Booking. Whether you're traveling for
+                            business or pleasure, we offer the best deals and accommodations tailored to your needs.
+                        </p>
                     </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span>
-                            All Rights Reserved.
+                <div class="col-md-6 col-lg-3">
+                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District, Bangladesh </p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@bluskybooking.io.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://twitter.com/bluskybooking"
+                            target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://facebook.com/bluskybooking"
+                            target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://youtube.com/bluskybooking"
+                            target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://linkedin.com/company/bluskybooking"
+                            target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    <div class="row gy-5 g-4">
+                        <div class="col-md-6">
+                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
+                            <a class="btn btn-link" href="about.html">About Us</a>
+                            <a class="btn btn-link" href="contact.html">Contact Us</a>
+                            <a class="btn btn-link" href="#">Privacy Policy</a>
+                            <a class="btn btn-link" href="#">Terms & Conditions</a>
+                            <a class="btn btn-link" href="contact.html">Support</a>
                         </div>
-
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="index.html">Home</a>
-                                <a href="#">Cookies</a>
-                                <a href="contact.html">Help</a>
-                                <a href="#">FAQs</a>
-                            </div>
+                        <div class="col-md-6">
+                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
+                            <a class="btn btn-link" href="#">Food & Restaurant</a>
+                            <a class="btn btn-link" href="#">Spa & Fitness</a>
+                            <a class="btn btn-link" href="#">Sports & Gaming</a>
+                            <a class="btn btn-link" href="#">Event & Party</a>
+                            <a class="btn btn-link" href="#">GYM & Yoga</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span>
+                        All Rights Reserved.
+                    </div>
+
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="index.html">Home</a>
+                            <a href="#">Cookies</a>
+                            <a href="contact.html">Help</a>
+                            <a href="#">FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     <!-- </div> -->
 
 
@@ -276,7 +294,7 @@
     <!-- <script src="js/about.js"></script> -->
     <script src="js/index_booking.js"></script>
     <script src="js/this_hotel_review.js"></script>
-    
+
 
 
 
