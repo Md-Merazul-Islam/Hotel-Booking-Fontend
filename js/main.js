@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                                         </div>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">
+                                        <li><a class="dropdown-item" href="admin_dashboard.html">
                                             Admin Panel 
                                         </a></li>
                                         <li><a class="dropdown-item" href="my_account.html">
