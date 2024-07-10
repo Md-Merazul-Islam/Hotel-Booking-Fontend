@@ -26,6 +26,7 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -96,14 +97,14 @@
     <section class="vh-100 align-content-center align-items-center">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-md-9 col-lg-6 col-xl-5">
+                <div class="col-md-9 col-lg-6 col-xl-5"   data-aos="zoom-in">
                     <!-- Placeholder image for illustration -->
                     <div class="img-containersstrap">
                         <img src="./img/new_login-removebg-preview.png" class="img-fluid" alt="Sample image">
                     </div>
                     <!-- <img src="./img/login.png" class="img-fluid" alt="Sample image"> -->
                 </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" data-aos="zoom-in-up">
                     <div class="container">
                         <h2 class="text-center pb-5">Login to Your Account</h2>
                         <div id="error-container" class="error-message"></div>
@@ -237,7 +238,7 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
@@ -246,6 +247,9 @@
     <script src="js/register.js"></script>
     <script src="js/register.js"></script>
     <script src="js/login.js"></script>
+    <script>
+        AOS.init();
+      </script>
 
 
 
