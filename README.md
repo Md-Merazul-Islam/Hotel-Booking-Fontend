@@ -11,6 +11,7 @@
 - **Client Reviews**: View hotel reviews from other users and contribute by `submitting` your reviews after booking.
 - **Dynamic and Responsive Design**: The user interface is built to be dynamic and highly `responsive`, adapting smoothly to different devices and screen sizes for an optimal user experience.
 - **Modern UI**: Leveraging Bootstrap 5, the platform features a sleek and contemporary design, ensuring a visually appealing and intuitive user interface.
+- **Admin Role Management**: Admins can manage roles, add or delete districts, add, delete, or edit hotels, delete users and reviews, and view a dashboard with hotel overviews and booking lists.
 
 ## Technologies Used:
 
@@ -29,3 +30,7 @@
 
 - **Live Site**: [Blue Sky Booking](https://bluskybooking.netlify.app/)
 - **Documentation**: [Project Documentation](https://docs.google.com/document/d/19582F3Q9vVEHbgxc0a04T7bQ5Walad3n8ydikLBDnq8/edit?usp=sharing)
+
+---
+
+**Blue Sky Booking** - Revolutionizing the way you book hotels.
