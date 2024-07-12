@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Hotel Management </title>
+    <title>Contact us Management </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -31,14 +31,37 @@
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/modal_hotel.css" rel="stylesheet">
+    <style>
+         td,th{
+            vertical-align: middle;
+            text-align: center;
+        }
+        .feedback {
+            margin-top: 10px;
+        }
+        .text-success {
+            color: green;
+        }
+        .text-danger {
+            color: red;
+        }
+        .delete-icon {
+            color: rgb(85, 77, 77);
+            cursor: pointer;
 
-
+            padding: 5px;
+        }
+        .delete-icon:hover {
+            color: #e14c02;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,7 +99,8 @@
                         </div>
                         <div class="d-flex flex-row align-items-center justify-content-end gap-3 pe-4"
                             id="auth-buttons">
-            
+                            <!-- <a class="btn btn-light fw-semibold" href="register.html">Sign in</a>
+                            <a class="btn btn-primary fw-semibold" href="login.html">Login</a> -->
                         </div>
                     </div>
                 </nav>
@@ -113,23 +137,22 @@
                 </div>
             </div>
         </div>
-
-        <!-- Page Content -->
-        <div class="container-lg-full mx-4 mt-4">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-md-2">
+            <!-- Page Content -->
+            <div class="container-lg-full mx-4 mt-4">
+                <div class="row">
+                 <!-- Sidebar -->
+                 <div class="col-md-2">
                     <div class="list-group">
                         <a href="admin_dashboard.html" class="list-group-item list-group-item-action ">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                           <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
                         <a href="admin_user_management.html" class="list-group-item list-group-item-action">
                             <i class="fas fa-users"></i> Users
                         </a>
-                        <a href="admin_district.html" class="list-group-item list-group-item-action">
+                        <a href="admin_district.html" class="list-group-item list-group-item-action ">
                             <i class="fas fa-map-marker-alt"></i> District
                         </a>
-                        <a href="admin_hotel_add.html" class="list-group-item list-group-item-action active">
+                        <a href="admin_hotel_add.html" class="list-group-item list-group-item-action">
                             <i class="fas fa-hotel"></i> Hotels
                         </a>
                         <a href="admin_Review_Details.html" class="list-group-item list-group-item-action">
@@ -138,7 +161,7 @@
                         <a href="admin_booked_list.html" class="list-group-item list-group-item-action">
                             <i class="fas fa-calendar-check"></i> Bookings
                         </a>
-                        <a href="admin_show_contact_us.html" class="list-group-item list-group-item-action">
+                        <a href="admin_show_contact_us.html" class="list-group-item list-group-item-action active">
                             <i class="fas fa-envelope "></i>Contact Messages
                         </a>
                     </div>
@@ -147,76 +170,36 @@
 
                 <!-- Main Content -->
                 <div class="col-md-10">
+
                     <!-- show district overview -->
                     <div style="padding-bottom: 300px;">
-                        <div class="table-container  m-auto pt-5">
-                            <h1>Hotel Management</h1>
-                            <div class="d-flex justify-content-end py-2">
-                                <button onclick="showAddHotelModal()" class="btn btn-primary  hover-success">+Add
-                                    Hotel</button>
-                            </div>
-                            <table class="table table-bordered table-striped" id="hotelTable">
+                        <div class="table-container m-auto pt-5">
+                            <h2>Contact us List</h2>
+                 
+                            <table class="table table-bordered table-striped" id="messagesTable">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>District</th>
-                                        <th>Photo</th>
-                                        <th>Description</th>
-                                        <th>Price Per Night</th>
-                                        <th>Available Rooms</th>
-                                        <th>Action</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Created At</th>
+                                        <th>User</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- ------dynamic content-------- -->
+                                    <!-- Table rows will be inserted here dynamically -->
                                 </tbody>
-                            </table>
 
+                            </table>
 
                         </div>
                     </div>
+
+
+
                 </div>
-
-
-                <!-- Add/Edit Hotel Modal-->
-
-                <div id="hotelModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <form id="hotelForm">
-                            <h2 id="modalTitle">Add Hotel</h2>
-                            <label for="hotelName">Name:</label>
-                            <input type="text" id="hotelName" name="hotelName" required>
-                            <label for="hotelAddress">Address:</label>
-                            <input type="text" id="hotelAddress" name="hotelAddress" required>
-                            <label for="hotelDistrict">District:</label>
-                            <select id="hotelDistrict" name="hotelDistrict" required></select>
-                            <label for="hotelPhoto">Photo:</label>
-                            <input type="file" id="hotelPhoto" name="hotelPhoto" accept="image/*" required>
-                            <label for="hotelDescription">Description:</label>
-                            <textarea id="hotelDescription" name="hotelDescription" required></textarea>
-                            <label for="hotelPricePerNight">Price Per Night:</label>
-                            <input type="number" id="hotelPricePerNight" name="hotelPricePerNight" required>
-                            <label for="hotelAvailableRoom">Available Rooms:</label>
-                            <input type="number" id="hotelAvailableRoom" name="hotelAvailableRoom" required>
-                            <p class="text-danger">Note : If you want to edit hotel details, Must need upload a hotel
-                                photo!!!</p>
-                            <button type="submit" id="submitBtn">Add Hotel</button>
-                        </form>
-                        <div id="hotelFeedback"></div>
-                    </div>
-                </div>
-
             </div>
-
-
-
-
-
-
-
         </div>
     </div>
 
@@ -327,8 +310,7 @@
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
-    <script src="js/admin_hotel_add.js"></script>
-
+    <script src="js/admin_contact_us.js"></script>
 </body>
 
 </html>
