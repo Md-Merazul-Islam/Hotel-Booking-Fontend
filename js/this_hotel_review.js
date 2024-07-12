@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchAndRenderReviews = async () => {
         try {
 
-            const response = await fetch(`https://blueskybooking.onrender.com/hotel/review_add/?hotel_id=${hotel_id}`);
+            const response = await fetch(`https://blueskybooking.onrender.com/hotel/review_add/?hotel_id=${hotel_id}/`);
             const reviews = await response.json();
 
             if (reviews.length === 0) {

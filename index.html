@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -192,7 +192,8 @@
 
 
                 <div class="container-fluid-search bookings pb-5 wow fadeIn py-5 mb-5" data-wow-delay="0.1s">
-                    <div class="container">
+                    <div class="container" data-aos="fade-up"
+                    data-aos-anchor-placement="bottom-bottom">
                         <div class="bg-white shadow" style="padding: 35px;">
                             <div class="row g-2">
                                 <div class="col-md-4">
@@ -219,7 +220,7 @@
                 <!-- End Search Section -->
 
                 <!-- Carousel Container -->
-                <div class="packages-carousel owl-carousel pt-5 " id="resultsContainer">
+                <div class="packages-carousel owl-carousel pt-5 " id="resultsContainer" >
                     <!-- Dynamically generated hotel cards will be inserted here -->
                 </div>
             </div>
@@ -258,7 +259,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="zoom-in-right">
                     <h6 class="section-title text-start text-primary text-uppercase">About Us</h6>
                     <h1 class="mb-4">Welcome to <br><span class="text-primary text-uppercase">Blue Sky Booking</span>
                     </h1>
@@ -379,10 +380,19 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12">
+                                        <label for="payment_method" class="form-label text-white">Select Payment
+                                            Method:</label>
+                                        <select class="form-select bg-white border-0 text-start p-3 text-dark " style="font: bolder;"
+                                            id="payment_method" required>
+                                            <option value="sslcommerz">Pay with SSLCommerz</option>
+                                            <option value="account" class="">Pay from Account Balance</option>
+                                        </select>
+                                    </div>
+
                                     <div class="col-12">
-                                        <button class="btn btn-primary text-white w-100 py-3" type="submit"
-                                            onclick="handelOfBook(event)">Book
-                                            Now</button>
+                                        <button class="btn btn-primary text-white w-100 py-3" type="button"
+                                            onclick="handleBooking()">Pay Now</button>
                                     </div>
                                 </div>
                             </form>
@@ -393,6 +403,9 @@
         </div>
     </div>
     <!-- Booking End -->
+
+
+
 
 
     <!-- Service Start -->
@@ -600,7 +613,7 @@
                 <h1 class="mb-0">Our Clients Say!!!</h1>
             </div>
             <!-- Carousel Container -->
-            <div class="testimonial-carousel owl-carousel pt-5" id="reviews-container">
+            <div class="testimonial-carousel owl-carousel pt-5" id="reviews-container" >
                 <!-- Dynamically generated hotel cards will be inserted here -->
             </div>
         </div>
@@ -704,7 +717,7 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
@@ -716,7 +729,9 @@
     <script src="js/reviews.js"></script>
     <script src="js/about.js"></script>
     <script src="js/index_booking.js"></script>
-
+    <script>
+        AOS.init();
+      </script>
 
 
 </body>

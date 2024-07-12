@@ -94,7 +94,7 @@
                 <div class="bg-white shadow" style="padding: 35px;">
                     <form method="POST" id="bookingForm">
                         <div class="row g-2">
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 <div class="row g-2">
                                     <div class="col-md-3">
                                         <select class="form-select" id="hotel_select">
@@ -113,8 +113,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <!-- <div class="col-md-2">
                                 <button class="btn btn-primary w-100" type="submit" onclick="handelOfBook(event)">Book</button>
+                            </div> -->
+                            <div class="col-md-2">
+
+                                    <select class="form-select"  id="payment_method"  required>
+                                        <option value="sslcommerz">Pay with SSLCommerz</option>
+                                    <option value="account" class="">Pay from Account Balance</option>
+                                    </select>
+    
+                            </div>
+
+                            <div class="col-md-2">
+                                <button class="btn btn-primary text-white w-100 " type="button"
+                                    onclick="handleBooking()">Pay Now</button>
                             </div>
                         </div>
                     </form>

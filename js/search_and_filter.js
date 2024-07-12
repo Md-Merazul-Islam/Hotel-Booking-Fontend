@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const truncatedAddress = truncateText(hotel.address, 45);
 
             hotelCard.innerHTML = `
-            <div class="card-container">
+            <div class="card-container" >
                 <div class="room-item shadow rounded overflow-hidden">
                     <div class="position-relative">
                         <img class="card-img-top" src="${hotel.photo}" alt="${hotel.name}">
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch and display hotel details
     async function fetchHotelDetails(hotelId) {
         try {
-            const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}`);
+            const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`);
             if (!response.ok) throw new Error('Failed to fetch hotel details');
             const hotel = await response.json();
             populateHotelDetails(hotel);

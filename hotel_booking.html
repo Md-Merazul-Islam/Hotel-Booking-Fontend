@@ -28,7 +28,7 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -92,45 +92,59 @@
 
 
 
-        <div class="container pt-5  ">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-6 col-lg-5 mb-5">
-                    <!-- Placeholder image for illustration -->
-                    <div class="img-containers ">
-                        <img src="./img/hotel_book_3-removebg-preview.png" class="img-fluid "  alt="Sample image">
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-5">
-                    <!-- Book Form  -->
-                    <div class=""  >
-                        <div class="form-container m-auto">
-                            <h1 class="py-3 " >Book a Hotel</h1>
-                            <form method="POST" id="bookingForm">
-                                <label for="hotel_id">Hotel Name:</label>
-                                <input type="text" id="hotel-name" readonly>
-                                <br>
-                                <label for="start_date">Start Date:</label>
-                                <input type="date" id="start_date" required>
-                                <br>
-                                <label for="end_date">End Date:</label>
-                                <input type="date" id="end_date" required>
-                                <br>
-                                <label for="number_of_rooms">Number of Rooms:</label>
-                                <input type="number" id="number_of_rooms" required>
-                                <br>
-                                <div class="pt-5 pb-3">
-                                    <button type="submit" class="butoon_for_book" onclick="handleBook(event)">Book
-                                        Hotel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Book Form  -->
-
+    <div class="container pt-5  vh-100">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6 col-lg-5 mb-5 " data-aos="flip-left">
+                <!-- Placeholder image for illustration -->
+                <div class="img-containers ">
+                    <img src="./img/hotel_book_3-removebg-preview.png" class="img-fluid " alt="Sample image">
                 </div>
             </div>
+            <div class="col-md-6 col-lg-5" data-aos="flip-right">
+                <!-- Book Form  -->
+                <div class="">
+                    <div class="form-container m-auto">
+                        <h1 class="py-3 ">Book a Hotel</h1>
+                        <form method="POST" id="bookingForm">
+                            <label for="hotel_id">Hotel Name:</label>
+                            <input type="text" id="hotel-name" readonly>
+                            <br>
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" id="start_date" required>
+                            <br>
+                            <label for="end_date">End Date:</label>
+                            <input type="date" id="end_date" required>
+                            <br>
+                            <label for="number_of_rooms">Number of Rooms:</label>
+                            <input type="number" id="number_of_rooms" required>
+                            <br>
+
+                            <label for="payment_method" class="">Select Payment
+                                Method:</label>
+                            <select class=" "
+                                style="font: bolder;" id="payment_method" required>
+                                <option value="sslcommerz">Pay with SSLCommerz</option>
+                                <option value="account" class="">Pay from Account Balance</option>
+                            </select>
+
+
+                            <!-- <div class="col-12">
+                                <button class="btn btn-primary text-white w-100 py-3" type="button"
+                                    onclick="handleBooking()">Pay Now</button>
+                            </div> -->
+                            <div class="pt-5 pb-3">
+                                <button type="submit" class="butoon_for_book" onclick="handleBook(event)">Book
+                                    Hotel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Book Form  -->
+
+            </div>
         </div>
-   
+    </div>
+
 
 
 
@@ -138,7 +152,7 @@
 
     <hr>
     <!-- Review Section Start -->
-    <div class="container-fluid testimonial py-5 ">
+    <div class="container-fluid testimonial py-5 vh-100">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                 <h5 class="section-title px-3">This Hotel Reviews</h5>
@@ -160,7 +174,7 @@
 
 
     <!-- add a comment  -->
-    <div class="pt-5" style="padding-bottom: 244px;">
+    <div class="pt-5 vh-100" style="padding-bottom: 244px;">
         <div class="form-container-review m-auto">
             <h1>Add a Review</h1>
             <form method="POST" id="reviewForm">
@@ -294,6 +308,10 @@
     <!-- <script src="js/about.js"></script> -->
     <script src="js/index_booking.js"></script>
     <script src="js/this_hotel_review.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
 
 
 

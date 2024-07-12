@@ -160,10 +160,19 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-md-12">
+                                            <label for="payment_method" class="form-label text-dark">Select Payment
+                                                Method:</label>
+                                            <select class="form-select bg-white border-0 text-start p-3 text-dark " style="font: bolder;"
+                                                id="payment_method" required>
+                                                <option value="sslcommerz">Pay with SSLCommerz</option>
+                                                <option value="account" class="">Pay from Account Balance</option>
+                                            </select>
+                                        </div>
+    
                                         <div class="col-12">
-                                            <button class="btn btn-primary text-white w-100 py-3" type="submit"
-                                                onclick="handelOfBook(event)">Book
-                                                Now</button>
+                                            <button class="btn btn-primary text-white w-100 py-3" type="button"
+                                                onclick="handleBooking()">Pay Now</button>
                                         </div>
                                     </div>
                                 </form>
