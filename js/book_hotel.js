@@ -1,5 +1,5 @@
 
-
+// select hotel name 
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const hotelId = urlParams.get('hotelId');
@@ -89,8 +89,12 @@ const handleBook = (event) => {
             .then(data => {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Booking Successful',
-                    text: 'Hotel booked successfully!',
+                    title: 'Congratulations🎉',
+                    text: 'Hotel booked successfully.Check your email for more information.',
+                }).then(() => {
+
+                    window.location.reload();
+                    // window.location.href='index.html';
                 });
                 console.log(data);
             })
