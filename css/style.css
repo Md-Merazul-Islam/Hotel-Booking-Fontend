@@ -12,12 +12,12 @@
 .custom-button-REGISTER {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
-    background-color:#ffa704; 
+    background-color:#44949B; 
     transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .custom-button-REGISTER:hover {
-    background-color: #FF725E;
+    background-color: #4A6CD1;
     transform: scale(1.05); 
 }
 

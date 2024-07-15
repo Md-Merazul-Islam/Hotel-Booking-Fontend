@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             console.error('Error fetching user account data:', error);
             authButtons.innerHTML = `
                 <div>
-                    <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
+                    <a class="btn btn-light fw-semibold me-2" href="register.html">Sign up</a>
                     <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
                 </div>
             `;
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     } else {
         authButtons.innerHTML = `
             <div>
-                <a class="btn btn-light fw-semibold" href="register.html">Sign up</a>
+                <a class="btn btn-light fw-semibold me-2" href="register.html">Sign up</a>
                 <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
             </div>
         `;
