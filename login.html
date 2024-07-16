@@ -34,7 +34,10 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
-      
+        .flip-right {
+            
+
+        }
     </style>
 </head>
 
@@ -93,17 +96,22 @@
 
     <!-- login form  -->
     <!-- https://lottie.host/embed/d6704aa9-bb8d-4467-bea9-f9077931a08f/YZzkypzrlh.json -->
-  
-      <section class="vh-100 align-content-center align-items-center">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+    <section class="vh-100 align-content-center align-items-center">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-md-9 col-lg-6 col-xl-5"   data-aos="zoom-in">
+                <div class="col-md-9 col-lg-6 col-xl-5" data-aos="zoom-in">
                     <!-- Placeholder image for illustration -->
                     <div class="img-containersstrap">
-                    
-                        <dotlottie-player src="https://lottie.host/21607c29-636f-4da1-93fe-eb7ad0d3863e/Ufa8jNpQFA.json"
+
+                        <!-- <dotlottie-player src="https://lottie.host/21607c29-636f-4da1-93fe-eb7ad0d3863e/Ufa8jNpQFA.json"
                         background="transparent" speed="1"  loop
-                        autoplay></dotlottie-player>
+                        autoplay></dotlottie-player> -->
+                        <dotlottie-player src="https://lottie.host/65ee0120-8dfe-4d95-a8f2-9cba2960061d/4JkbjoNXdx.json"
+                            background="transparent" speed="1" style="transform: scaleX(-1);transform-origin: center center;"  loop
+                            autoplay></dotlottie-player>
+
                         <!-- <img src="./img/new_login-removebg-preview.png" class="img-fluid" alt="Sample image"> -->
                     </div>
                     <!-- <img src="./img/login.png" class="img-fluid" alt="Sample image"> -->
@@ -133,8 +141,7 @@
                                 <a href="#!" class="text-body">Forgot password?</a>
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
-                                <button type="submit" class="btn  btn-lg text-white custom-button "
-                                    >Login</button>
+                                <button type="submit" class="btn  btn-lg text-white custom-button ">Login</button>
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.html"
                                         class="link-danger">Register</a></p>
                             </div>
@@ -243,7 +250,7 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
@@ -254,7 +261,7 @@
     <script src="js/login.js"></script>
     <script>
         AOS.init();
-      </script>
+    </script>
 
 
 

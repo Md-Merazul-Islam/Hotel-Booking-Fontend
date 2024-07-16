@@ -28,9 +28,11 @@ const handleBook = (event) => {
         Swal.fire({
             icon: 'error',
             title: 'User not logged in',
-            text: 'User ID not found in localStorage. Please log in.',
-        });
-        return;
+            text: 'User not found. Please log in.',
+        }).then(() => {
+            window.location.href = 'login.html';
+            return;
+        })
     }
 
     const HotelId = urlParams.get('hotelId');

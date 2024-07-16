@@ -100,11 +100,20 @@
 
 
     <!-- Booking Section Start -->
-    <div class="container pt-5 vh-100">
+    <div class="container pt-5 ">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 col-lg-5 mb-5 " data-aos="fade-right">
                 <div class="img-containers ">
-                  <dotlottie-player src="https://lottie.host/09117013-2dfb-4a42-af5c-6b31d5434acd/T1Ze2X2sXb.json" background="transparent" speed="1"  loop autoplay></dotlottie-player>
+                  <!-- <dotlottie-player src="https://lottie.host/09117013-2dfb-4a42-af5c-6b31d5434acd/T1Ze2X2sXb.json" background="transparent" speed="1"  loop autoplay></dotlottie-player> -->
+                  <creattie-embed
+                  src="https://d1jj76g3lut4fe.cloudfront.net/saved_colors/95356/aQhQfNzRPmcICuSJ.json"
+                  delay="1"
+                  speed="100"
+                  frame_rate="24"
+                  trigger="loop"
+                  style="max-width:900px;">
+                 </creattie-embed>
+                 
     <!-- <img src="./img/hotel_book.png" class="img-fluid " alt="Sample image"> -->
                 </div>
             </div>
@@ -302,43 +311,21 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <script src="https://creattie.com/js/embed.js?id=3f6954fde297cd31b441" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- Template Javascript -->
 
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/register.js"></script>
-    <!-- <script src="js/search_and_filter.js"></script> -->
     <script src="js/book_hotel.js"></script>
-    <!-- <script src="js/reviews.js"></script> -->
-    <!-- <script src="js/about.js"></script> -->
     <script src="js/index_booking.js"></script>
     <script src="js/this_hotel_review.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
 
-
-    <script>
-        // Get the modal
-        var modal = document.getElementById("modal");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close-button")[0];
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
 
 
 </body>
