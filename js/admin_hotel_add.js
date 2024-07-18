@@ -254,6 +254,8 @@ async function editHotel(hotelId) {
             formData.append('description', document.getElementById('hotelDescription').value);
             formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
             formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+            const hotelFeedback = document.getElementById('hotelFeedback');
+            hotelFeedback.innerHTML = ''; 
 
             try {
                 const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`, {
@@ -266,32 +268,25 @@ async function editHotel(hotelId) {
 
                 if (response.ok) {
                     const result = await response.json();
+                    document.getElementById('hotelModal').style.display = 'none';
                     Swal.fire({
+
                         icon: 'success',
                         title: 'Successfully updated hotel',
 
                         confirmButtonColor: '#007bff'
                     })
-                        .then(() => {
+                    .then(() => {
                             form.reset();
-                            document.getElementById('hotelModal').style.display = 'none';
                             window.location.reload()
                         });
                     // location.reload();
                 } else {
                     const responseData = await response.json();
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Failed to update hotel',
-                        text: JSON.stringify(responseData),
-                    });
+                    hotelFeedback.innerHTML = '<p class="text-danger">Failed to update hotel: ' + JSON.stringify(responseData) + '</p>';
                 }
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error updating hotel',
-                    text: error.message,
-                });
+                hotelFeedback.innerHTML = '<p class="text-danger">Error updating hotel: ' + error.message + '</p>';
             }
         });
     } catch (error) {
