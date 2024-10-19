@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Fetch current user details
-    fetch('https://blueskybooking.onrender.com/user/update/', {
+    fetch('https://hotel-booking-website-backend.vercel.app/user/update/', {
         method: 'GET',
         headers: {
             'Authorization': `Token ${token}`
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const formData = new FormData(this);
 
-        fetch('https://blueskybooking.onrender.com/user/update/', {
+        fetch('https://hotel-booking-website-backend.vercel.app/user/update/', {
             method: 'PATCH',
             headers: {
                 'Authorization': `Token ${token}`

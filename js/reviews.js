@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reviewContainer.innerHTML = '';
 
     // Fetch the reviews from the API
-    fetch('https://blueskybooking.onrender.com/hotel/reviews/')
+    fetch('https://hotel-booking-website-backend.vercel.app/hotel/reviews/')
         .then(res => res.json())
         .then(reviews => {
             reviews.forEach(review => {

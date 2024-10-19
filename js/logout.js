@@ -6,7 +6,7 @@
 function handleLogout() {
     const token = localStorage.getItem('token');
 
-    fetch('https://blueskybooking.onrender.com/user/logout/', {
+    fetch('https://hotel-booking-website-backend.vercel.app/user/logout/', {
         method: 'POST',
         headers: {
             'Authorization': `Token ${token}`,

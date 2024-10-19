@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function checkIsStaff() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/is_users_staff/', {
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.location.href = "login.html";
         return;
     }
-    const apiUrl = 'https://blueskybooking.onrender.com/hotel/hotels/';
+    const apiUrl = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
 
     try {
         const response = await fetch(apiUrl);
@@ -133,7 +133,7 @@ async function handleHotelFormSubmit(event) {
     formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
 
     const feedback = document.getElementById('hotelFeedback');
-    const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
+    const url = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
 
     try {
         const response = await fetch(url, {
@@ -163,7 +163,7 @@ async function handleHotelFormSubmit(event) {
 
 async function fetchDistricts() {
     try {
-        const response = await fetch('https://blueskybooking.onrender.com/hotel/districts/');
+        const response = await fetch('https://hotel-booking-website-backend.vercel.app/hotel/districts/');
         const districts = await response.json();
 
         const districtSelect = document.getElementById('hotelDistrict');
@@ -186,7 +186,7 @@ async function deleteHotel(hotelId, button) {
     }
 
     try {
-        const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`, {
+        const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Token ${token}`,
@@ -222,7 +222,7 @@ async function editHotel(hotelId) {
     }
 
     try {
-        const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`);
+        const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`);
         if (!response.ok) {
             throw new Error('Failed to fetch hotel details');
         }
@@ -258,7 +258,7 @@ async function editHotel(hotelId) {
             hotelFeedback.innerHTML = ''; 
 
             try {
-                const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`, {
+                const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `Token ${token}`,

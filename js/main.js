@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     if (token) {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/account/', {
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/account/', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
             // Fetch staff data separately
-            fetch('https://blueskybooking.onrender.com/user/is_users_staff/')
+            fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/')
                 .then(response => response.json())
                 .then(users => {
                     const user = users.find(user => user.username === account.username);

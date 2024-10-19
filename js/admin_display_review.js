@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function checkIsStaff() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/is_users_staff/', {
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -49,7 +49,7 @@ async function fetchReviews() {
 
  
     try {
-        const response = await fetch('https://blueskybooking.onrender.com/hotel/reviews/');
+        const response = await fetch('https://hotel-booking-website-backend.vercel.app/hotel/reviews/');
         const reviews = await response.json();
 
         const tableBody = document.getElementById('reviewTableBody');
@@ -79,7 +79,7 @@ async function fetchReviews() {
 async function deleteReview(reviewId, button) {
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch(`https://blueskybooking.onrender.com/hotel/review_add/${reviewId}/`, {
+        const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/review_add/${reviewId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Token ${token}`,

@@ -33,7 +33,7 @@ async function registerUser() {
 
     try {
         // Fetch all users to check for existing username or email
-        const usersResponse = await fetch('https://blueskybooking.onrender.com/user/allUser/');
+        const usersResponse = await fetch('https://hotel-booking-website-backend.vercel.app/user/allUser/');
         if (!usersResponse.ok) {
             throw new Error('Failed to fetch existing users');
         }
@@ -54,7 +54,7 @@ async function registerUser() {
         }
 
         // Proceed with registration if no duplicates are found
-        const registrationResponse = await fetch('https://blueskybooking.onrender.com/user/register/', {
+        const registrationResponse = await fetch('https://hotel-booking-website-backend.vercel.app/user/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

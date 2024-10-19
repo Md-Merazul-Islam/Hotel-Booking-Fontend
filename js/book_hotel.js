@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const hotelId = urlParams.get('hotelId');
 
     if (hotelId) {
-        fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`)
+        fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`)
             .then(res => res.json())
             .then(data => {
                 document.getElementById('hotel-name').value = data.name;
@@ -71,7 +71,7 @@ const handleBook = (event) => {
     console.log(formData);
 
     if (payment_method === 'account') {
-        fetch('https://blueskybooking.onrender.com/hotel/book/', {
+        fetch('https://hotel-booking-website-backend.vercel.app/hotel/book/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ const handleBook = (event) => {
     }
     else if (payment_method === 'sslcommerz') {
 
-        fetch('https://blueskybooking.onrender.com/payment/payment-booking/', {
+        fetch('https://hotel-booking-website-backend.vercel.app/payment/payment-booking/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ const handleReview = (event) => {
     };
     console.log(formData);
 
-    fetch('https://blueskybooking.onrender.com/hotel/review_add/', {
+    fetch('https://hotel-booking-website-backend.vercel.app/hotel/review_add/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

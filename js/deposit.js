@@ -6,7 +6,7 @@ if (!token) {
 const userId = localStorage.getItem('user_id');
 let USER_ID;
 
-fetch('https://blueskybooking.onrender.com/user/account/', {
+fetch('https://hotel-booking-website-backend.vercel.app/user/account/', {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const handleDeposit = (event) => {
     console.log(userId);
     console.log(localStorage.getItem('user_id'));
 
-    fetch('https://blueskybooking.onrender.com/user/deposit/', {
+    fetch('https://hotel-booking-website-backend.vercel.app/user/deposit/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

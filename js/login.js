@@ -7,7 +7,7 @@ const handleLogin = (event) => {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
 
-    fetch("https://blueskybooking.onrender.com/user/login/", {
+    fetch("https://hotel-booking-website-backend.vercel.app/user/login/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -25,7 +25,7 @@ const handleLogin = (event) => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user_id', data.user_id);
                 // Check if the user is staff
-                return fetch('https://blueskybooking.onrender.com/user/is_users_staff/');
+                return fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/');
             } else {
                 throw new Error('Login failed. Please check your username and password.');
             }

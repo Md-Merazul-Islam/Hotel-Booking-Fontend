@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchAndRenderReviews = async () => {
         try {
 
-            const response = await fetch(`https://blueskybooking.onrender.com/hotel/review_add/?hotel_id=${hotel_id}/`);
+            const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/review_add/?hotel_id=${hotel_id}/`);
             const reviews = await response.json();
 
             if (reviews.length === 0) {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
 
-            const allReviewsResponse = await fetch('https://blueskybooking.onrender.com/hotel/reviews/');
+            const allReviewsResponse = await fetch('https://hotel-booking-website-backend.vercel.app/hotel/reviews/');
             const allReviews = await allReviewsResponse.json();
 
             renderReviews(reviews, allReviews);

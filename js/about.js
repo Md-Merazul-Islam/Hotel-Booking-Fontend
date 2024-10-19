@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
-   const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
+   const url = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
    fetch(url)
    .then(res =>res.json())
    .then(data=>{
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
 })
 document.addEventListener('DOMContentLoaded',()=>{
-   const url = 'https://blueskybooking.onrender.com/user/allUser/';
+   const url = 'https://hotel-booking-website-backend.vercel.app/user/allUser/';
    fetch(url)
    .then(res =>res.json())
    .then(data=>{

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function checkIsStaff() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/is_users_staff/', {
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded',()=>{
-    const url = 'https://blueskybooking.onrender.com/hotel/hotels/';
+    const url = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
     fetch(url)
     .then(res =>res.json())
     .then(data=>{
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
  })
  document.addEventListener('DOMContentLoaded',()=>{
-    const url = 'https://blueskybooking.onrender.com/user/allUser/';
+    const url = 'https://hotel-booking-website-backend.vercel.app/user/allUser/';
     fetch(url)
     .then(res =>res.json())
     .then(data=>{
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function fetchBookings() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/hotel/bookings/');
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/hotel/bookings/');
             const data = await response.json();
             data.sort((a, b) => new Date(b.booked_at) - new Date(a.booked_at));
             let totalBookedRooms = 0;

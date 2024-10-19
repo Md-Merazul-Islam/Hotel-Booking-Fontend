@@ -1,4 +1,4 @@
-const apiUrl = 'https://blueskybooking.onrender.com/user/admin-messages/';
+const apiUrl = 'https://hotel-booking-website-backend.vercel.app/user/admin-messages/';
 
 function getToken() {
     return localStorage.getItem('token');

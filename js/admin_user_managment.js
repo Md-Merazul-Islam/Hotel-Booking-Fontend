@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function checkIsStaff() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/is_users_staff/', {
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -51,10 +51,10 @@ const fetchUserDetails = async () => {
         return;
     }
     try {
-        const resAccount = await fetch('https://blueskybooking.onrender.com/user/account/');
+        const resAccount = await fetch('https://hotel-booking-website-backend.vercel.app/user/account/');
         const userAccounts = await resAccount.json();
 
-        const resAllUsers = await fetch('https://blueskybooking.onrender.com/user/allUser/');
+        const resAllUsers = await fetch('https://hotel-booking-website-backend.vercel.app/user/allUser/');
         const allUsers = await resAllUsers.json();
 
         const mergedUsers = userAccounts.map(account => ({
@@ -91,7 +91,7 @@ const fetchUserDetails = async () => {
 const deleteUser = async (userId) => {
     const token = localStorage.getItem('token');
     try {
-        const res = await fetch(`https://blueskybooking.onrender.com/user/is_users_staff/${userId}/`, {
+        const res = await fetch(`https://hotel-booking-website-backend.vercel.app/user/is_users_staff/${userId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Token ${token}`,

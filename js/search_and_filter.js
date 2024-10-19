@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function fetchHotels() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/hotel/hotels/');
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/hotel/hotels/');
             if (!response.ok) throw new Error('Failed to fetch hotels data');
             hotels = await response.json();
             populateCategories();
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch and display hotel details
     async function fetchHotelDetails(hotelId) {
         try {
-            const response = await fetch(`https://blueskybooking.onrender.com/hotel/hotels/${hotelId}/`);
+            const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`);
             if (!response.ok) throw new Error('Failed to fetch hotel details');
             const hotel = await response.json();
             populateHotelDetails(hotel);

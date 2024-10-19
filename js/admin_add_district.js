@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function checkIsStaff() {
         try {
-            const response = await fetch('https://blueskybooking.onrender.com/user/is_users_staff/', {
+            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         window.location.href = "login.html";
         return;
     }
-    const apiUrl = 'https://blueskybooking.onrender.com/hotel/districts/';
+    const apiUrl = 'https://hotel-booking-website-backend.vercel.app/hotel/districts/';
     const tableBody = document.querySelector('#hotelTable tbody');
 
     try {
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 // Delete district function
 async function deleteDistrict(districtId) {
     const token = localStorage.getItem('token');
-    const url = `https://blueskybooking.onrender.com/hotel/districts/${districtId}/`;
+    const url = `https://hotel-booking-website-backend.vercel.app/hotel/districts/${districtId}/`;
 
     try {
         const response = await fetch(url, {
@@ -134,7 +134,7 @@ document.getElementById("submitDistrict").addEventListener("click", async functi
 
     const districtName = document.getElementById("districtName").value;
     const feedback = document.getElementById("feedback");
-    const url = 'https://blueskybooking.onrender.com/hotel/districts/';
+    const url = 'https://hotel-booking-website-backend.vercel.app/hotel/districts/';
 
     const data = {
         district_name: districtName,

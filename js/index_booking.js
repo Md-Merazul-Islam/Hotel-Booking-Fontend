@@ -3,7 +3,7 @@
 
 // // selete hotel name 
 // document.addEventListener('DOMContentLoaded', function () {
-//     fetch('https://blueskybooking.onrender.com/hotel/hotels/')
+//     fetch('https://hotel-booking-website-backend.vercel.app/hotel/hotels/')
 //         .then(response => response.json())
 //         .then(data => {
 //             const hotelSelect = document.getElementById('hotel_select');
@@ -19,7 +19,7 @@
 //             hotelSelect.addEventListener('change', function () {
 //                 const selectedHotelId = hotelSelect.value;
 //                 if (selectedHotelId) {
-//                     fetch(`https://blueskybooking.onrender.com/hotel/hotels/${selectedHotelId}`)
+//                     fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${selectedHotelId}`)
 //                         .then(res => res.json())
 //                         .then(data => {
 //                             document.getElementById('booking-title').textContent = `Booking for: ${data.name}`;
@@ -99,7 +99,7 @@
 //         user_id: parseInt(user_id)
 //     };
 
-//     fetch('https://blueskybooking.onrender.com/hotel/book/', {
+//     fetch('https://hotel-booking-website-backend.vercel.app/hotel/book/', {
 //         method: 'POST',
 //         headers: {
 //             'Content-Type': 'application/json',
@@ -164,7 +164,7 @@
 
 // // selete hotel name 
 // document.addEventListener('DOMContentLoaded', function () {
-//     fetch('https://blueskybooking.onrender.com/hotel/hotels/')
+//     fetch('https://hotel-booking-website-backend.vercel.app/hotel/hotels/')
 //         .then(response => response.json())
 //         .then(data => {
 //             const hotelSelect = document.getElementById('hotel_select');
@@ -180,7 +180,7 @@
 //             hotelSelect.addEventListener('change', function () {
 //                 const selectedHotelId = hotelSelect.value;
 //                 if (selectedHotelId) {
-//                     fetch(`https://blueskybooking.onrender.com/hotel/hotels/${selectedHotelId}`)
+//                     fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${selectedHotelId}`)
 //                         .then(res => res.json())
 //                         .then(data => {
 //                             document.getElementById('booking-title').textContent = `Booking for: ${data.name}`;
@@ -262,7 +262,7 @@
 
 //     // Initiate payment process
 //     console.log('Form Data:', formData);
-//     fetch('https://blueskybooking.onrender.com/payment/payment-booking/', {
+//     fetch('https://hotel-booking-website-backend.vercel.app/payment/payment-booking/', {
 //         method: 'POST',
 //         headers: {
 //             'Content-Type': 'application/json',
@@ -337,7 +337,7 @@
 
 // Select hotel name dynamically
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://blueskybooking.onrender.com/hotel/hotels/')
+    fetch('https://hotel-booking-website-backend.vercel.app/hotel/hotels/')
         .then(response => response.json())
         .then(data => {
             const hotelSelect = document.getElementById('hotel_select');
@@ -416,7 +416,7 @@ function handleBooking() {
     // pay form account balance
     if (payment_method === 'account') {
 
-        fetch('https://blueskybooking.onrender.com/hotel/book/', {
+        fetch('https://hotel-booking-website-backend.vercel.app/hotel/book/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -468,7 +468,7 @@ function handleBooking() {
     // apy by sslcommerz
     else if (payment_method === 'sslcommerz') {
 
-        fetch('https://blueskybooking.onrender.com/payment/payment-booking/', {
+        fetch('https://hotel-booking-website-backend.vercel.app/payment/payment-booking/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
