@@ -1,6 +1,16 @@
 
 // select hotel name 
 document.addEventListener('DOMContentLoaded', function () {
+
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('user_id');
+
+
+    if (!token || !userId ) {
+        window.location.href = "index.html"; 
+        return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const hotelId = urlParams.get('hotelId');
 

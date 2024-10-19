@@ -1,9 +1,10 @@
 // User is staff, proceed with loading the admin page
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('user_id'); 
-
-    if (!token || !userId) {
+    const userId = localStorage.getItem('user_id');
+    const isStaff = localStorage.getItem('is_staff'); 
+    
+    if (!token || !userId || !isStaff || isStaff === 'false') {
         window.location.href = "index.html"; 
         return;
     }
@@ -122,20 +123,26 @@ async function handleHotelFormSubmit(event) {
     }
 
     const form = document.getElementById('hotelForm');
-    const formData = new FormData();
-
-    formData.append('name', document.getElementById('hotelName').value);
-    formData.append('address', document.getElementById('hotelAddress').value);
-    formData.append('district', document.getElementById('hotelDistrict').value);
-    formData.append('photo', document.getElementById('hotelPhoto').files[0]);
-    formData.append('description', document.getElementById('hotelDescription').value);
-    formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
-    formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
-
+    const imageFile = document.getElementById('hotelPhoto').files[0];
+    
     const feedback = document.getElementById('hotelFeedback');
     const url = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
-
+    
     try {
+        // Upload the image to ImgBB and get the URL
+        const imageUrl = await uploadImageToImgBB(imageFile);
+        
+        // Create FormData for hotel submission
+        const formData = new FormData();
+        formData.append('name', document.getElementById('hotelName').value);
+        formData.append('address', document.getElementById('hotelAddress').value);
+        formData.append('district', document.getElementById('hotelDistrict').value);
+        formData.append('photo', imageUrl); // Use the image URL directly here
+        formData.append('description', document.getElementById('hotelDescription').value);
+        formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
+        formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+        
+        // Make the POST request to your API
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -160,6 +167,26 @@ async function handleHotelFormSubmit(event) {
         feedback.className = 'feedback text-danger pb-3';
     }
 }
+
+// Function to upload image to ImgBB and return the image URL
+async function uploadImageToImgBB(imageFile) {
+    const imgBBAPIKey = 'ea67728858ffc5a28d530570bfc45b40'; 
+    const formDataImage = new FormData();
+    formDataImage.append('image', imageFile);
+
+    const imgBBResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgBBAPIKey}`, {
+        method: 'POST',
+        body: formDataImage
+    });
+
+    if (!imgBBResponse.ok) {
+        throw new Error('Failed to upload image to ImgBB');
+    }
+
+    const imgBBData = await imgBBResponse.json();
+    return imgBBData.data.url;
+}
+
 
 async function fetchDistricts() {
     try {
@@ -214,20 +241,23 @@ async function deleteHotel(hotelId, button) {
     }
 }
 
+
 async function editHotel(hotelId) {
     const token = localStorage.getItem('token');
     if (!token) {
-        window.location.href = "login.html";
+        window.location.href = "login.html"; 
         return;
     }
 
     try {
+        
         const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`);
         if (!response.ok) {
             throw new Error('Failed to fetch hotel details');
         }
 
         const hotel = await response.json();
+     
         document.getElementById('hotelName').value = hotel.name;
         document.getElementById('hotelAddress').value = hotel.address;
         document.getElementById('hotelDistrict').value = hotel.district;
@@ -235,30 +265,62 @@ async function editHotel(hotelId) {
         document.getElementById('hotelPricePerNight').value = hotel.price_per_night;
         document.getElementById('hotelAvailableRoom').value = hotel.available_room;
 
+    
         document.getElementById('modalTitle').innerText = 'Edit Hotel';
         document.getElementById('submitBtn').innerText = 'Update Hotel';
         document.getElementById('hotelPhoto').required = false;
         document.getElementById('hotelModal').style.display = 'block';
 
-        document.getElementById('hotelForm').removeEventListener('submit', handleHotelFormSubmit);
-        document.getElementById('hotelForm').addEventListener('submit', async function updateHotelFormSubmit(event) {
+       
+        const form = document.getElementById('hotelForm');
+        form.removeEventListener('submit', handleHotelFormSubmit);
+        
+
+        form.addEventListener('submit', async function updateHotelFormSubmit(event) {
             event.preventDefault();
-            const form = document.getElementById('hotelForm');
             const formData = new FormData();
             formData.append('name', document.getElementById('hotelName').value);
             formData.append('address', document.getElementById('hotelAddress').value);
             formData.append('district', document.getElementById('hotelDistrict').value);
-            if (document.getElementById('hotelPhoto').files[0]) {
-                formData.append('photo', document.getElementById('hotelPhoto').files[0]);
-            }
             formData.append('description', document.getElementById('hotelDescription').value);
             formData.append('price_per_night', document.getElementById('hotelPricePerNight').value);
             formData.append('available_room', document.getElementById('hotelAvailableRoom').value);
+
             const hotelFeedback = document.getElementById('hotelFeedback');
             hotelFeedback.innerHTML = ''; 
 
+       
+            const imageFile = document.getElementById('hotelPhoto').files[0];
+            if (imageFile) {
+              
+                const imgBBAPIKey = 'ea67728858ffc5a28d530570bfc45b40'; 
+                const formDataImage = new FormData();
+                formDataImage.append('image', imageFile);
+
+                try {
+                    const imgBBResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgBBAPIKey}`, {
+                        method: 'POST',
+                        body: formDataImage,
+                    });
+
+                    if (!imgBBResponse.ok) {
+                        throw new Error('Failed to upload image to ImgBB');
+                    }
+
+                    const imgBBData = await imgBBResponse.json();
+                    const imageUrl = imgBBData.data.url; 
+
+                    
+                    formData.append('photo', imageUrl);
+                } catch (error) {
+                    hotelFeedback.innerHTML = '<p class="text-danger">Error uploading image: ' + error.message + '</p>';
+                    return; 
+                }
+            }
+
+           
             try {
-                const response = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`, {
+                const updateResponse = await fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -266,23 +328,19 @@ async function editHotel(hotelId) {
                     body: formData
                 });
 
-                if (response.ok) {
-                    const result = await response.json();
-                    document.getElementById('hotelModal').style.display = 'none';
+                if (updateResponse.ok) {
+                    const result = await updateResponse.json();
+                    document.getElementById('hotelModal').style.display = 'none'; 
                     Swal.fire({
-
                         icon: 'success',
                         title: 'Successfully updated hotel',
-
                         confirmButtonColor: '#007bff'
-                    })
-                    .then(() => {
-                            form.reset();
-                            window.location.reload()
-                        });
-                    // location.reload();
+                    }).then(() => {
+                        form.reset(); 
+                        window.location.reload();
+                    });
                 } else {
-                    const responseData = await response.json();
+                    const responseData = await updateResponse.json();
                     hotelFeedback.innerHTML = '<p class="text-danger">Failed to update hotel: ' + JSON.stringify(responseData) + '</p>';
                 }
             } catch (error) {
@@ -298,4 +356,3 @@ async function editHotel(hotelId) {
         });
     }
 }
-

@@ -1,7 +1,3 @@
-
-
-
-
 // logout 
 function handleLogout() {
     const token = localStorage.getItem('token');
@@ -21,6 +17,7 @@ function handleLogout() {
         // Clear local storage
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
+        localStorage.removeItem('is_staff');
 
         Swal.fire({
             icon: 'success',

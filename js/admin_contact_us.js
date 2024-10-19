@@ -1,3 +1,11 @@
+const token = localStorage.getItem('token');
+const userId = localStorage.getItem('user_id');
+const isStaff = localStorage.getItem('is_staff'); 
+
+if (!token || !userId || !isStaff || isStaff === 'false') {
+    window.location.href = "index.html"; 
+    return;
+}
 
 const apiUrl = 'https://hotel-booking-website-backend.vercel.app/user/admin-messages/';
 

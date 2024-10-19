@@ -2,13 +2,13 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('user_id'); 
-
-    if (!token || !userId) {
+    const userId = localStorage.getItem('user_id');
+    const isStaff = localStorage.getItem('is_staff'); 
+    
+    if (!token || !userId || !isStaff || isStaff === 'false') {
         window.location.href = "index.html"; 
         return;
     }
-
     async function checkIsStaff() {
         try {
             const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {

@@ -24,6 +24,7 @@ const handleLogin = (event) => {
             if (data.token) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user_id', data.user_id);
+                localStorage.setItem('is_staff', data.is_staff);
                 // Check if the user is staff
                 return fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/');
             } else {
