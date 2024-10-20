@@ -96,8 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="text-body mb-3">${truncatedDescription}</p>
                     <p class="card-text"><small class="text-muted">${hotel.district_name}</small></p>
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-sm btn-primary rounded py-2 px-4 view-detail-button" href="#" data-hotel-id="${hotel.id}">View Detail</a>
-                        <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
+                            <a class="btn btn-sm btn-primary rounded py-2 px-4 view-detail-button" href="#" data-hotel-id="${hotel.id}">View Detail</a>
+                            <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -122,8 +122,25 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // View details and book now logic remains the same
-    addEventListenersToButtons();
+    // View details
+    const viewDetailButtons = document.querySelectorAll(".view-detail-button");
+    viewDetailButtons.forEach((button) => {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        const hotelId = button.getAttribute("data-hotel-id");
+        fetchHotelDetails(hotelId);
+      });
+    });
+
+    // Book now
+    const bookNowButtons = document.querySelectorAll(".book-now-button");
+    bookNowButtons.forEach((button) => {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        const hotelId = button.getAttribute("data-hotel-id");
+        handleBooking(hotelId);
+      });
+    });
   }
 
   // Fetch and display hotel details
@@ -167,9 +184,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Handle booking based on login status
   function handleBooking(hotelId) {
+    console.log("Hotel ID:", hotelId); // Check if the correct hotel ID is being passed
     if (isLoggedIn()) {
+      console.log("User is logged in. Redirecting to booking page...");
       window.location.href = `hotel_booking.html?hotelId=${hotelId}`;
     } else {
+      console.log("User is not logged in. Redirecting to login page...");
       window.location.href = "login.html";
     }
   }
@@ -201,26 +221,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function truncateText(text, maxLength) {
   return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-}
-// Function to add event listeners for buttons
-function addEventListenersToButtons() {
-  // View details
-  const viewDetailButtons = document.querySelectorAll(".view-detail-button");
-  viewDetailButtons.forEach((button) => {
-    button.addEventListener("click", function (event) {
-      event.preventDefault();
-      const hotelId = button.getAttribute("data-hotel-id");
-      fetchHotelDetails(hotelId);
-    });
-  });
-
-  // Book now
-  const bookNowButtons = document.querySelectorAll(".book-now-button");
-  bookNowButtons.forEach((button) => {
-    button.addEventListener("click", function (event) {
-      event.preventDefault();
-      const hotelId = button.getAttribute("data-hotel-id");
-      handleBooking(hotelId);
-    });
-  });
 }
