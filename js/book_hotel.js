@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const hotelId = urlParams.get('hotelId');
 
     if (hotelId) {
-        fetch(`https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`)
+        fetch(`https://hotel-booking-website-backend.vercel.app/hotel/names/${hotelId}/`)
             .then(res => res.json())
             .then(data => {
                 document.getElementById('hotel-name').value = data.name;

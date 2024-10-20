@@ -1,7 +1,7 @@
 
 // Select hotel name dynamically
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://hotel-booking-website-backend.vercel.app/hotel/hotels/')
+    fetch('https://hotel-booking-website-backend.vercel.app/hotel/names/')
         .then(response => response.json())
         .then(data => {
             const hotelSelect = document.getElementById('hotel_select');
