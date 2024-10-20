@@ -1,125 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel List</title>
-
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    
-    <style>
-        .hotel-card img {
-            height: 200px;
-            object-fit: cover;
-        }
-        #loadMoreBtn {
-            margin-top: 20px;
-            display: none; /* Initially hidden */
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1 class="mt-5 text-center">Hotels</h1>
-        <div class="packages-carousel owl-carousel pt-5" id="resultsContainer">
-            <!-- Dynamically generated hotel cards will be inserted here -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Listing</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="districtFilter">Filter by District</label>
+          <select id="districtFilter" class="form-control">
+            <option value="">All Districts</option>
+          </select>
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary" id="loadMoreBtn">Load More</button>
+
+        <div class="col-md-4">
+          <label for="searchByName">Search by Name</label>
+          <input
+            type="text"
+            id="searchByName"
+            class="form-control"
+            placeholder="Enter hotel name"
+          />
         </div>
+
+        <div class="col-md-4">
+          <label>&nbsp;</label>
+          <button id="filterButton" class="btn btn-primary btn-block">
+            Filter
+          </button>
+        </div>
+      </div>
+
+      <div class="row mt-4" id="resultsContainer"></div>
+
+      <div class="row mt-4">
+        <button id="loadMoreButton" class="btn btn-secondary mx-auto">
+          Load More
+        </button>
+      </div>
     </div>
 
-    <!-- Add jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Add Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Add Owl Carousel JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
+    <script src="app.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const resultsContainer = document.getElementById("resultsContainer");
-            const loadMoreBtn = document.getElementById("loadMoreBtn");
+      document.addEventListener("DOMContentLoaded", function () {
+        const resultsContainer = document.getElementById("resultsContainer");
+        const districtFilter = document.getElementById("districtFilter");
+        const searchByName = document.getElementById("searchByName");
+        const filterButton = document.getElementById("filterButton");
 
-            let nextPageUrl = 'http://127.0.0.1:8000/hotel/hotels/'; // API initial URL
+        let selectedDistrict = "";
+        let searchName = "";
 
-            // Function to fetch hotel data from the API
-            async function fetchHotels(url) {
-                try {
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    const hotels = data.results;
-                    nextPageUrl = data.next; // Capture next page URL from API
-
-                    // Loop through the hotels and generate the HTML
-                    hotels.forEach(hotel => {
-                        const hotelCard = `
-                            <div class="card mb-3 hotel-card" style="width: 18rem;">
-                                <img src="${hotel.photo}" class="card-img-top" alt="${hotel.name}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${hotel.name}</h5>
-                                    <p class="card-text">${hotel.description}</p>
-                                    <p class="card-text"><strong>Price per night:</strong> $${hotel.price_per_night}</p>
-                                    <p class="card-text"><strong>Available rooms:</strong> ${hotel.available_room}</p>
-                                </div>
-                            </div>
-                        `;
-
-                        // Append the hotel card to the results container
-                        resultsContainer.innerHTML += hotelCard;
-                    });
-
-                    // Initialize or reinitialize the Owl Carousel after adding new hotel cards
-                    initializeCarousel();
-
-                    // Show Load More button if there is a next page
-                    if (nextPageUrl) {
-                        loadMoreBtn.style.display = 'block';
-                    } else {
-                        loadMoreBtn.style.display = 'none'; // Hide if no more pages
-                    }
-
-                } catch (error) {
-                    console.error("Error fetching hotels:", error);
-                }
-            }
-
-            // Function to initialize the Owl Carousel
-            function initializeCarousel() {
-                $(".owl-carousel").owlCarousel({
-                    loop: true,
-                    margin: 10,
-                    nav: true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        600: {
-                            items: 2
-                        },
-                        1000: {
-                            items: 3
-                        }
-                    }
-                });
-            }
-
-            // Load more hotels when the Load More button is clicked
-            loadMoreBtn.addEventListener("click", function () {
-                if (nextPageUrl) {
-                    fetchHotels(nextPageUrl); // Fetch next page of hotels
-                }
+        // Fetch and populate district filter dropdown
+        async function fetchDistricts() {
+          try {
+            const response = await fetch(
+              "http://127.0.0.1:8000/hotel/districts/"
+            );
+            if (!response.ok) throw new Error("Failed to fetch district data");
+            const districts = await response.json();
+            districts.forEach((district) => {
+              const option = document.createElement("option");
+              option.value = district.slug;
+              option.textContent = district.district_name;
+              districtFilter.appendChild(option);
             });
+          } catch (error) {
+            console.error("Error fetching districts:", error);
+          }
+        }
 
-            // Fetch the initial set of hotels when the page loads
-            fetchHotels(nextPageUrl);
+        // Fetch hotels with filter and pagination
+        async function fetchAllHotels(url) {
+          try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Failed to fetch hotels data");
+            const data = await response.json();
+
+            displayHotels(data.results);
+
+            // Fetch the next page if available
+            if (data.next) {
+              await fetchAllHotels(data.next); // Recursive call to fetch the next page
+            }
+          } catch (error) {
+            resultsContainer.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+          }
+        }
+
+        // Display hotels in the DOM
+        function displayHotels(hotelsList) {
+          if (hotelsList.length === 0 && resultsContainer.innerHTML === "") {
+            resultsContainer.innerHTML =
+              '<div class="alert alert-warning">No hotels found.</div>';
+            return;
+          }
+
+          hotelsList.forEach((hotel) => {
+            const hotelCard = document.createElement("div");
+            hotelCard.className = "col-lg-4 col-md-6 mb-4";
+            hotelCard.innerHTML = `
+                <div class="card">
+                    <img src="${hotel.photo}" class="card-img-top" alt="${
+              hotel.name
+            }">
+                    <div class="card-body">
+                        <h5 class="card-title">${hotel.name}</h5>
+                        <p class="card-text">${truncateText(
+                          hotel.description,
+                          100
+                        )}</p>
+                        <p class="card-text"><strong>District:</strong> ${
+                          hotel.district_name
+                        }</p>
+                        <p class="card-text"><strong>Price:</strong> $${
+                          hotel.price_per_night
+                        }/Night</p>
+                        <p class="card-text"><strong>Available Rooms:</strong> ${
+                          hotel.available_room
+                        }</p>
+                    </div>
+                </div>
+            `;
+            resultsContainer.appendChild(hotelCard);
+          });
+        }
+
+        // Truncate text for display
+        function truncateText(text, length) {
+          return text.length > length
+            ? text.substring(0, length) + "..."
+            : text;
+        }
+
+        // Apply filters (district and name search)
+        function applyFilters() {
+          resultsContainer.innerHTML = ""; // Clear previous results
+          let apiUrl =
+            "http://127.0.0.1:8000/hotel/hotels/?";
+
+          if (selectedDistrict) {
+            apiUrl += `district=${selectedDistrict}&`;
+          }
+
+          if (searchName) {
+            apiUrl += `name=${searchName}&`;
+          }
+
+          fetchAllHotels(apiUrl); // Fetch filtered results across all pages
+        }
+
+        // Handle the Filter button click
+        filterButton.addEventListener("click", function () {
+          selectedDistrict = districtFilter.value;
+          searchName = searchByName.value;
+          applyFilters();
         });
-    </script>
 
-</body>
+        // Fetch initial data
+        fetchDistricts();
+        fetchAllHotels(
+          "http://127.0.0.1:8000/hotel/hotels/"
+        );
+      });
+    </script>
+  </body>
 </html>

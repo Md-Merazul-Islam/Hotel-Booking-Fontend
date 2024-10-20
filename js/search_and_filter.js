@@ -55,8 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
     resultsContainer.innerHTML = "";
 
     if (filteredHotels.length === 0) {
-      resultsContainer.innerHTML =
-        '<div class="alert alert-warning">No hotels found.</div>';
+      resultsContainer.innerHTML = `<div class="alert alert-warning text-center">  <a id="seeMoreButton" class="" onclick="window.location.href='room.html';">
+                      To find your hotel click see more 
+                    </a> </div>`;
       return;
     }
 
