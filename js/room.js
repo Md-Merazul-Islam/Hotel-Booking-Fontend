@@ -1,27 +1,32 @@
 
-// room show 
-
 document.addEventListener('DOMContentLoaded', function () {
     const resultsContainer = document.getElementById('resultsContainer');
     const hotelDetailsModal = new bootstrap.Modal(document.getElementById('hotelDetailsModal'));
     const hotelDetailsContent = document.getElementById('hotelDetailsContent');
+    const loadMoreButton = document.getElementById('loadMoreButton'); 
 
     let hotels = [];
+    let nextPageUrl = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
 
-    async function fetchHotels() {
+    async function fetchHotels(url) {
         try {
-            const response = await fetch('https://hotel-booking-website-backend.vercel.app/hotel/hotels/');
+            const response = await fetch(url);
             if (!response.ok) throw new Error('Failed to fetch hotels data');
-            hotels = await response.json();
-            displayResult(hotels);
+            const data = await response.json();
+            hotels = hotels.concat(data.results);
+            displayResult(data.results);
+
+            // Update the next page URL or disable Load More button if no more pages
+            nextPageUrl = data.next;
+            if (!nextPageUrl) {
+                loadMoreButton.style.display = 'none'; 
+            }
         } catch (error) {
             resultsContainer.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
         }
     }
 
     function displayResult(filteredHotels) {
-        resultsContainer.innerHTML = '';
-
         if (filteredHotels.length === 0) {
             resultsContainer.innerHTML = '<div class="alert alert-warning">No hotels found.</div>';
             return;
@@ -57,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <p class="card-text"><small class="text-muted">${hotel.district_name}</small></p>
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-sm btn-primary rounded py-2 px-4 view-detail-button" href="#" data-hotel-id="${hotel.id}">View Detail</a>
-                                <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
+                            <a class="btn btn-sm btn-dark rounded py-2 px-4 book-now-button" href="#" data-hotel-id="${hotel.id}">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsContainer.appendChild(hotelCard);
         });
 
-        //  "View Detail" and "Book Now" buttons
+        // Add event listeners for "View Detail" and "Book Now" buttons
         document.querySelectorAll('.view-detail-button').forEach(button => {
             button.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -76,12 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // "Book Now" buttons
-        const bookNowButtons = document.querySelectorAll('.book-now-button');
-        bookNowButtons.forEach(button => {
+        document.querySelectorAll('.book-now-button').forEach(button => {
             button.addEventListener('click', function (event) {
                 event.preventDefault();
-                const hotelId = button.getAttribute('data-hotel-id');
+                const hotelId = this.getAttribute('data-hotel-id');
                 console.log(`Book Now clicked for hotel ID: ${hotelId}`);
                 handleBooking(hotelId);
             });
@@ -104,19 +107,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const hotel = hotels.find(h => h.id == hotelId);
         if (hotel) {
             hotelDetailsContent.innerHTML = `
-                 <div class="row">
-                <div class="col-md-6">
-                    <img class="img-fluid rounded" src="${hotel.photo}" alt="${hotel.name}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-fluid rounded" src="${hotel.photo}" alt="${hotel.name}">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>${hotel.name}</h4>
+                        <p><strong>Address:</strong> ${hotel.address}</p>
+                        <p><strong>Description:</strong> ${hotel.description}</p>
+                        <p><strong>Price per night:</strong> ${hotel.price_per_night}</p>
+                        <p><strong>Available rooms:</strong> ${hotel.available_room}</p>
+                        <p><strong>District:</strong> ${hotel.district_name}</p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h4>${hotel.name}</h4>
-                    <p><strong>Address:</strong> ${hotel.address}</p>
-                    <p><strong>Description:</strong> ${hotel.description}</p>
-                    <p><strong>Price per night:</strong> ${hotel.price_per_night}</p>
-                    <p><strong>Available rooms:</strong> ${hotel.available_room}</p>
-                    <p><strong>District:</strong> ${hotel.district_name}</p>
-                </div>
-            </div>
             `;
             console.log(`Showing details for hotel ID: ${hotelId}`);
             hotelDetailsModal.show();
@@ -124,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error(`Hotel not found for ID: ${hotelId}`);
         }
     }
-    
+
     function isLoggedIn() {
         return !!localStorage.getItem('user_id');
     }
@@ -141,5 +144,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    fetchHotels();
+    // Load more button click event
+    loadMoreButton.addEventListener('click', function () {
+        if (nextPageUrl) {
+            fetchHotels(nextPageUrl);
+        }
+    });
+
+    // Initial load of hotels
+    fetchHotels(nextPageUrl);
 });

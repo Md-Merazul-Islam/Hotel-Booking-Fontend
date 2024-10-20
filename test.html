@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel List</title>
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    
+    <style>
+        .hotel-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        #loadMoreBtn {
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mt-5 text-center">Hotels</h1>
+        <div class="packages-carousel owl-carousel pt-5" id="resultsContainer">
+            <!-- Dynamically generated hotel cards will be inserted here -->
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" id="loadMoreBtn">Load More</button>
+        </div>
+    </div>
+
+    <!-- Add jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Add Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Add Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const resultsContainer = document.getElementById("resultsContainer");
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+            let nextPageUrl = 'http://127.0.0.1:8000/hotel/hotels/'; // API initial URL
+
+            // Function to fetch hotel data from the API
+            async function fetchHotels(url) {
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    const hotels = data.results;
+                    nextPageUrl = data.next; // Capture next page URL from API
+
+                    // Loop through the hotels and generate the HTML
+                    hotels.forEach(hotel => {
+                        const hotelCard = `
+                            <div class="card mb-3 hotel-card" style="width: 18rem;">
+                                <img src="${hotel.photo}" class="card-img-top" alt="${hotel.name}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${hotel.name}</h5>
+                                    <p class="card-text">${hotel.description}</p>
+                                    <p class="card-text"><strong>Price per night:</strong> $${hotel.price_per_night}</p>
+                                    <p class="card-text"><strong>Available rooms:</strong> ${hotel.available_room}</p>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append the hotel card to the results container
+                        resultsContainer.innerHTML += hotelCard;
+                    });
+
+                    // Initialize or reinitialize the Owl Carousel after adding new hotel cards
+                    initializeCarousel();
+
+                    // Show Load More button if there is a next page
+                    if (nextPageUrl) {
+                        loadMoreBtn.style.display = 'block';
+                    } else {
+                        loadMoreBtn.style.display = 'none'; // Hide if no more pages
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching hotels:", error);
+                }
+            }
+
+            // Function to initialize the Owl Carousel
+            function initializeCarousel() {
+                $(".owl-carousel").owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    nav: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 3
+                        }
+                    }
+                });
+            }
+
+            // Load more hotels when the Load More button is clicked
+            loadMoreBtn.addEventListener("click", function () {
+                if (nextPageUrl) {
+                    fetchHotels(nextPageUrl); // Fetch next page of hotels
+                }
+            });
+
+            // Fetch the initial set of hotels when the page loads
+            fetchHotels(nextPageUrl);
+        });
+    </script>
+
+</body>
+</html>
