@@ -1,6 +1,5 @@
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const hotel_id = urlParams.get('hotelId');
