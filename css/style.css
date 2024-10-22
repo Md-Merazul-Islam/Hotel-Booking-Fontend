@@ -231,7 +231,7 @@
 
 .carousel-header .carousel-inner .carousel-item {
     position: relative;
-    min-height: 90vh;
+    min-height: 60vh;
 }
 
 .carousel-header .carousel-inner .carousel-item img {
@@ -255,7 +255,16 @@
     background-size: cover;
 }
 
+.carosel_img{
+    max-height: 612px;
+}
 
+@media (max-width: 425px) {
+    .carosel_img{
+        max-height: 612px;
+    }
+    
+}
 @media (max-width: 768px) {
     .carousel-header {
         height: 700px !important;

@@ -71,16 +71,15 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsContainer.appendChild(hotelCard);
         });
 
-        // Add event listeners for "View Detail" and "Book Now" buttons
-        document.querySelectorAll('.view-detail-button').forEach(button => {
-            button.addEventListener('click', function (event) {
+        // Get all "View Detail" buttons
+        const viewDetailButtons = document.querySelectorAll('.view-detail-button');
+        viewDetailButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
                 event.preventDefault();
                 const hotelId = this.getAttribute('data-hotel-id');
-                console.log(`View Detail clicked for hotel ID: ${hotelId}`);
-                showHotelDetails(hotelId);
+                window.location.href = `/hotel_details.html?id=${hotelId}`;
             });
         });
-
         document.querySelectorAll('.book-now-button').forEach(button => {
             button.addEventListener('click', function (event) {
                 event.preventDefault();
