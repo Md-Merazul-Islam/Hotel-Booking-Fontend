@@ -231,7 +231,7 @@
 
 .carousel-header .carousel-inner .carousel-item {
     position: relative;
-    min-height: 60vh;
+    min-height: 70vh;
 }
 
 .carousel-header .carousel-inner .carousel-item img {
@@ -255,16 +255,7 @@
     background-size: cover;
 }
 
-.carosel_img{
-    max-height: 612px;
-}
 
-@media (max-width: 425px) {
-    .carosel_img{
-        max-height: 612px;
-    }
-    
-}
 @media (max-width: 768px) {
     .carousel-header {
         height: 700px !important;
@@ -329,9 +320,6 @@
   
 /*** -----------------------------------------------Carousel Hero Header End----------------------------------------------- ***/
 
-.HOTEL-SEARCH-AND-SHOW{
-    
-}
 
 
 /*** -----------------------------------------------Section Title----------------------------------------------- ***/
@@ -533,3 +521,18 @@
 }
 
 /*** -----------------------------------------------Footer end ----------------------------------------------- ***/
+
+
+
+/* login  */
+
+.page_resposnive{
+    min-height: 100vh !important;
+}
+
+
+@media (max-width: 768px) {
+    .page_resposnive{
+        min-height: 100vh !important;
+    }
+}

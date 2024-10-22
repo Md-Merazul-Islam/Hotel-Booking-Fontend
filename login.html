@@ -1,240 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Account login</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.ico" rel="icon" />
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link
+      href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    <style>
-        .flip-right {
-            
+    <link href="css/style.css" rel="stylesheet" />
+    <style></style>
+  </head>
 
-        }
-    </style>
-</head>
-
-<body>
+  <body>
     <!-- <div class="container-xxl bg-white p-0"> -->
     <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
     <!-- Spinner End -->
 
-
-
     <!-- Navbar Start -->
     <div class="container-fluid bg-dark px-0">
-        <div class="row gx-0">
-            <div class="col-lg-2 bg-dark d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2">
-                    <img src="./img/blu.png" alt="BSB" class="" style="width: 42%;">
-                </a>
-            </div>
-            <div class="col-lg-10">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-                    <a href="index.html" class="navbar-brand d-block d-lg-none">
-                        <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
-                        data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link ">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="service.html" class="nav-item nav-link">Services</a>
-                            <a href="room.html" class="nav-item nav-link">Rooms</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
-
-                        </div>
-                        <div id="auth-buttons" class="d-flex flex-row align-items-center gap-3 pe-4">
-                            <!-- Authentication buttons will be dynamically inserted here -->
-                        </div>
-                    </div>
-                </nav>
-            </div>
+      <div class="row gx-0">
+        <div class="col-lg-2 bg-dark d-none d-lg-block">
+          <a
+            href="index.html"
+            class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2"
+          >
+            <img src="./img/blu.png" alt="BSB" class="" style="width: 42%" />
+          </a>
         </div>
+        <div class="col-lg-10">
+          <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+              <img src="./img/blu.png" alt="BSB" class="" style="width: 70px" />
+            </a>
+            <button
+              type="button"
+              class="navbar-toggler"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarCollapse"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-between"
+              id="navbarCollapse"
+            >
+              <div class="navbar-nav mr-auto py-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+                <a href="room.html" class="nav-item nav-link">Rooms</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+              </div>
+              <div
+                id="auth-buttons"
+                class="d-flex flex-row align-items-center gap-3 pe-4"
+              >
+                <!-- Authentication buttons will be dynamically inserted here -->
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
     </div>
     <!-- Navbar End -->
 
-
-
-
-
     <!-- login form  -->
-    <!-- https://lottie.host/embed/d6704aa9-bb8d-4467-bea9-f9077931a08f/YZzkypzrlh.json -->
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
 
-    <section class="vh-100 align-content-center align-items-center">
-        <div class="container">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-md-9 col-lg-6 col-xl-5" data-aos="zoom-in">
-                    <!-- Placeholder image for illustration -->
-                    <div class="img-containersstrap">
-
-                        <!-- <dotlottie-player src="https://lottie.host/21607c29-636f-4da1-93fe-eb7ad0d3863e/Ufa8jNpQFA.json"
-                        background="transparent" speed="1"  loop
-                        autoplay></dotlottie-player> -->
-                        <dotlottie-player src="https://lottie.host/65ee0120-8dfe-4d95-a8f2-9cba2960061d/4JkbjoNXdx.json"
-                            background="transparent" speed="1" style="transform: scaleX(-1);transform-origin: center center;"  loop
-                            autoplay></dotlottie-player>
-
-                        <!-- <img src="./img/new_login-removebg-preview.png" class="img-fluid" alt="Sample image"> -->
-                    </div>
-                    <!-- <img src="./img/login.png" class="img-fluid" alt="Sample image"> -->
-                </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" data-aos="zoom-in-up">
-                    <div class="container">
-                        <h2 class="text-center pb-5">Login to Your Account</h2>
-                        <div id="error-container" class="error-message"></div>
-
-                        <form id="login-form" onsubmit="handleLogin(event)">
-                            <div class="divider d-flex align-items-center my-4"></div>
-                            <div class="form-outline mb-4">
-                                <input type="text" id="login-username" name="username"
-                                    class="form-control form-control-lg" placeholder="Enter your username" required />
-                            </div>
-                            <div class="form-outline mb-3">
-                                <input type="password" id="login-password" name="password"
-                                    class="form-control form-control-lg" placeholder="Enter password" required />
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                    <label class="form-check-label" for="form2Example3">
-                                        Remember me
-                                    </label>
-                                </div>
-                                <a href="#!" class="text-body">Forgot password?</a>
-                            </div>
-                            <div class="text-center text-lg-start mt-4 pt-2">
-                                <button type="submit" class="btn  btn-lg text-white custom-button ">Login</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.html"
-                                        class="link-danger">Register</a></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    <!-- login form -->
+    <section
+      class="page_resposnive align-content-center align-items-center mb-5 pb-5"
+    >
+      <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-md-9 col-lg-6 col-xl-5" data-aos="zoom-in">
+            <!-- Placeholder image for illustration -->
+            <div class="img-containersstrap">
+              <dotlottie-player
+                src="img/Animation - 1729575575427.json"
+                background="transparent"
+                speed="1"
+                style=""
+                loop
+                autoplay
+              ></dotlottie-player>
             </div>
+          </div>
+          <div
+            class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"
+            data-aos="zoom-in-up"
+          >
+            <div class="container">
+              <h2 class="text-center pb-5">Login to Your Account</h2>
+
+              <div id="error-container" class="error-message"></div>
+
+              <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="divider d-flex align-items-center my-4"></div>
+                <div class="form-outline mb-4">
+                  <input
+                    type="text"
+                    id="login-username"
+                    name="username"
+                    class="form-control form-control-lg"
+                    placeholder="Enter your username"
+                    required
+                  />
+                </div>
+                <div class="form-outline mb-3">
+                  <input
+                    type="password"
+                    id="login-password"
+                    name="password"
+                    class="form-control form-control-lg"
+                    placeholder="Enter password"
+                    required
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="form-check mb-0">
+                    <input
+                      class="form-check-input me-2"
+                      type="checkbox"
+                      value=""
+                      id="form2Example3"
+                    />
+                    <label class="form-check-label" for="form2Example3">
+                      Remember me
+                    </label>
+                  </div>
+                  <a href="#!" class="text-body">Forgot password?</a>
+                </div>
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button
+                    type="submit"
+                    class="btn btn-lg text-white custom-button"
+                  >
+                    Login
+                  </button>
+                  <p class="small fw-bold mt-2 pt-1 mb-0">
+                    Don't have an account?
+                    <a href="register.html" class="link-danger">Register</a>
+                  </p>
+                  <br />
+                  <div>
+                    <p>
+                      Admin dashboard : <br />
+                      <span><b>username</b> : manager</span><br />
+                      <span> <b>password </b> : manager2004</span>
+                    </p>
+                    <p>
+                      Normal dashboard : <br />
+                      <span><b>username</b> : saim</span><br />
+                      <span> <b>password </b> : meraz2004</span>
+                    </p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-
-
-
-
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-        <div class="container pb-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-4">
-                    <div class="bg-primary rounded p-4">
-                        <a href="index.html">
-                            <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
-                        </a>
-                        <p class="text-white mb-0">
-                            Discover the luxury and comfort with Blu Sky Booking. Whether you're traveling for
-                            business or pleasure, we offer the best deals and accommodations tailored to your needs.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District, Bangladesh </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@bluskybooking.io.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href="https://twitter.com/bluskybooking"
-                            target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="https://facebook.com/bluskybooking"
-                            target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="https://youtube.com/bluskybooking"
-                            target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="https://linkedin.com/company/bluskybooking"
-                            target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-12">
-                    <div class="row gy-5 g-4">
-                        <div class="col-md-6">
-                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-                            <a class="btn btn-link" href="about.html">About Us</a>
-                            <a class="btn btn-link" href="contact.html">Contact Us</a>
-                            <a class="btn btn-link" href="#">Privacy Policy</a>
-                            <a class="btn btn-link" href="#">Terms & Conditions</a>
-                            <a class="btn btn-link" href="contact.html">Support</a>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-                            <a class="btn btn-link" href="#">Food & Restaurant</a>
-                            <a class="btn btn-link" href="#">Spa & Fitness</a>
-                            <a class="btn btn-link" href="#">Sports & Gaming</a>
-                            <a class="btn btn-link" href="#">Event & Party</a>
-                            <a class="btn btn-link" href="#">GYM & Yoga</a>
-                        </div>
-                    </div>
-                </div>
+    <div
+      class="container-fluid bg-dark text-light footer wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container pb-5">
+        <div class="row g-5">
+          <div class="col-md-6 col-lg-4">
+            <div class="bg-primary rounded p-4">
+              <a href="index.html">
+                <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
+              </a>
+              <p class="text-white mb-0">
+                Discover the luxury and comfort with Blu Sky Booking. Whether
+                you're traveling for business or pleasure, we offer the best
+                deals and accommodations tailored to your needs.
+              </p>
             </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>, <span id="currentYear"></span> All
-                        Rights Reserved.
-                    </div>
-
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="index.html">Home</a>
-                            <a href="#">Cookies</a>
-                            <a href="contact.html">Help</a>
-                            <a href="#">FAQs</a>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6
+              class="section-title text-start text-primary text-uppercase mb-4"
+            >
+              Contact
+            </h6>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District,
+              Bangladesh
+            </p>
+            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>support@bluskybooking.io.com
+            </p>
+            <div class="d-flex pt-2">
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://twitter.com/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://facebook.com/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://youtube.com/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://linkedin.com/company/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
             </div>
+          </div>
+          <div class="col-lg-5 col-md-12">
+            <div class="row gy-5 g-4">
+              <div class="col-md-6">
+                <h6
+                  class="section-title text-start text-primary text-uppercase mb-4"
+                >
+                  Company
+                </h6>
+                <a class="btn btn-link" href="about.html">About Us</a>
+                <a class="btn btn-link" href="contact.html">Contact Us</a>
+                <a class="btn btn-link" href="#">Privacy Policy</a>
+                <a class="btn btn-link" href="#">Terms & Conditions</a>
+                <a class="btn btn-link" href="contact.html">Support</a>
+              </div>
+              <div class="col-md-6">
+                <h6
+                  class="section-title text-start text-primary text-uppercase mb-4"
+                >
+                  Services
+                </h6>
+                <a class="btn btn-link" href="#">Food & Restaurant</a>
+                <a class="btn btn-link" href="#">Spa & Fitness</a>
+                <a class="btn btn-link" href="#">Sports & Gaming</a>
+                <a class="btn btn-link" href="#">Event & Party</a>
+                <a class="btn btn-link" href="#">GYM & Yoga</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>,
+              <span id="currentYear"></span> All Rights Reserved.
+            </div>
+
+            <div class="col-md-6 text-center text-md-end">
+              <div class="footer-menu">
+                <a href="index.html">Home</a>
+                <a href="#">Cookies</a>
+                <a href="contact.html">Help</a>
+                <a href="#">FAQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
     <!-- </div> -->
 
     <!-- JavaScript Libraries -->
@@ -250,7 +343,10 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
@@ -260,13 +356,7 @@
     <script src="js/register.js"></script>
     <script src="js/login.js"></script>
     <script>
-        AOS.init();
+      AOS.init();
     </script>
-
-
-
-
-
-</body>
-
+  </body>
 </html>
