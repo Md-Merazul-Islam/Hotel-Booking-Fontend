@@ -278,81 +278,59 @@
               <hr class="my-4" />
 
               <div class="row mb-4">
-                <div class="">
-                  <div class="">
-                    <h5 class="py-2 text-center">Book a Hotel</h5>
-                    <form method="POST" id="bookingForm">
-                      <div class="mb-3">
-                        <!-- <label for="hotel-name" class="form-label"
-                          >Hotel Name:</label
-                        > -->
-                        <!-- <input
-                          type="text"
-                          class="form-control"
-                          id="hotel-name"
-                          value="Cosmopolitan Hotel"
-                          readonly
-                        /> -->
-                      </div>
-                      <div class="mb-3">
-                        <label for="start_date" class="form-label"
-                          >Start Date:</label
-                        >
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="start_date"
-                          required
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="end_date" class="form-label"
-                          >End Date:</label
-                        >
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="end_date"
-                          required
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="number_of_rooms" class="form-label"
-                          >Number of Rooms:</label
-                        >
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="number_of_rooms"
-                          required
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="payment_method" class="form-label"
-                          >Select Payment Method:</label
-                        >
-                        <select
-                          class="form-select"
-                          id="payment_method"
-                          required
-                        >
-                          <option value="sslcommerz">
-                            Pay with SSLCommerz
-                          </option>
-                          <option value="account">
-                            Pay from Account Balance
-                          </option>
-                        </select>
-                      </div>
-                      <button
-                        type="submit"
-                        class="btn btn-primary w-100"
-                        onclick="handleBook(event)"
+                <div class="container">
+                  <h2>Hotel Booking Form</h2>
+                  <form method="POST" id="bookingForm">
+                    <div class="mb-3">
+                      <label for="start_date" class="form-label"
+                        >Start Date:</label
                       >
-                        Book Hotel
-                      </button>
-                    </form>
-                  </div>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="start_date"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="end_date" class="form-label">End Date:</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="end_date"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="number_of_rooms" class="form-label"
+                        >Number of Rooms:</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="number_of_rooms"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="payment_method" class="form-label"
+                        >Select Payment Method:</label
+                      >
+                      <select class="form-select" id="payment_method" required>
+                        <option value="sslcommerz">Pay with SSLCommerz</option>
+                        <option value="account">
+                          Pay from Account Balance
+                        </option>
+                      </select>
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-primary w-100"
+                      onclick="handleBook(event)"
+                    >
+                      Book Hotel
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -363,7 +341,7 @@
 
     <!-- content -->
 
-    <section class="bg-light border-top py-4">
+    <section class="bg-light border-top py-4 my-5">
       <div class="container">
         <div class="row gx-4">
           <div class="col-lg-8 mb-4">
@@ -598,56 +576,6 @@
 
     <!-- View Details hotel  -->
 
-    <!-- <hr> -->
-
-    <!-- <hr> -->
-
-    <!-- add a comment  -->
-    <!-- Add a Review Section -->
-    <div class="pt-5 pb-5" data-aos="zoom-in-up">
-      <div class="container pb-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 col-md-8 col-sm-10">
-            <div class="form-container-review p-4 shadow-lg rounded bg-white">
-              <h2 class="text-center mb-4">Add a Review</h2>
-              <form method="POST" id="reviewForm">
-                <div class="mb-3">
-                  <label for="body" class="form-label">Review:</label>
-                  <textarea
-                    id="body"
-                    class="form-control"
-                    rows="4"
-                    required
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="rating" class="form-label">Rating:</label>
-                  <select id="rating" class="form-select" required>
-                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐">⭐⭐⭐</option>
-                    <option value="⭐⭐">⭐⭐</option>
-                    <option value="⭐">⭐</option>
-                  </select>
-                </div>
-                <div class="text-center">
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    onclick="handleReview(event)"
-                  >
-                    Submit Review
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- add a comment  -->
-
     <!-- Footer Start -->
     <div
       class="container-fluid bg-dark text-light footer wow fadeIn"
@@ -793,11 +721,9 @@
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/book_hotel.js"></script>
-    <script src="js/index_booking.js"></script>
-    <script src="js/this_hotel_review.js"></script>
+
     <script src="js/hotel_details.js"></script>
+    <!-- <script src="js/hotel_deatils_book.js"></script> -->
 
     <script>
       AOS.init();

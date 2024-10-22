@@ -1,131 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Full Height Content with Footer at Bottom</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-      rel="stylesheet"
+<form method="POST" id="bookingForm">
+  <div class="mb-3">
+    <!-- <label for="hotel-name" class="form-label"
+      >Hotel Name:</label
+    > -->
+    <input
+      type="text"
+      class="form-control"
+      id="hotel-name"
+      value="Cosmopolitan Hotel"
+      readonly
     />
-    <style>
-      /* Ensure full height for html and body */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* Make the body a flex container */
-      body {
-        display: flex;
-        flex-direction: column;
-      }
-
-      /* Content section should grow to fill available space */
-      .content {
-        flex-grow: 1;
-      }
-
-      /* Custom styles for the footer */
-      footer {
-        background-color: #f8f9fa;
-        padding: 20px;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Main content starts here -->
-    <section class="content">
-      <!-- login form -->
-      <section class="align-content-center align-items-center mb-5 pb-5">
-        <div class="container">
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-9 col-lg-6 col-xl-5" data-aos="zoom-in">
-              <!-- Placeholder image for illustration -->
-              <div class="img-containersstrap">
-                <dotlottie-player
-                  src="img/Animation - 1729575575427.json"
-                  background="transparent"
-                  speed="1"
-                  style=""
-                  loop
-                  autoplay
-                ></dotlottie-player>
-              </div>
-            </div>
-            <div
-              class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"
-              data-aos="zoom-in-up"
-            >
-              <div class="container">
-                <h2 class="text-center pb-5">Login to Your Account</h2>
-                <div id="error-container" class="error-message"></div>
-
-                <form id="login-form" onsubmit="handleLogin(event)">
-                  <div class="divider d-flex align-items-center my-4"></div>
-                  <div class="form-outline mb-4">
-                    <input
-                      type="text"
-                      id="login-username"
-                      name="username"
-                      class="form-control form-control-lg"
-                      placeholder="Enter your username"
-                      required
-                    />
-                  </div>
-                  <div class="form-outline mb-3">
-                    <input
-                      type="password"
-                      id="login-password"
-                      name="password"
-                      class="form-control form-control-lg"
-                      placeholder="Enter password"
-                      required
-                    />
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="form-check mb-0">
-                      <input
-                        class="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form2Example3"
-                      />
-                      <label class="form-check-label" for="form2Example3">
-                        Remember me
-                      </label>
-                    </div>
-                    <a href="#!" class="text-body">Forgot password?</a>
-                  </div>
-                  <div class="text-center text-lg-start mt-4 pt-2">
-                    <button
-                      type="submit"
-                      class="btn btn-lg text-white custom-button"
-                    >
-                      Login
-                    </button>
-                    <p class="small fw-bold mt-2 pt-1 mb-0">
-                      Don't have an account?
-                      <a href="register.html" class="link-danger">Register</a>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- Footer starts here -->
-    <footer>
-      <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-  </body>
-</html>
+  </div>
+  <div class="mb-3">
+    <label for="start_date" class="form-label">Start Date:</label>
+    <input type="date" class="form-control" id="start_date" required />
+  </div>
+  <div class="mb-3">
+    <label for="end_date" class="form-label">End Date:</label>
+    <input type="date" class="form-control" id="end_date" required />
+  </div>
+  <div class="mb-3">
+    <label for="number_of_rooms" class="form-label">Number of Rooms:</label>
+    <input type="number" class="form-control" id="number_of_rooms" required />
+  </div>
+  <div class="mb-3">
+    <label for="payment_method" class="form-label"
+      >Select Payment Method:</label
+    >
+    <select class="form-select" id="payment_method" required>
+      <option value="sslcommerz">Pay with SSLCommerz</option>
+      <option value="account">Pay from Account Balance</option>
+    </select>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary w-100"
+    onclick="handleBook(event)"
+  >
+    Book Hotel
+  </button>
+</form>
