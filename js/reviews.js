@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         // Hide spinner and show message if no reviews are available
         hideLoadingSpinner();
-        reviewContainer.innerHTML = `<p>No reviews available at the moment.</p>`;
+        reviewContainer.innerHTML = `<p class="text-center">No reviews available at the moment.</p>`;
         reviewContainer.style.display = "block";
       }
     })
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error fetching the reviews:", error);
       // Hide spinner and show an error message
       hideLoadingSpinner();
-      reviewContainer.innerHTML = `<p>Error loading reviews. Please try again later.</p>`;
+      reviewContainer.innerHTML = `<p class="text-center">Error loading reviews. Please try again later.</p>`;
       reviewContainer.style.display = "block";
     });
 });
