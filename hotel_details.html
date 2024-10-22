@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hotel book, Review show, Add a review</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link
+      href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/review.css" rel="stylesheet" />
+    <link href="css/no_re.css" rel="stylesheet" />
+    <style>
+      #hotelImage {
+        width: 100%; /* Ensures the image takes full width of the container */
+        height: 400px; /* You can adjust the height as per your design */
+        object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+      }
+
+      .image-slider {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px 0;
+        border-top: 1px solid #ddd;
+      }
+
+      .slider-wrapper {
+        display: inline-flex;
+        gap: 10px;
+      }
+
+      .slider-item img {
+        width: 300px;
+        height: 205px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+      }
+
+      .slider-item img:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div class="container-xxl bg-white p-0"> -->
+    <!-- Spinner Start -->
+    <!-- Full-page Spinner -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed w-100 h-100 top-0 start-0 d-flex align-items-center justify-content-center"
+      style="z-index: 9999"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Spinner End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-dark px-0">
+      <div class="row gx-0">
+        <div class="col-lg-2 bg-dark d-none d-lg-block">
+          <a
+            href="index.html"
+            class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center ps-2"
+          >
+            <img src="./img/blu.png" alt="BSB" class="" style="width: 42%" />
+          </a>
+        </div>
+        <div class="col-lg-10">
+          <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+              <img src="./img/blu.png" alt="BSB" class="" style="width: 70px" />
+            </a>
+            <button
+              type="button"
+              class="navbar-toggler"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarCollapse"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-between"
+              id="navbarCollapse"
+            >
+              <div class="navbar-nav mr-auto py-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+                <a href="room.html" class="nav-item nav-link">Rooms</a>
+                <a href="booking.html" class="nav-item nav-link active"
+                  >Booking</a
+                >
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+              </div>
+              <div
+                class="d-flex flex-row align-items-center justify-content-end gap-3 pe-3"
+                id="auth-buttons"
+              ></div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Content Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Image Gallery -->
+          <aside class="col-lg-6">
+            <div class="border rounded-4 mb-4 d-flex justify-content-center">
+              <img
+                style="max-width: 100%; margin: auto"
+                class="rounded-4 fit"
+                id="hotelImage"
+                alt="Hotel Image"
+                src="img/hotel-6.jpg"
+              />
+            </div>
+
+            <!-- Image Thumbnails Slider -->
+            <div class="image-slider">
+              <div class="slider-wrapper">
+                <div class="slider-item">
+                  <img
+                    src="img/hotel-5.jpg"
+                    alt="Thumbnail 1"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="img/hotel-6.jpg"
+                    alt="Thumbnail 1"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="img/hotel-7.jpg"
+                    alt="Thumbnail 1"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="img/hotel-8.jpg"
+                    alt="Thumbnail 1"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="img/hotel-9.jpg"
+                    alt="Thumbnail 1"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="img/hotel-10.jpg"
+                    alt="Thumbnail 1"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="img/about1.jpg"
+                    alt="Thumbnail 2"
+                    onclick="changeImage(this)"
+                  />
+                </div>
+
+                <!-- Add more thumbnails as needed -->
+              </div>
+            </div>
+          </aside>
+
+          <!-- Hotel Details -->
+          <main class="col-lg-6">
+            <div class="ps-lg-3">
+              <!-- Hotel Name and Location -->
+              <h4 class="title text-dark mb-2" id="hotelName">Loading...</h4>
+
+              <p class="text-muted mb-3">
+                <i class="fa fa-location-arrow me-1"></i>
+                <span id="hotelAddress">Loading...</span>
+              </p>
+
+              <!-- Rating and Availability -->
+              <div class="d-flex flex-row my-3 align-items-center">
+                <div class="text-warning mb-1 me-3">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <span class="ms-1" id="hotelRating">4.5</span>
+                </div>
+                <span class="text-muted">
+                  <i class="fas fa-shopping-basket fa-sm mx-1"></i>
+                  <span id="hotelOrders">154 orders</span>
+                </span>
+                <span class="text-success ms-3" id="hotelAvailability"
+                  >In stock</span
+                >
+              </div>
+
+              <!-- Price per Night -->
+              <div class="mb-3">
+                <span class="h5" id="hotelPrice">Loading...</span>
+                <span class="text-muted">/per room</span>
+              </div>
+
+              <!-- Hotel Description -->
+              <p class="text-muted" id="hotelDescription">
+                A top-class hotel offering premium facilities in the heart of
+                Dhaka. With spacious rooms, fine dining, and easy access to
+                business hubs and tourist attractions, this hotel is perfect for
+                both leisure and business travelers. Enjoy a rooftop pool, a
+                well-equipped fitness center, and stunning city views.
+              </p>
+
+              <!-- Booking Form -->
+              <hr class="my-4" />
+
+              <div class="row mb-4">
+                <div class="">
+                  <div class="">
+                    <h5 class="py-2 text-center">Book a Hotel</h5>
+                    <form method="POST" id="bookingForm">
+                      <div class="mb-3">
+                        <!-- <label for="hotel-name" class="form-label"
+                          >Hotel Name:</label
+                        > -->
+                        <!-- <input
+                          type="text"
+                          class="form-control"
+                          id="hotel-name"
+                          value="Cosmopolitan Hotel"
+                          readonly
+                        /> -->
+                      </div>
+                      <div class="mb-3">
+                        <label for="start_date" class="form-label"
+                          >Start Date:</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="start_date"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="end_date" class="form-label"
+                          >End Date:</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="end_date"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="number_of_rooms" class="form-label"
+                          >Number of Rooms:</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="number_of_rooms"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="payment_method" class="form-label"
+                          >Select Payment Method:</label
+                        >
+                        <select
+                          class="form-select"
+                          id="payment_method"
+                          required
+                        >
+                          <option value="sslcommerz">
+                            Pay with SSLCommerz
+                          </option>
+                          <option value="account">
+                            Pay from Account Balance
+                          </option>
+                        </select>
+                      </div>
+                      <button
+                        type="submit"
+                        class="btn btn-primary w-100"
+                        onclick="handleBook(event)"
+                      >
+                        Book Hotel
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <!-- content -->
+
+    <section class="bg-light border-top py-4">
+      <div class="container">
+        <div class="row gx-4">
+          <div class="col-lg-8 mb-4">
+            <div class="border rounded-2 px-3 py-2 bg-white">
+              <!-- Pills navs -->
+              <ul
+                class="nav nav-pills nav-justified mb-3"
+                id="ex1"
+                role="tablist"
+              >
+                <li class="nav-item d-flex" role="presentation">
+                  <a
+                    class="nav-link d-flex align-items-center justify-content-center w-100 active"
+                    id="ex1-tab-1"
+                    data-mdb-toggle="pill"
+                    href="#ex1-pills-1"
+                    role="tab"
+                    aria-controls="ex1-pills-1"
+                    aria-selected="true"
+                    >Specification</a
+                  >
+                </li>
+                <li class="nav-item d-flex" role="presentation">
+                  <a
+                    class="nav-link d-flex align-items-center justify-content-center w-100"
+                    id="ex1-tab-2"
+                    data-mdb-toggle="pill"
+                    href="#ex1-pills-2"
+                    role="tab"
+                    aria-controls="ex1-pills-2"
+                    aria-selected="false"
+                    >Warranty info</a
+                  >
+                </li>
+                <li class="nav-item d-flex" role="presentation">
+                  <a
+                    class="nav-link d-flex align-items-center justify-content-center w-100"
+                    id="ex1-tab-3"
+                    data-mdb-toggle="pill"
+                    href="#ex1-pills-3"
+                    role="tab"
+                    aria-controls="ex1-pills-3"
+                    aria-selected="false"
+                    >Shipping info</a
+                  >
+                </li>
+                <li class="nav-item d-flex" role="presentation">
+                  <a
+                    class="nav-link d-flex align-items-center justify-content-center w-100"
+                    id="ex1-tab-4"
+                    data-mdb-toggle="pill"
+                    href="#ex1-pills-4"
+                    role="tab"
+                    aria-controls="ex1-pills-4"
+                    aria-selected="false"
+                    >Seller profile</a
+                  >
+                </li>
+              </ul>
+              <!-- Pills navs -->
+
+              <!-- Pills content -->
+              <div class="tab-content" id="ex1-content">
+                <div
+                  class="tab-pane fade show active"
+                  id="ex1-pills-1"
+                  role="tabpanel"
+                  aria-labelledby="ex1-tab-1"
+                >
+                  <h5>Hotel Information</h5>
+                  <p>
+                    Welcome to <strong>The Grand Hotel</strong>, located in the
+                    heart of the city, offering luxury accommodations with
+                    stunning views and exceptional service.
+                  </p>
+                  <div class="row mb-2">
+                    <div class="col-12 col-md-6">
+                      <ul class="list-unstyled mb-0">
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>Free
+                          Wi-Fi
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i
+                          >Complimentary breakfast
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>Swimming
+                          pool
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>Fitness
+                          center
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-12 col-md-6 mb-0">
+                      <ul class="list-unstyled">
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>24-hour
+                          room service
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>On-site
+                          restaurant and bar
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>Spa
+                          services available
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <table class="table border mt-3 mb-2">
+                    <tr>
+                      <th class="py-2">Our Location:</th>
+                      <td class="py-2">123 Main Street, Dhaka City</td>
+                    </tr>
+                    <tr>
+                      <th class="py-2">Room Types:</th>
+                      <td class="py-2">Deluxe, Suite, Family Room</td>
+                    </tr>
+                    <tr>
+                      <th class="py-2">For Emergency :</th>
+                      <td class="py-2">+880165346532</td>
+                    </tr>
+                    <tr>
+                      <th class="py-2">More about :</th>
+                      <td class="py-2">+5345343432</td>
+                    </tr>
+                    <tr>
+                      <th class="py-2">Cancellation Policy:</th>
+                      <td class="py-2">Free cancellation within 24 hours.</td>
+                    </tr>
+                  </table>
+                </div>
+                <div
+                  class="tab-pane fade mb-2"
+                  id="ex1-pills-2"
+                  role="tabpanel"
+                  aria-labelledby="ex1-tab-2"
+                >
+                  Warranty info or sample information now <br />
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <div
+                  class="tab-pane fade mb-2"
+                  id="ex1-pills-3"
+                  role="tabpanel"
+                  aria-labelledby="ex1-tab-3"
+                >
+                  Another tab content or sample information now <br />
+                  Dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <div
+                  class="tab-pane fade mb-2"
+                  id="ex1-pills-4"
+                  role="tabpanel"
+                  aria-labelledby="ex1-tab-4"
+                >
+                  Some other tab content or sample information now <br />
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <!-- Pills content -->
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="px-0 border rounded-2 shadow-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Similar items</h5>
+                  <div id="similarItems">
+                    <div class="d-flex mb-3">
+                      <a href="#" class="me-3">
+                        <img
+                          src="img/hotel-9.jpg"
+                          style="min-width: 96px; height: 96px"
+                          class="img-md img-thumbnail"
+                        />
+                      </a>
+                      <div class="info">
+                        <a href="#" class="nav-link mb-1"
+                          >Old Dhaka Heritage Hotel</a
+                        >
+                        <strong class="text-dark"> $120.00</strong>
+                      </div>
+                    </div>
+
+                    <div class="d-flex">
+                      <a href="#" class="me-3">
+                        <img
+                          src="img/hotel-6.jpg"
+                          style="min-width: 96px; height: 96px"
+                          class="img-md img-thumbnail"
+                        />
+                      </a>
+                      <div class="info">
+                        <a href="#" class="nav-link mb-1"
+                          >Rangpur Royal Hotel</a
+                        >
+                        <strong class="text-dark"> $339.90</strong>
+                      </div>
+                    </div>
+                    <div class="d-flex">
+                      <a href="#" class="me-3">
+                        <img
+                          src="img/hotel-7.jpg"
+                          style="min-width: 96px; height: 96px"
+                          class="img-md img-thumbnail"
+                        />
+                      </a>
+                      <div class="info">
+                        <a href="#" class="nav-link mb-1"
+                          >Rangamati Riverfront Resort</a
+                        >
+                        <strong class="text-dark"> $339.90</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Container for dynamically loaded hotels -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View Details hotel  -->
+
+    <!-- <hr> -->
+
+    <!-- <hr> -->
+
+    <!-- add a comment  -->
+    <!-- Add a Review Section -->
+    <div class="pt-5 pb-5" data-aos="zoom-in-up">
+      <div class="container pb-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="form-container-review p-4 shadow-lg rounded bg-white">
+              <h2 class="text-center mb-4">Add a Review</h2>
+              <form method="POST" id="reviewForm">
+                <div class="mb-3">
+                  <label for="body" class="form-label">Review:</label>
+                  <textarea
+                    id="body"
+                    class="form-control"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="rating" class="form-label">Rating:</label>
+                  <select id="rating" class="form-select" required>
+                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐">⭐⭐⭐</option>
+                    <option value="⭐⭐">⭐⭐</option>
+                    <option value="⭐">⭐</option>
+                  </select>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    onclick="handleReview(event)"
+                  >
+                    Submit Review
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- add a comment  -->
+
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-dark text-light footer wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container pb-5">
+        <div class="row g-5">
+          <div class="col-md-6 col-lg-4">
+            <div class="bg-primary rounded p-4">
+              <a href="index.html">
+                <h1 class="text-white text-uppercase mb-3">Blu Sky Booking</h1>
+              </a>
+              <p class="text-white mb-0">
+                Discover the luxury and comfort with Blu Sky Booking. Whether
+                you're traveling for business or pleasure, we offer the best
+                deals and accommodations tailored to your needs.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6
+              class="section-title text-start text-primary text-uppercase mb-4"
+            >
+              Contact
+            </h6>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>1230, Dhaka District,
+              Bangladesh
+            </p>
+            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01401734625</p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>support@bluskybooking.io.com
+            </p>
+            <div class="d-flex pt-2">
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://twitter.com/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://facebook.com/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://youtube.com/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://linkedin.com/company/bluskybooking"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-12">
+            <div class="row gy-5 g-4">
+              <div class="col-md-6">
+                <h6
+                  class="section-title text-start text-primary text-uppercase mb-4"
+                >
+                  Company
+                </h6>
+                <a class="btn btn-link" href="about.html">About Us</a>
+                <a class="btn btn-link" href="contact.html">Contact Us</a>
+                <a class="btn btn-link" href="#">Privacy Policy</a>
+                <a class="btn btn-link" href="#">Terms & Conditions</a>
+                <a class="btn btn-link" href="contact.html">Support</a>
+              </div>
+              <div class="col-md-6">
+                <h6
+                  class="section-title text-start text-primary text-uppercase mb-4"
+                >
+                  Services
+                </h6>
+                <a class="btn btn-link" href="#">Food & Restaurant</a>
+                <a class="btn btn-link" href="#">Spa & Fitness</a>
+                <a class="btn btn-link" href="#">Sports & Gaming</a>
+                <a class="btn btn-link" href="#">Event & Party</a>
+                <a class="btn btn-link" href="#">GYM & Yoga</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a class="border-bottom" href="#">Blu Sky Booking</a>,
+              <span id="currentYear"></span>
+              All Rights Reserved.
+            </div>
+
+            <div class="col-md-6 text-center text-md-end">
+              <div class="footer-menu">
+                <a href="index.html">Home</a>
+                <a href="#">Cookies</a>
+                <a href="contact.html">Help</a>
+                <a href="#">FAQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
+    <!-- </div> -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+    <script
+      src="https://creattie.com/js/embed.js?id=3f6954fde297cd31b441"
+      defer
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Template Javascript -->
+
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/book_hotel.js"></script>
+    <script src="js/index_booking.js"></script>
+    <script src="js/this_hotel_review.js"></script>
+    <script src="js/hotel_details.js"></script>
+
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

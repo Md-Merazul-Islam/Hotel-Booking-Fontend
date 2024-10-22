@@ -123,16 +123,16 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // View details
-    const viewDetailButtons = document.querySelectorAll(".view-detail-button");
-    viewDetailButtons.forEach((button) => {
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
-        const hotelId = button.getAttribute("data-hotel-id");
-        fetchHotelDetails(hotelId);
+  // Get all "View Detail" buttons
+  const viewDetailButtons = document.querySelectorAll('.view-detail-button');
+  viewDetailButtons.forEach(button => {
+      button.addEventListener('click', function(event) {
+          event.preventDefault();
+          const hotelId = this.getAttribute('data-hotel-id');
+          window.location.href = `/hotel_details.html?id=${hotelId}`;
       });
-    });
-
+  });
+  
     // Book now
     const bookNowButtons = document.querySelectorAll(".book-now-button");
     bookNowButtons.forEach((button) => {
@@ -144,40 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Fetch and display hotel details
-  async function fetchHotelDetails(hotelId) {
-    try {
-      const response = await fetch(
-        `https://hotel-booking-website-backend.vercel.app/hotel/hotels/${hotelId}/`
-      );
-      if (!response.ok) throw new Error("Failed to fetch hotel details");
-      const hotel = await response.json();
-      populateHotelDetails(hotel);
-    } catch (error) {
-      hotelDetailsContent.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
-      hotelDetailsModal.show();
-    }
-  }
-
-  // Populate hotel details in the modal
-  function populateHotelDetails(hotel) {
-    hotelDetailsContent.innerHTML = `
-            <div class="row">
-                <div class="col-md-6">
-                    <img class="img-fluid rounded" src="${hotel.photo}" alt="${hotel.name}">
-                </div>
-                <div class="col-md-6">
-                    <h4>${hotel.name}</h4>
-                    <p><strong>Address:</strong> ${hotel.address}</p>
-                    <p><strong>Description:</strong> ${hotel.description}</p>
-                    <p><strong>Price per night:</strong> ${hotel.price_per_night}</p>
-                    <p><strong>Available rooms:</strong> ${hotel.available_room}</p>
-                    <p><strong>District:</strong> ${hotel.district_name}</p>
-                </div>
-            </div>
-        `;
-    hotelDetailsModal.show();
-  }
 
   function isLoggedIn() {
     return localStorage.getItem("token") !== null;
@@ -185,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Handle booking based on login status
   function handleBooking(hotelId) {
-    console.log("Hotel ID:", hotelId); // Check if the correct hotel ID is being passed
+    console.log("Hotel ID:", hotelId);
     if (isLoggedIn()) {
       console.log("User is logged in. Redirecting to booking page...");
       window.location.href = `hotel_booking.html?hotelId=${hotelId}`;
