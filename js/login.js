@@ -72,3 +72,15 @@ function displayError(message) {
 
 // Event listener for login form submission
 document.getElementById('login-form').addEventListener('submit', handleLogin);
+
+
+
+
+// logged user restriction 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = 'index.html'; 
+    }
+});

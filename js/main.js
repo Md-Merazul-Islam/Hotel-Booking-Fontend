@@ -143,123 +143,102 @@
 
 
 
-
 // menus login  / logout interface 
-
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', function () {
     const authButtons = document.getElementById('auth-buttons');
     const token = localStorage.getItem('token');
     const userId = parseInt(localStorage.getItem('user_id'));
+    const isStaff = localStorage.getItem('is_staff') === 'true'; 
 
     if (token) {
-        try {
-            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/account/', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
+        // Use the token to fetch user account information
+        fetch('https://hotel-booking-website-backend.vercel.app/user/account/', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch user account data');
             }
-
-            const userData = await response.json();
-
-            if (userData.length === 0) {
-                throw new Error('No user account data found');
-            }
-
-
+            return response.json();
+        })
+        .then(userData => {
             const account = userData.find(account => account.account_no === userId);
-
             if (!account) {
                 throw new Error('No matching user account found');
             }
 
+            // Extract and format the balance
             const balance = parseFloat(account.balance.replace(',', ''));
 
-
-            // Fetch staff data separately
-            fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/')
-                .then(response => response.json())
-                .then(users => {
-                    const user = users.find(user => user.username === account.username);
-                    const isStaff = user && user.is_staff;
-                    console.log(isStaff)
-
-                    // Determine which buttons to display based on isAdmin or isStaff
-                    if (isStaff) {
-                        authButtons.innerHTML = `
-                            <div class="d-flex justify-content-end align-items-center">
-                                <div class="dropstart">
-                                    <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div>
-                                            <div><img src="${account.profile_image || './img/user.png'}" class="r-img" alt="My profile"></div>
-                                            <div><small class="pp-username small-text">${account.username}</small></div>
-                                        </div>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="admin_dashboard.html">
-                                            Admin Panel 
-                                        </a></li>
-                                        <li><a class="dropdown-item" href="my_account.html">
-                                            <img src="./img/user.png" class="r-img" alt="Profile"> My Profile
-                                        </a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="handleLogout()">
-                                            <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
-                                        </a></li>
-                                    </ul>
+            // Display appropriate buttons for staff or regular users
+            if (isStaff) {
+                authButtons.innerHTML = `
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="dropstart">
+                            <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <div><img src="${account.profile_image || './img/user.png'}" class="r-img" alt="My profile"></div>
+                                    <div><small class="pp-username small-text">${account.username}</small></div>
                                 </div>
-                            </div>
-                        `;
-
-
-
-                    } else {
-                        authButtons.innerHTML = `
-                        <div class="d-flex justify-content-end align-items-center">
-                            <div class="balance">$${balance.toFixed(2)}</div>
-                            <div class="dropstart">
-                                <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div>
-                                        <div><img src="${account.profile_image || './img/user.png'}" class="r-img" alt="My profile"></div>
-                                        <div><small class="pp-username small-text">${account.username}</small></div>
-                                    </div>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">
-                                        <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $${balance.toFixed(2)}
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="my_account.html">
-                                        <img src="./img/user.png" class="r-img" alt="Profile" > My Profile
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="deposit.html">
-                                        <img src="./img/add-wallet.png" class="r-img" alt="Deposit"> Deposit
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="handleLogout()">
-                                        <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
-                                    </a></li>
-                                </ul>
-                            </div>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="admin_dashboard.html">
+                                    Admin Panel
+                                </a></li>
+                                <li><a class="dropdown-item" href="my_account.html">
+                                    <img src="./img/user.png" class="r-img" alt="Profile"> My Profile
+                                </a></li>
+                                <li><a class="dropdown-item" href="#" onclick="handleLogout()">
+                                    <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
+                                </a></li>
+                            </ul>
                         </div>
-                    `;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching staff data:', error);
-                    displayError('An error occurred while checking user role.');
-                });
-
-        } catch (error) {
+                    </div>
+                `;
+            } else {
+                authButtons.innerHTML = `
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="balance">$${balance.toFixed(2)}</div>
+                        <div class="dropstart">
+                            <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <div><img src="${account.profile_image || './img/user.png'}" class="r-img" alt="My profile"></div>
+                                    <div><small class="pp-username small-text">${account.username}</small></div>
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">
+                                    <img src="./img/credit-cards.png" class="r-img" alt="Balance"> $${balance.toFixed(2)}
+                                </a></li>
+                                <li><a class="dropdown-item" href="my_account.html">
+                                    <img src="./img/user.png" class="r-img" alt="Profile"> My Profile
+                                </a></li>
+                                <li><a class="dropdown-item" href="deposit.html">
+                                    <img src="./img/add-wallet.png" class="r-img" alt="Deposit"> Deposit
+                                </a></li>
+                                <li><a class="dropdown-item" href="#" onclick="handleLogout()">
+                                    <img src="./img/logout.png" class="r-img" alt="Logout"> Logout
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
             console.error('Error fetching user account data:', error);
+            // Show login/register buttons if error occurs
             authButtons.innerHTML = `
                 <div>
                     <a class="btn btn-light fw-semibold me-2" href="register.html">Sign up</a>
                     <a class="btn btn-primary fw-semibold" href="login.html">Login</a>
                 </div>
             `;
-        }
+        });
     } else {
+        // No token found, show login/register buttons
         authButtons.innerHTML = `
             <div>
                 <a class="btn btn-light fw-semibold me-2" href="register.html">Sign up</a>
@@ -268,10 +247,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         `;
         console.error('No token found');
     }
+
+    // Update the year dynamically in the footer or wherever necessary
+    const currentYear = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = currentYear;
 });
 
-
-
-// Dynamic year 
-const currentYear = new Date().getFullYear();
-document.getElementById('currentYear').textContent = currentYear;
+// Function to handle logout
+function handleLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('is_staff');
+    window.location.href = 'login.html'; // Redirect to login page after logout
+}

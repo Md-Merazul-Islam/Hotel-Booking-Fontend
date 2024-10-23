@@ -1,3 +1,4 @@
+
 // register 
 
 document.getElementById('registrationForm').addEventListener('submit', async function (event) {
@@ -88,3 +89,13 @@ function displayError(message) {
     errorContainer.classList.add('text-danger');
     errorContainer.style.display = 'block';
 }
+
+
+// logged user restriction 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = 'index.html'; 
+    }
+});
