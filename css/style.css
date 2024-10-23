@@ -308,6 +308,7 @@
 }
 
 
+
 /* Apply Cinzel to headings in the carousel */
 .carousel-caption h1, .carousel-caption h4, .carousel-caption h5 {
     font-family: 'Cinzel', serif;
@@ -536,3 +537,12 @@
         min-height: 100vh !important;
     }
 }
+
+
+
+
+
+
+
+
+
