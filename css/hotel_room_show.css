@@ -1,12 +1,5 @@
 /*** -----------------------------------------------hotel room  Start----------------------------------------------- ***/
 
-@media (min-width: 1400px) {
-    .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-        /* max-width: 1800px; */
-        /* max-width: 100%; */
-    }
-}
-
 
 .card-img-top {
     width: 100%;

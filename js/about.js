@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('total-available-rooms').textContent = TotalAvailableRoom;
    }
 })
+
+
+
 document.addEventListener('DOMContentLoaded',()=>{
    const url = 'https://hotel-booking-website-backend.vercel.app/user/allUser/';
    fetch(url)

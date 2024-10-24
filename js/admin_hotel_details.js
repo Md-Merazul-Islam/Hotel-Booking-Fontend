@@ -38,6 +38,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    // API URL
+    const apiUrl = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
+ 
+    // Fetch data from the API
+    fetch(apiUrl)
+        .then(response => response.json()) // Convert response to JSON
+        .then(data => {
+            // Get the total count from the response
+            const totalHotels = data.count;
+ 
+            // Display the total number of hotels in the HTML
+            document.getElementById('total-hotels').textContent = totalHotels;
+        })
+        .catch(error => {
+            console.error('Error fetching the API:', error);
+            
+        });
+ });
+
+
 document.addEventListener('DOMContentLoaded',()=>{
     const url = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
     fetch(url)
@@ -49,10 +71,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     function display(hotels){
      const TotalHotel = hotels.length;
      const TotalAvailableRoom  = hotels.reduce((sum,hotel)=>sum+hotel.available_room, 0) ;
-     document.getElementById('total-hotels').textContent= TotalHotel;
+     
      document.getElementById('total-available-rooms').textContent = TotalAvailableRoom;
     }
  })
+
+
  document.addEventListener('DOMContentLoaded',()=>{
     const url = 'https://hotel-booking-website-backend.vercel.app/user/allUser/';
     fetch(url)

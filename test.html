@@ -1,97 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Hotel Review</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Hotel List</title>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <h2>Submit a Review</h2>
-        <form id="reviewForm">
-            <div class="form-group">
-                <label for="body">Review Body:</label>
-                <textarea id="body" class="form-control" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="rating">Rating:</label>
-                <select id="rating" class="form-control" required>
-                    <option value="" disabled selected>Select your rating</option>
-                    <option value="⭐">⭐</option>
-                    <option value="⭐⭐">⭐⭐</option>
-                    <option value="⭐⭐⭐">⭐⭐⭐</option>
-                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-        </form>
-    </div>
+    <h1>Total Hotels: <span id="total-hotels">Loading...</span></h1>
 
+    <script src="app.js"></script>
     <script>
-        const handleReview = (event) => {
-            event.preventDefault();
-            const user_id = localStorage.getItem("user_id");
-            if (!user_id) {
-                Swal.fire({
-                    icon: "error",
-                    title: "User not logged in",
-                    text: "User ID not found in localStorage. Please log in.",
-                });
-                window.location.href = "login.html";
-                return;
-            }
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const hotel_id = urlParams.get("hotelId");
-            const body = document.getElementById("body").value;
-            const rating = document.getElementById("rating").value;
-
-            const formData = {
-                body: body,
-                rating: rating,
-                hotel: parseInt(hotel_id),
-                // user ID is handled automatically in the backend
-            };
-
-            fetch("http://127.0.0.1:8000/hotel/review_add/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            })
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error(`Failed to submit review. ${res.status}`);
-                }
-                return res.json();
-            })
-            .then((data) => {
-                Swal.fire({
-                    icon: "success",
-                    title: "Review Submitted",
-                    text: "Your review was added successfully!",
-                }).then(() => {
-                    window.location.reload();
-                });
-                console.log(data);
-            })
-            .catch((error) => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Submission Failed",
-                    text: error.message.startsWith("Failed to fetch")
-                        ? "Failed to fetch. Network error occurred."
-                        : `Failed to submit review. `,
-                });
-                console.error("Error:", error);
-            });
-        };
-
-        document.getElementById("reviewForm").addEventListener("submit", handleReview);
+       
     </script>
 </body>
+
 </html>
