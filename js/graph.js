@@ -90,20 +90,16 @@ const upDownLineChart = new Chart(upDownLineCtx, {
   },
 });
 
-
 document.addEventListener("DOMContentLoaded", async () => {
-
   // Initial dummy data values
   let totalClients = 5;
   let totalHotels = 25;
-  let totalAvailableRooms = 725;
+  let totalAvailableRooms = 265;
   let totalBookedRooms = 26;
-
 
   renderChart(totalClients, totalHotels, totalAvailableRooms, totalBookedRooms);
 
   try {
-
     const clientsResponse = await fetch(
       "https://hotel-booking-website-backend.vercel.app/user/allUser/"
     );
@@ -142,7 +138,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("total-booked-room").textContent = totalBookedRooms;
     console.log("Total Booked Rooms:", totalBookedRooms);
 
- 
     renderChart(
       totalClients,
       totalHotels,
