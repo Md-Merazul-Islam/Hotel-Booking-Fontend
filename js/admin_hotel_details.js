@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded',()=>{
  
 
 
-//  for total booked list 
 // display booked info 
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token'); 
