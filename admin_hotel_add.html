@@ -169,12 +169,21 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="hotel-list">
                                     <!-- ------dynamic content-------- -->
+                                    <div id="loadingSpinner" style="display: none; text-align: center;">
+                                        <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+
                                 </tbody>
                             </table>
 
-
+                            <div class="text-center d-flex align-items-center justify-content-center" style="height: 100px;">
+                                <button id="load-more" class="btn btn-primary" style="display: none;">Load More</button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -323,9 +332,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.all.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
     <script src="js/logout.js"></script>
-    <script src="js/register.js"></script>
     <script src="js/admin_hotel_add.js"></script>
 
 </body>

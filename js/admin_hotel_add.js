@@ -9,90 +9,99 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    async function checkIsStaff() {
-        try {
-            const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
+    // async function checkIsStaff() {
+    //     try {
+    //         const response = await fetch('https://hotel-booking-website-backend.vercel.app/user/is_users_staff/', {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         });
+
+    //         const users = await response.json();
+
+    //         const user = users.find(user => user.id === parseInt(userId));
+
+    //         if (!user || !user.is_staff) {
+    //             window.location.href = "index.html"; 
+    //         } else {
+
+    //             console.log('Welcome to the admin page');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         window.location.href = "index.html"; 
+    //     }
+    // }
+
+    // checkIsStaff();
+});
+
+
+
+let nextPageUrl = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
+
+// Function to fetch hotel data
+function fetchHotelData() {
+    if (nextPageUrl) {
+        fetch(nextPageUrl)
+            .then(response => response.json())
+            .then(data => {
+                const hotels = data.results;
+                const hotelList = document.getElementById('hotel-list');
+                nextPageUrl = data.next; 
+
+               
+                if (hotels.length > 0) {
+                    document.getElementById('load-more').style.display = 'block';
+
+                    hotels.forEach(hotel => {
+                        const row = document.createElement('tr');
+
+                        row.innerHTML = `
+                        <td>${hotel.id}</td>
+                        <td>${hotel.name}</td>
+                        <td>${hotel.address}</td>
+                        <td>${hotel.district_name}</td>
+                        <td><img src="${hotel.photo}" alt="${hotel.name}" width="100"></td>
+                        <td>${hotel.description}</td>
+                        <td>$${hotel.price_per_night}</td>
+                        <td>${hotel.available_room}</td>
+                        <td>
+                        <div class="d-flex gap-1">
+                                <div><button class="btn btn-success" onclick="editHotel(${hotel.id})"><i class="fas fa-edit"></i></button></div>
+                                <div><button class="btn btn-danger" onclick="deleteHotel(${hotel.id}, this)"><i class="fas fa-trash-alt"></i></button></div>
+                            </div>
+                        </td>
+                    `;
+
+                        hotelList.appendChild(row);
+                    });
                 }
+
+                
+                if (!nextPageUrl) {
+                    document.getElementById('load-more').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching hotels:', error);
             });
-
-            const users = await response.json();
-
-            const user = users.find(user => user.id === parseInt(userId));
-
-            if (!user || !user.is_staff) {
-                window.location.href = "index.html"; 
-            } else {
-
-                console.log('Welcome to the admin page');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            window.location.href = "index.html"; 
-        }
-    }
-
-    checkIsStaff();
-});
-
-
-
-
-document.addEventListener('DOMContentLoaded', async function () {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-        window.location.href = "login.html";
-        return;
-    }
-    const apiUrl = 'https://hotel-booking-website-backend.vercel.app/hotel/hotels/';
-
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const hotels = await response.json();
-        hotels.sort((a, b) => a.id - b.id);
-        const tableBody = document.querySelector('#hotelTable tbody');
-
-        hotels.forEach(hotel => {
-            const row = document.createElement('tr');
-            const truncatedDescription = truncateText(hotel.description, 50);
-            const address = truncateText(hotel.address, 30);
-            row.innerHTML = `
-                <td>${hotel.id}</td>
-                <td>${hotel.name}</td>
-                <td>${address}</td>
-                <td>${hotel.district_name}</td>
-                <td><img src="${hotel.photo}" alt="Hotel Photo" style="max-width: 100px; max-height: 100px;"></td>
-                <td>${truncatedDescription}</td>
-                <td>${hotel.price_per_night}</td>
-                <td>${hotel.available_room}</td>
-                <td>
-                    <div class="d-flex gap-1">
-                        <div><button class="btn btn-success" onclick="editHotel(${hotel.id})"><i class="fas fa-edit"></i></button></div>
-                        <div><button class="btn btn-danger" onclick="deleteHotel(${hotel.id}, this)"><i class="fas fa-trash-alt"></i></button></div>
-                    </div>
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
-
-    } catch (error) {
-        console.error('Error fetching hotels:', error);
-    }
-});
-
-function truncateText(text, maxLength) {
-    if (text.length > maxLength) {
-        return text.substring(0, maxLength) + "...";
-    } else {
-        return text;
     }
 }
+
+document.getElementById('load-more').addEventListener('click', fetchHotelData);
+
+// Fetch data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchHotelData();
+});
+
+
+function truncateText(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+}
+
+
 
 function showAddHotelModal() {
     document.getElementById('hotelForm').reset();
@@ -156,7 +165,7 @@ async function handleHotelFormSubmit(event) {
             feedback.textContent = `Successfully added hotel: ${result.name}`;
             feedback.className = 'feedback text-success pb-3';
             form.reset();
-            location.reload(); // Reload the page to see the new hotel
+            location.reload();
         } else {
             const responseData = await response.json();
             feedback.textContent = `Failed to add hotel: ${JSON.stringify(responseData)}`;
