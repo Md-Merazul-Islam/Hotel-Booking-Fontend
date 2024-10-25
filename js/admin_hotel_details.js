@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
     .catch(error=console.error('Error fetching data : ',error));
     function display(clients){
-     const TotalClient = clients.length +1000;
+     const TotalClient = clients.length ;
     ;
      document.getElementById('total-clients').textContent= TotalClient;
     
